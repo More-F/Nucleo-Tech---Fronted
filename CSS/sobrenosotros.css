@@ -1,45 +1,99 @@
  :root {
-     --primary-color: #2c3e50;
-     --secondary-color: #A5BF45;
-     --light-color: #FFF9F2;
-     --dark-color: #34495e;
+     --primary-color: #A5BF45;
+     --secondary-color: #235884;
+     --dark-bg: #1A1E29;
+     --light-text: #F2F2F2;
+     --card-bg: #2a2f3a;
  }
 
  body {
      font-family: 'Exo 2', sans-serif;
      overflow-x: hidden;
  }
+
+ .section-title:after {
+     content: "";
+     position: absolute;
+     bottom: -15px;
+     left: 50%;
+     transform: translateX(-50%);
+     width: 100px;
+     height: 3px;
+     background-color: var(--secondary-color);
+ }
+
+ .card-hover:hover {
+     transform: translateY(-10px);
+     transition: all 0.3s ease;
+     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+ }
+
+ .value-card {
+     border-left: 4px solid var(--secondary-color);
+ }
+
+ section {
+     background-color: var(--dark-bg);
+     color: var(--light-text);
+ }
+
  .section-title {
-            position: relative;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-        }
-        
-        .section-title:after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: var(--secondary-color);
-        }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .team-img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .value-card {
-            border-left: 4px solid var(--secondary-color);
-        }
+     margin-bottom: 30px;
+     position: relative;
+     color: var(--primary-color);
+     font-weight: 700;
+ }
+
+ /* Imágenes del equipo */
+
+
+ /* Cards generales */
+ .card {
+     background-color: var(--card-bg);
+     border: 1px solid var(--secondary-color);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+     color: var(--light-text);
+ }
+
+ .card-hover:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 0 15px var(--primary-color);
+ }
+
+ /* Íconos */
+ .card .fas,
+ .card .bi,
+ .card .fab {
+     color: var(--primary-color);
+ }
+
+
+
+ /* Subtítulos */
+ .card-subtitle {
+     color: #ccc;
+ }
+
+ /* Botones sociales */
+ .social-links a i {
+     font-size: 1.5rem;
+     transition: color 0.3s ease;
+ }
+
+ .social-links a i:hover {
+     color: var(--primary-color);
+ }
+
+ /* Fondo claro opcional para alternar secciones */
+ .bg-light {
+     background-color: #F2F2F2 !important;
+ }
+
+ .team-img {
+     width: 200px;
+     height: 200px;
+     object-fit: cover;
+     border-radius: 50%;
+     border: 5px solid var(--primary-color);
+     margin-bottom: 1rem;
+ }
