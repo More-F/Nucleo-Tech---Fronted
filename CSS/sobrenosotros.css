@@ -44,9 +44,6 @@
      font-weight: 700;
  }
 
- /* Imágenes del equipo */
-
-
  /* Cards generales */
  .card {
      background-color: var(--card-bg);
@@ -63,10 +60,10 @@
  /* Íconos */
  .card .fas,
  .card .bi,
- .card .fab {
+ .card .fab,
+ .card-title{
      color: var(--primary-color);
  }
-
 
 
  /* Subtítulos */
