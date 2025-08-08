@@ -146,6 +146,30 @@ form {
 .container .mt-4:last-of-type {
     animation-delay: 0.6s;
 }
+@keyframes aparecer-desde-abajo {
+    0% {
+        transform: translateY(90px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+ 
+.info-horarios-pagos {
+    animation: aparecer-desde-abajo 1s ease-out;
+}
+ 
+.info-horarios-pagos ul li {
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+ 
+.info-horarios-pagos ul li:hover {
+    transform: scale(1.05);
+    color: var(--primary-color); /* Azul tipo Bootstrap */
+}
 
 /* ====== Responsive ====== */
 @media (max-width: 600px) {
