@@ -1,0 +1,169 @@
+:root {
+    --primary-color: #A5BF45;
+    --secondary-color: #235884;
+    --dark-bg: #1A1E29;
+    --light-text: #F2F2F2;
+    --card-bg: #2a2f3a;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
+  font-family: 'Exo 2', sans-serif;
+}
+body {
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+    background: var(--card-bg);
+    color: var(--light-text);
+}
+
+/* ====== Contacto Main Container ====== */
+.container.my-5 {
+    background: var(--light-text);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(34, 40, 49, 0.25);
+    padding: 2.5rem 2rem 2rem 2rem;
+    max-width: 700px;
+    margin: 3rem auto 2rem auto;
+    animation: fadeInUp 1s cubic-bezier(.39,.575,.565,1.000);
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Títulos y textos ====== */
+h1.text-center {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(165,191,69,0.10);
+}
+
+p.text-center {
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* ====== Formulario ====== */
+form {
+    margin-bottom: 2rem;
+}
+.form-group {
+    margin-bottom: 1.3rem;
+    position: relative;
+}
+label {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    display: block;
+    letter-spacing: 0.5px;
+}
+.form-control {
+    background: var(--light-text);
+    color: var(--light-text);
+    border-radius: 0.7rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(35,88,132,0.07);
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(165,191,69,0.20);
+    background: #e0e2ec;
+}
+textarea.form-control {
+    min-height: 90px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 16px 0 rgba(165,191,69,0.10);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+button[type="submit"]:hover, button[type="submit"]:focus {
+    background: var(--secondary-color);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 24px 0 rgba(35,88,132,0.13);
+}
+
+/* ====== Horarios y Pagos ====== */
+.container .mt-4 {
+    background: #23273a;
+    border-radius: 1rem;
+    padding: 1.2rem 1.2rem 1rem 1.2rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 8px 0 rgba(35,88,132,0.07);
+    animation: fadeInUp 1.2s cubic-bezier(.39,.575,.565,1.000);
+}
+.container .mt-4 h5 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+}
+.container .mt-4 ul {
+    color: var(--light-text);
+    margin-left: 1.2rem;
+    font-size: 1rem;
+}
+.container .mt-4 li {
+    margin-bottom: 0.4rem;
+}
+
+/* ====== Animaciones Dinámicas ====== */
+form, .container .mt-4 {
+    opacity: 0;
+    animation: fadeInUp 1s 0.2s forwards;
+}
+
+form {
+    animation-delay: 0.2s;
+}
+.container .mt-4:first-of-type {
+    animation-delay: 0.4s;
+}
+.container .mt-4:last-of-type {
+    animation-delay: 0.6s;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 600px) {
+    .container.my-5 {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        max-width: 98vw;
+    }
+    .container .mt-4 {
+        padding: 0.8rem 0.5rem 0.7rem 0.5rem;
+    }
+    h1.text-center {
+        font-size: 1.5rem;
+    }
+    .form-control {
+        font-size: 0.97rem;
+    }
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
