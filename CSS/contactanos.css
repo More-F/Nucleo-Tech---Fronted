@@ -175,10 +175,10 @@ form {
 @media (max-width: 600px) {
     .container.my-5 {
         padding: 1.2rem 0.5rem 1rem 0.5rem;
-        max-width: 98vw;
+        max-width: 90vw;
     }
     .container .mt-4 {
-        padding: 0.8rem 0.5rem 0.7rem 0.5rem;
+        padding: 0.8rem 1rem 0.7rem 1rem;
     }
     h1.text-center {
         font-size: 1.5rem;
