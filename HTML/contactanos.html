@@ -20,7 +20,7 @@
         <p class="text-center">Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos lo más pronto posible.
         </p>
 
-        <form action="https://formspree.io/f/xeozpygn" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/xeozpygn" method="POST">
             <div class="form-group">
                 <label for="nombre">¿Cuál es tu nombre?</label>
                 <input name="name" type="text" class="form-control" id="nombre"  placeholder="Tu nombre">
@@ -38,6 +38,7 @@
                 <textarea name="message" class="form-control" id="mensaje"  rows="3" placeholder="Tu mensaje"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
+            <div id="mensaje-form" style="margin-top:10px;"></div>
         </form>
         <section class="info-horarios-pagos">
             <div class="mt-4">
