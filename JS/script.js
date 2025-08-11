@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
+    const form = document.querySelector('#form');
     const inputNombre = document.querySelector('#nombre');
     const inputCelular = document.querySelector('#celular');
     const inputEmail = document.querySelector('#correo');
@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     [inputNombre, inputCelular, inputEmail, inputMensaje].forEach(input => {
         input.addEventListener('blur', validar);
     });
+
+    // Funcion para validar
 
     function validar(e) {
         const campo = e.target;
@@ -44,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         mostrarError(campo, mensajeError);
     }
-
+     
+    //Funcion que muestra el error 
     function mostrarError(input, mensaje) {
         const grupo = input.closest('.form-group');
         const errorPrevio = grupo.querySelector('.mensaje-error');
