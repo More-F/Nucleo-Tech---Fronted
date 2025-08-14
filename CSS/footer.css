@@ -1,6 +1,6 @@
 /* Footer */
 .footer-custom {
-  background: var(--dark-bg);
+  background: var(--card-bg);
   color: var(--primary-color);
   width: 100vw;
   margin: 0;
@@ -84,7 +84,7 @@
   padding: 1rem 0 0.5rem 0;
   color: #FFF9F2;
   font-size: 0.95rem;
-  background: var(--dark-bg);
+  background: var(--card-bg);
 }
 
 @media (max-width: 900px) {

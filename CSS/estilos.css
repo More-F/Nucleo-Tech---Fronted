@@ -13,3 +13,8 @@
 body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
   font-family: 'Exo 2', sans-serif;
 }
+body {
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+    background-color: #1A1E29;
+}

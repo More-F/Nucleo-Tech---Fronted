@@ -16,7 +16,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
 body {
     font-family: 'Exo 2', sans-serif;
     overflow-x: hidden;
-    background: var(--card-bg);
+    background: var(--dark-bg);
     color: var(--light-text);
 }
 

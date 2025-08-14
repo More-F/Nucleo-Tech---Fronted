@@ -5,31 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nucleo Tech</title>
-    <link rel="stylesheet" href="/CSS/estilos.css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/estilos.css">
     <link rel="stylesheet" href="/CSS/estilasowasa.css">
+    <link rel="stylesheet" href="/CSS/navbar.css">
+    
 </head>
 
+<script type="module">
+  import { animate, stagger, text } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
+  const { words } = text.split('.titulo-nav',  {
+  words: { wrap: 'clip' },
+})
+
+animate(words, {
+  y: [
+    { to: ['100%', '0%'] },
+    { to: '-100%', delay: 1750, ease: 'in(3)' }
+  ],
+  duration: 750,
+  ease: 'out(3)',
+  delay: stagger(100),
+  loop: true,
+});
+
+const menuToggle = document.getElementById("menu-toggle");
+    const navList = document.querySelector(".nav-list");
+
+    menuToggle.addEventListener("click", () => {
+        navList.classList.toggle("active");
+    });
+</script>
+
 <body>
-    <header>
         <nav>
             <div class="contenedor_nav">
-                <img src="/IMG/Group 8 (1).png" alt="" style="width: 60px;">
-                <div class="contenedor_lista">
-                    <ul>
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="">Catalogo</a></li>
-                        <li><a href="sobreNosotros.html">Sobre Nosotros</a></li>
-                        <li><a href="contactanos.html">Contactanos</a></li>
+              <div class="logo-nav">
+                <img src="/IMG/Group 8 (1).png" alt="" style="width: 30px;">
+                <a href="index.html"><h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2></a>
+              </div>
+                
+                    <ul class="nav-list">
+                        <li ><a class="nav-text" href="">Inicio</a></li>
+                        <li><a class="nav-text" href="">Catalogo</a></li>
+                        <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
+                        <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
                     </ul>
+                
+                <div class="contenedor_iconos">
+                  <a href=""><i class="bi bi-cart3"></i></a>
+                  <a href=""><i class="bi bi-person-circle"></i></a>
                 </div>
+                <a class="menu-toggle" id="menu-toggle">
+                  <i class=" bi-list"></i>
+                </a>
             </div>
         </nav>
-    </header>
 
     <section>
         <div>
@@ -108,15 +143,13 @@
   <div class="footer-bottom">
     <small>&copy; 2025 Nucleo Tech. Todos los derechos reservados.</small>
   </div>
-  <a href="https://wa.me/573160588841?text=Hola,%20quiero%20más%20información%20sobre%20un%20producto"
+</footer>
+<a href="https://wa.me/573160588841?text=Hola,%20quiero%20más%20información%20sobre%20un%20producto"
         class="whatsapp-float"
         target="_blank"
         title="Chatea con nosotros en WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
-</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-1q8d6b2e4c9f8a5
 </body>
-
 </html>
