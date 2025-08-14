@@ -16,30 +16,7 @@
     
 </head>
 
-<script type="module">
-  import { animate, stagger, text } from 'https://cdn.jsdelivr.net/npm/animejs/+esm';
-  const { words } = text.split('.titulo-nav',  {
-  words: { wrap: 'clip' },
-})
-
-animate(words, {
-  y: [
-    { to: ['100%', '0%'] },
-    { to: '-100%', delay: 1750, ease: 'in(3)' }
-  ],
-  duration: 750,
-  ease: 'out(3)',
-  delay: stagger(100),
-  loop: true,
-});
-
-const menuToggle = document.getElementById("menu-toggle");
-    const navList = document.querySelector(".nav-list");
-
-    menuToggle.addEventListener("click", () => {
-        navList.classList.toggle("active");
-    });
-</script>
+<script type="module" src="/JS/navar.js"></script> // vincular la pagina
 
 <body>
         <nav>
@@ -143,13 +120,13 @@ const menuToggle = document.getElementById("menu-toggle");
   <div class="footer-bottom">
     <small>&copy; 2025 Nucleo Tech. Todos los derechos reservados.</small>
   </div>
-</footer>
-<a href="https://wa.me/573160588841?text=Hola,%20quiero%20más%20información%20sobre%20un%20producto"
-        class="whatsapp-float"
-        target="_blank"
-        title="Chatea con nosotros en WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-  </a>
+    </footer>
+    <a href="https://wa.me/573160588841?text=Hola,%20quiero%20más%20información%20sobre%20un%20producto"
+          class="whatsapp-float"
+          target="_blank"
+          title="Chatea con nosotros en WhatsApp">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
 
 </body>
 </html>
