@@ -51,8 +51,12 @@ section {
     color: var(--primary-color) !important;
     font-weight: 700;
 }
+.img-nosotros {
+  transition: transform 0.3s ease;
+  width: 550px;
+}
 .img-nosotros:hover {
-  transform: scale(1.01);
+  transform: scale(1.1);
 }
 
 .card {
