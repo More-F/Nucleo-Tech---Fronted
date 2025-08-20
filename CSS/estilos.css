@@ -82,12 +82,10 @@ body {
   font-size: 1.5rem;
 }
 .contenedor-productos {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px 120px;
-  background-color: var(--dark-bg);
-  align-items: center;
+  max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  
 }
 .contenedor-card-producto{
    display: flex;
@@ -111,18 +109,21 @@ body {
 .contenedor-categorias {
   display: flex;
   justify-content: space-evenly;
-  margin: 40px 20px;
-  padding: 20px;
-  background-color: var(--light-text);
+  padding: 60px;
+  background-color: var(--card-bg);
 }
 .categoria-card{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-top: 20px;
-  background-color: #235884;
+  width: 22rem;
+  height: 12rem;
+  background-image: url("https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80");
   padding: 80px;
+  background-color: #F2F2F2;
   border-radius: 10px;
+  color: #A5BF45;
 }
 .btn-ver-mas {
   background-color: var(--primary-color);
@@ -132,6 +133,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+}
+.boton-vermas{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .btn-ver-mas:hover {
   background-color: var(--secondary-color);
