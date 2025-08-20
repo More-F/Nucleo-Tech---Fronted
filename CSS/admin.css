@@ -1,0 +1,310 @@
+:root {
+    --primary-color: #A5BF45;
+    --secondary-color: #235884;
+    --dark-bg: #1A1E29;
+    --light-text: #F2F2F2;
+    --card-bg: #2a2f3a;
+}
+
+body {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.admin {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 20px; /* 20px de espacio interno */
+    min-height: calc(100vh - 60px); /* altura menos el nav fijo */
+}
+
+.admin h3 {
+    color: var(--primary-color);
+    font-size: 20px; /* antes 1.3rem */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.admin .nav-link {
+    color: var(--light-text);
+    font-size: 16px; /* antes 1rem */
+    padding-left: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.admin .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.catalogo-adm {
+    background-color: var(--card-bg);
+    padding: 20px; 
+    min-height: calc(100vh - 60px);
+}
+
+.admin-btn {
+    margin-top: 10px;
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    font-size: 20px; 
+    padding: 10px; /*ancho bbot */
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+    width: 20%;
+    margin-left: auto;
+    margin-right: 0;
+}
+.admin-btn:hover {
+    background-color: #A5BF45;
+    color: var(--light-text) !important;
+}
+
+/*tabla*/
+.catalogo {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: var(--light-text);
+}
+
+.catalogo h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.tabla-catalogo {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-catalogo th,
+.tabla-catalogo td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla-catalogo th {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+}
+
+.img-tabla {
+    width: 60px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.btn-accion {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.btn-accion.editar {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-accion.eliminar {
+    background-color: crimson;
+    color: #fff;
+}
+
+/* modal editar******* */
+/*fondo modal */
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6); /* fondo oscuro */
+}
+
+/*Contenido del modal */
+.modal-content {
+  background-color: #2a2f3a;
+  color: #F2F2F2;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/*cerrar*/
+.close {
+  color: #F2F2F2;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #A5BF45;
+}
+
+/*inputs */
+.form-editar label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.form-editar input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/*botones */
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-guardar {
+  background-color: #235884;
+  color: #F2F2F2;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-guardar:hover {
+  background-color: #A5BF45;
+}
+
+.btn-cancelar {
+  background-color: #555;
+  color: #F2F2F2;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background-color: #333;
+}
+
+
+
+
+
+/* Modal Crear Producto */
+#modalCrear {
+    display: none; /*oculto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /*fondo */
+}
+
+#modalCrear .modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    color: var(--light-text);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#modalCrear .modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#modalCrear label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#modalCrear input,
+#modalCrear select,
+#modalCrear textarea {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+}
+
+#modalCrear textarea {
+    resize: vertical;
+}
+
+#modalCrear .especificaciones h3 {
+    margin-top: 15px;
+    color: var(--primary-color);
+}
+
+/* botones */
+#modalCrear .modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+#modalCrear .btn-guardar,
+#modalCrear .btn-cancelar {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#modalCrear .btn-guardar {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+}
+
+#modalCrear .btn-guardar:hover {
+    background-color: var(--primary-color);
+}
+
+#modalCrear .btn-cancelar {
+    background-color: #555;
+    color: #fff;
+}
+
+#modalCrear .btn-cancelar:hover {
+    background-color: #333;
+}
+
+/* cerrar */
+#modalCrear .close {
+    color: var(--light-text);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modalCrear .close:hover {
+    color: var(--primary-color);
+}
