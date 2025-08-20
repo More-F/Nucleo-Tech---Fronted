@@ -18,24 +18,122 @@ body {
     overflow-x: hidden;
     background-color: #1A1E29;
     padding-top: 39px;
+    color: #F2F2F2;
 }
 
+/* BANNER */
 .banner {
   width: 100%;
-  overflow: hidden; /* Evita barras de desplazamiento si la imagen sobresale */
+  overflow: hidden; 
 }
-
 .contenedor-banner {
   width: 100%;
-  height: 350px; /* Alto estándar hero banner */
+  height: 350px; 
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  opacity: 0.8;
 }
-
 .img-banner {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
+  object-fit: cover; 
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;             
+  transition: opacity 0.3s ease;
+}
+.btn-banner {
+  padding: 10px 20px;
+  background: var(--primary-color);
+  color: var(--dark-bg);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0;            
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+.contenedor-banner:hover .overlay {
+  opacity: 1;
+}
+.contenedor-banner:hover .btn-banner {
+  opacity: 1;
+  transform: translateY(0);
 }
 
+/* PRODUCTOS DESTACADOS */
+.titulo-index {
+  color: var(--primary-color);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  font-size: 1.5rem;
+}
+.contenedor-productos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 120px;
+  background-color: var(--dark-bg);
+  align-items: center;
+}
+.contenedor-card-producto{
+   display: flex;
+   flex-wrap: wrap;
+  padding: 20px;
+  gap: 60px; 
+}
+.card-p{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: var(--light-text);
+  width: 16rem;
+  height: 20rem;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/*CATEGORIAS*/
+.contenedor-categorias {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 20px;
+  padding: 20px;
+  background-color: var(--light-text);
+}
+.categoria-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: #235884;
+  padding: 80px;
+  border-radius: 10px;
+}
+.btn-ver-mas {
+  background-color: var(--primary-color);
+  color: var(--dark-bg);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.btn-ver-mas:hover {
+  background-color: var(--secondary-color);
+  color: var(--light-text);
+}
