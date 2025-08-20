@@ -108,23 +108,41 @@ body {
 /*CATEGORIAS*/
 .contenedor-categorias {
   display: flex;
-  justify-content: space-evenly;
-  padding: 60px;
+  flex-wrap: wrap; /* Permite que se acomoden en varias filas */
+  justify-content: center;
+  gap: 20px; /* Espacio entre cards */
+  padding: 40px;
   background-color: var(--card-bg);
 }
-.categoria-card{
+
+.categoria-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 20px;
-  width: 22rem;
-  height: 12rem;
+  width: 100%;         /* Ocupa todo el ancho disponible en móviles */
+  max-width: 350px;    /* No crece más de este ancho */
+  height: 200px;       /* Ajusta la altura a algo más estándar */
   background-image: url("https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80");
-  padding: 80px;
-  background-color: #F2F2F2;
+  background-size: cover;   /* Que la imagen cubra todo */
+  background-position: center;
   border-radius: 10px;
+  padding: 20px;
   color: #A5BF45;
 }
+
+/* Media queries */
+@media (min-width: 768px) {
+  .categoria-card {
+    width: calc(50% - 40px); /* Dos por fila en tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .categoria-card {
+    width: calc(33.333% - 40px); /* Tres por fila en pantallas grandes */
+  }
+}
+
 .btn-ver-mas {
   background-color: var(--primary-color);
   color: var(--dark-bg);
