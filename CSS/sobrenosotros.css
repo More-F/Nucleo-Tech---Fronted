@@ -16,6 +16,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
 body {
     font-family: 'Exo 2', sans-serif;
     overflow-x: hidden;
+    background-color: #1A1E29;
 }
 
 .section-title:after {
@@ -50,8 +51,12 @@ section {
     color: var(--primary-color) !important;
     font-weight: 700;
 }
+.img-nosotros {
+  transition: transform 0.3s ease;
+  width: 550px;
+}
 .img-nosotros:hover {
-  transform: scale(1.01);
+  transform: scale(1.1);
 }
 
 .card {

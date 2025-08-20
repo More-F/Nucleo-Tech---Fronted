@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/contactanos.css">
     <link rel="stylesheet" href="/CSS/estilasowasa.css">
+    <link rel="stylesheet" href="/CSS/catalogo.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
 </head>
-<script type="module" src="/JS/navar.js"></script> // vinvular la pagina
+    <script type="module" src="/JS/navar.js"></script> 
 <body>
     <nav>
         <div class="contenedor_nav">
@@ -23,8 +24,8 @@
             </div>
             
                 <ul class="nav-list">
-                    <li ><a class="nav-text" href="">Inicio</a></li>
-                    <li><a class="nav-text" href="">Catalogo</a></li>
+                    <li ><a class="nav-text" href="index.html">Inicio</a></li>
+                    <li><a class="nav-text" href="catalogo.html">Catalogo</a></li>
                     <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
                     <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
                 </ul>
@@ -38,11 +39,27 @@
             </a>
         </div>
     </nav>
-
-
-    <img src="/IMG/quienesomos.png" alt="somos">
-
-
+    <div class="container">
+        <h2 class="section-title">¿Buscas solo componentes?</h2>
+        <p class="section-subtitle">Encuentra los mejores componentes al mejor precio</p>
+        
+        
+        <!-- Categorías -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all"><i class="fas fa-star"></i> TODOS</button>
+            <button class="category-btn" data-category="chasis"><i class="fas fa-desktop"></i> CHASIS</button>
+            <button class="category-btn" data-category="fuentes"><i class="fas fa-bolt"></i> FUENTES</button>
+            <button class="category-btn" data-category="tarjetas-video"><i class="fas fa-microchip"></i> TARJETAS DE VIDEO</button>
+            <button class="category-btn" data-category="teclados-mouse"><i class="fas fa-keyboard"></i> TECLADOS / MOUSE</button>
+            <button class="category-btn" data-category="monitores"><i class="fas fa-tv"></i> MONITORES</button>
+            <button class="category-btn" data-category="refrigeracion"><i class="fas fa-fan"></i> REFRIGERACIÓN</button>
+        </div>
+        
+        <!-- Productos -->
+        <div class="products-grid" id="products-container">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+    </div>
 
     <footer class="footer-custom">
     <div class="footer-content">
@@ -93,5 +110,6 @@
             title="Chatea con nosotros en WhatsApp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
     </a>
+    <script src="/JS/productos.js"></script>
 </body>
 </html>
