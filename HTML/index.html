@@ -20,9 +20,9 @@
 </head>
 
 <script type="module" src="/JS/navar.js"></script>
-<script src="/JS/productos.js"></script>
+<script src="/JS/scriptAdmin.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     // Limpiamos lo que renderizó tu JS
     const productsContainer = document.getElementById("products-container");
     productsContainer.innerHTML = "";
@@ -42,7 +42,12 @@
             <h3 class="product-title">${producto.nombre}</h3>
             <div class="product-price">
                 <div>
-                    <span class="price">$${producto.precio.toFixed(2)}</span>
+                    <span class="price">${new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0
+      }).format(producto.precio)
+        }</span>
                 </div>
             </div>
             <button class="add-to-cart" data-id="${producto.id}">
@@ -94,22 +99,22 @@
       </div>
     </div>
   </div>
-<h2 class="titulo-index">Categorias</h2>
-<br>
+  <h2 class="titulo-index">Categorias</h2>
+  <br>
   <div class="contenedor-categorias">
-      <div class="categoria-card">
-        <h3>Fuentes</h3>
-        <img src="" alt="">
-      </div>
-      <div class="categoria-card">
-        <h3>Teclados/Mouse</h3>
-        <img src="" alt="">
-      </div>
-      <div class="categoria-card">
-        <h3>Monitores</h3>
-        <img src="" alt="">
-      </div>
+    <div class="categoria-card">
+      <h3>Fuentes</h3>
+      <img src="" alt="">
     </div>
+    <div class="categoria-card">
+      <h3>Teclados/Mouse</h3>
+      <img src="" alt="">
+    </div>
+    <div class="categoria-card">
+      <h3>Monitores</h3>
+      <img src="" alt="">
+    </div>
+  </div>
 
   <main>
     <h2 class="titulo-index">Productos destacados</h2>
@@ -118,16 +123,16 @@
         <div class="products-grid" id="products-container">
           <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
-        
+
       </div>
       <div class="boton-vermas">
         <button class="btn-ver-mas">Ver mas</button>
       </div>
       <br>
-      
+
     </section>
-    
-    
+
+
   </main>
   <footer class="footer-custom">
     <div class="footer-content">
