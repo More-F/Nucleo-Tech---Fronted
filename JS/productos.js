@@ -1,144 +1,205 @@
 // Base de datos de productos (normalmente esto vendría de un servidor)
 const productos = [
     {
-        id: 1,
-        nombre: "Gabinete Gamer XYZ AIRONE 100 MESH 6 Ventiladores aRGB WHITE",
-        categoria: "chasis",
-        precio: 99.99,
-        precioAnterior: 129.99,
-        imagen: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: true,
-        descuento: 23
-    },
+    id: 1,
+    categoria: "Componentes",
+    nombre: "Procesador Intel Core i7 12700K",
+    marca: "Intel",
+    precio: 1500000,
+    stock: 12,
+    descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
+    imagen: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80", // imagen por defecto
+    especificaciones: {
+      socket: "LGA1700",
+      TDP: "125W",
+      graficaIntegrada: "Intel UHD Graphics 770"
+    }
+  },
     {
         id: 2,
-        nombre: "Chasis Gamer Iceberg Crystal Wave Blanco M-ATX 3 Ventiladores ARGB Maxi Infinity",
-        categoria: "chasis",
-        precio: 69.99,
-        precioAnterior: 89.99,
-        imagen: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 22
+        categoria: "monitores",
+        nombre: "Monitor MSI GAMING 32″ 321CUP QD-OLED 4K, 165HZ, 0.03MS",
+        marca: "MSI",
+        precio: 4997000,
+        stock: 8,
+        descripcion: "Panel QD-OLED de 3.ª Generación: calidad de imagen impresionante y tiempo de respuesta ultra rápido.",
+        imagen: "https://clonesyperifericos.com/wp-content/uploads/2025/08/Monitor-MSI-GAMING-32-321CUP-QD-OLED-4K-165HZ-0.03MS.webp",
+        especificaciones: {
+          resolucion: "4K",
+          tasaRefresco: "165Hz",
+          tiempoRespuesta: "0.03ms"
+        }
     },
     {
         id: 3,
-        nombre: "Gabinete Gamer XYZ AIRONE 100 MESH 6 Ventiladores aRGB",
-        categoria: "chasis",
-        precio: 89.99,
-        precioAnterior: 119.99,
+        nombre: "Tarjeta ASRock AMD Radeon RX 9070 XT Steel Legend Dark 16GB",
+        categoria: "tarjetas-video",
+        marca: "ASRock",
+        precio: 3700000,
+        stock: 5,
         imagen: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 25
+        descripcion: "La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.",
+        especificaciones: {
+          arquitectura: "RDNA 3",
+          rayTracing: "Sí",
+          memoria: "16GB GDDR6"
+        }
     },
     {
         id: 4,
         nombre: "Chasis Aerocool Ore Saturn FRGB Vidrio Templado",
         categoria: "chasis",
-        precio: 59.99,
-        precioAnterior: 79.99,
+        precio: 2007002,
+        stock: 10,
         imagen: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 25
+        descripcion: "Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.",
+        especificaciones: {
+          tipo: "ATX",
+          material: "Acero y vidrio templado",
+          ventiladores: "3x ARGB incluidos"
+        }
     },
     {
         id: 5,
         nombre: "Fuente de Poder 80 Plus Gold 750W Modular",
         categoria: "fuentes",
         precio: 109.99,
-        precioAnterior: 129.99,
+        stock: 15,
         imagen: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: true,
-        descuento: 15
+        descripcion: "Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.",
+        especificaciones: {
+          potencia: "750W",
+          certificacion: "80 Plus Gold",
+          modular: "Sí"
+        }
     },
     {
         id: 6,
         nombre: "Fuente de Alimentación 850W 80 Plus Bronze",
         categoria: "fuentes",
         precio: 79.99,
-        precioAnterior: 99.99,
+        stock: 10,
         imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 20
+        descripcion: "Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.",
+        especificaciones: {
+          potencia: "850W",
+          certificacion: "80 Plus Bronze",
+          modular: "Sí"
+        }
     },
     {
         id: 7,
         nombre: "Tarjeta de Video NVIDIA RTX 4070 12GB GDDR6",
         categoria: "tarjetas-video",
         precio: 699.99,
-        precioAnterior: 799.99,
+        stock: 3,
         imagen: "https://images.unsplash.com/photo-1593642633279-1796119d5482?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 13
+        descripcion: "La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.",
+        especificaciones: {
+          arquitectura: "Ada Lovelace",
+          rayTracing: "Sí",
+          memoria: "12GB GDDR6"
+        }
     },
     {
         id: 8,
         nombre: "Tarjeta Gráfica AMD Radeon RX 7800 XT 16GB",
         categoria: "tarjetas-video",
         precio: 549.99,
-        precioAnterior: 649.99,
+        stock: 3,
         imagen: "https://images.unsplash.com/photo-1591485423007-765bde4139ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: true,
-        descuento: 15
+        descripcion: "La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.",
+        especificaciones: {
+          arquitectura: "RDNA 3",
+          rayTracing: "Sí",
+          memoria: "16GB GDDR6"
+        }
     },
     {
         id: 9,
         nombre: "Teclado Mecánico Gamer RGB Switch Blue",
         categoria: "teclados-mouse",
         precio: 89.99,
-        precioAnterior: 119.99,
+        stock: 20,
         imagen: "https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 25
+        descripcion: "Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.",
+        especificaciones: {
+          tipo: "Mecánico",
+          retroiluminación: "RGB",
+          switch: "Blue"
+        }
     },
     {
         id: 10,
         nombre: "Mouse Inalámbrico Gamer 16000DPI RGB",
         categoria: "teclados-mouse",
         precio: 49.99,
-        precioAnterior: 69.99,
+        stock: 15,
         imagen: "https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: true,
-        descuento: 29
+        descripcion: "Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.",
+        especificaciones: {
+          dpi: "16000",
+          retroiluminación: "RGB",
+          tipo: "Inalámbrico"
+        }
     },
     {
         id: 11,
         nombre: "Monitor Gaming 27\" 144Hz 1ms FreeSync",
         categoria: "monitores",
         precio: 249.99,
-        precioAnterior: 299.99,
-        imagen: "https://images.unsplash.com/photo-1649779240006-0b3a011e3cc4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 17
+        stock: 5,
+        imagen: "https://th.bing.com/th/id/R.b9a527427cb27861be9374f4476e9d77?rik=sYxT2rX1UFni6A&pid=ImgRaw&r=0",
+        descripcion: "Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.",
+        especificaciones: {
+          tamaño: "27\"",
+          frecuencia: "144Hz",
+          tiempoRespuesta: "1ms",
+          tecnologia: "FreeSync"
+        }
     },
     {
         id: 12,
         nombre: "Monitor Curvo 32\" 165Hz QHD",
         categoria: "monitores",
         precio: 349.99,
-        precioAnterior: 399.99,
-        imagen: "https://images.unsplash.com/photo-1592656094267-764a4516085c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: true,
-        descuento: 13
+        stock: 3,
+        imagen: "https://tse2.mm.bing.net/th/id/OIP.4stnZL5HyQQkBi4_dS5dDwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        descripcion: "Monitor Curvo 32\" 165Hz QHD, ideal para gamers.",
+        especificaciones: {
+          tamaño: "32\"",
+          frecuencia: "165Hz",
+          resolucion: "QHD",
+          tecnologia: "Curvo"
+        }
     },
     {
         id: 13,
         nombre: "Sistema de Refrigeración Líquida CPU 240mm RGB",
         categoria: "refrigeracion",
         precio: 119.99,
-        precioAnterior: 149.99,
-        imagen: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: false,
-        descuento: 20
+        stock: 10,
+        imagen: "https://tse2.mm.bing.net/th/id/OIP.4stnZL5HyQQkBi4_dS5dDwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        descripcion: "Sistema de Refrigeración Líquida CPU 240mm RGB, eficiente y silencioso.",
+        especificaciones: {
+          tipo: "Refrigeración Líquida",
+          tamaño: "240mm",
+          rgb: "Sí"
+        }
     },
     {
         id: 14,
         nombre: "Ventiladores RGB 120mm Pack de 3",
         categoria: "refrigeracion",
         precio: 49.99,
-        precioAnterior: 69.99,
-        imagen: "https://images.unsplash.com/photo-160x/57/d/15/computer-fan-1000x1000.jpg?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-        nuevo: true,
-        descuento: 29
+        stock: 20,
+        imagen: "https://m.media-amazon.com/images/I/71+PJTW+toL._SL1500_.jpg",
+        descripcion: "Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.",
+        especificaciones: {
+          tipo: "Ventilador",
+          tamaño: "120mm",
+          rgb: "Sí"
+        }
     }
 ];
 
@@ -163,19 +224,12 @@ function renderProductos(categoria = 'all') {
         productCard.className = 'product-card';
         
         productCard.innerHTML = `
-            ${producto.nuevo ? '<span class="product-badge">NUEVO</span>' : ''}
-            ${!producto.nuevo && producto.descuento > 15 ? '<span class="product-badge">OFERTA</span>' : ''}
             <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
-            <div class="product-info">
-                <div class="product-category">${producto.categoria.toUpperCase()}</div>
-                <h3 class="product-title">${producto.nombre}</h3>
-                <div class="product-price">
-                    <div>
-                        <span class="old-price">$${producto.precioAnterior.toFixed(2)}</span>
-                        <span class="price">$${producto.precio.toFixed(2)}</span>
-                    </div>
-                    <span class="discount">${producto.descuento}%</span>
-                </div>
+      <div class="product-info">
+      <div class="product-category">${producto.categoria.toUpperCase()}</div>
+        <h3 class="product-title">${producto.nombre}</h3>
+        
+        <span class="price">$${producto.precio.toLocaleString()}</span>
                 <button class="add-to-cart" data-id="${producto.id}">
                     <i class="fas fa-shopping-cart"></i> Agregar
                 </button>
@@ -218,3 +272,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+

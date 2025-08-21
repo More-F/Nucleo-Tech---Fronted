@@ -75,7 +75,7 @@
                     <div class="modal-content">
                         <span class="close"
                             onclick="document.getElementById('modalCrear').style.display='none'">&times;</span>
-                        <h2>Crear Producto</h2>
+                        <h2 class="text-center">Crear Producto</h2>
 
                         <form id="formProducto">
                             <label for="nombre">Nombre del producto</label>
@@ -135,7 +135,6 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Imagen</th>
                                 <th>Categoría</th>
                                 <th>Nombre</th>
                                 <th>Marca</th>
@@ -144,25 +143,8 @@
                                 <th>Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Producto de ejemplo -->
-                            <tr>
-                                <td>4</td>
-                                <td>
-                                    <img src="/CSS/tecladooo.png" alt="Producto" class="img-tabla">
-                                </td>
-                                <td>Zona Gamer</td>
-                                <td>Teclado Mecánico HyperX Alloy Origins</td>
-                                <td>HyperX</td>
-                                <td>$450.000</td>
-                                <td>20</td>
-                                <td>
-                                    <button class="btn-accion editar"
-                                        onclick="document.getElementById('modalEditar').style.display='block'">Editar
-                                    </button>
-                                    <button class="btn-accion eliminar">Eliminar</button>
-                                </td>
-                            </tr>
+                        <tbody id="tabla-productos">
+                            
                         </tbody>
                     </table>
 
@@ -172,24 +154,23 @@
                         <div class="modal-content">
                             <span class="close"
                                 onclick="document.getElementById('modalEditar').style.display='none'">&times;</span>
-                            <h2>Editar Producto</h2>
+                            <h2 class="text-center" style="color: var(--primary-color);">Editar Producto</h2>
 
                             <form class="form-editar">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" id="nombre" name="nombre"
-                                    value="Teclado Mecánico HyperX Alloy Origins">
+                                <input type="text" id="nombre" name="nombre">
 
                                 <label for="categoria">Categoría:</label>
-                                <input type="text" id="categoria" name="categoria" value="Zona Gamer">
+                                <input type="text" id="categoria" name="categoria">
 
                                 <label for="marca">Marca:</label>
-                                <input type="text" id="marca" name="marca" value="HyperX">
+                                <input type="text" id="marca" name="marca" >
 
                                 <label for="precio">Precio:</label>
-                                <input type="number" id="precio" name="precio" value="450000">
+                                <input type="number" id="precio" name="precio" >
 
                                 <label for="stock">Stock:</label>
-                                <input type="number" id="stock" name="stock" value="20">
+                                <input type="number" id="stock" name="stock" >
 
                                 <div class="modal-buttons">
                                     <button type="submit" class="btn-guardar">Guardar</button>
