@@ -221,35 +221,132 @@ function guardarProductos(productos) {
 }
 
 // creamos producto desde formulario
-function crearProductoDesdeFormulario() {
+function validarDatosProducto(esEdicion = false, idExistente = null) {
+  // Obtener valores
+  const nombre = document.getElementById("nombre").value.trim();
+  const categoria = document.getElementById("categoria").value;
+  const marca = document.getElementById("marca").value.trim();
+  const precio = document.getElementById("precio").value;
+  const stock = document.getElementById("stock").value;
+  const descripcion = document.getElementById("descripcion").value.trim();
+  const especificacion1 = document.getElementById("especificacion1").value.trim();
+  const especificacion2 = document.getElementById("especificacion2").value.trim();
+  const especificacion3 = document.getElementById("especificacion3").value.trim();
+
+  // Validaciones
+  let errores = [];
+
+  // Validar nombre
+  if (!nombre) {
+    errores.push("El nombre del producto es obligatorio");
+  } else if (nombre.length < 3) {
+    errores.push("El nombre debe tener al menos 3 caracteres");
+  } else if (!/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\-_.,()&!@#%]+$/.test(nombre)) {
+    errores.push("El nombre contiene caracteres no válidos");
+  }
+
+  // Validar categoría
+  if (!categoria) {
+    errores.push("La categoría es obligatoria");
+  }
+
+  // Validar marca
+  if (!marca) {
+    errores.push("La marca es obligatoria");
+  } else if (marca.length < 2) {
+    errores.push("La marca debe tener al menos 2 caracteres");
+  }
+
+  // Validar precio
+  if (!precio) {
+    errores.push("El precio es obligatorio");
+  } else if (isNaN(parseFloat(precio)) || parseFloat(precio) <= 0) {
+    errores.push("El precio debe ser un número mayor a 0");
+  } else if (parseFloat(precio) > 10000000) {
+    errores.push("El precio no puede ser mayor a 10,000,000");
+  }
+
+  // Validar stock
+  if (!stock) {
+    errores.push("El stock es obligatorio");
+  } else if (isNaN(parseInt(stock)) || parseInt(stock) < 0) {
+    errores.push("El stock debe ser un número entero no negativo");
+  } else if (parseInt(stock) > 10000) {
+    errores.push("El stock no puede ser mayor a 10,000 unidades");
+  }
+
+  // Validar descripción
+  if (!descripcion) {
+    errores.push("La descripción es obligatoria");
+  } else if (descripcion.length < 10) {
+    errores.push("La descripción debe tener al menos 10 caracteres");
+  }
+
+  // Validar nombre único (solo para creación, no edición)
+  if (!esEdicion && productos.some(p => p.nombre.toLowerCase() === nombre.toLowerCase())) {
+    errores.push("Ya existe un producto con ese nombre");
+  }
+
+  // Si hay errores, mostrarlos
+  if (errores.length > 0) {
+    mostrarErrores(errores);
+    return null;
+  }
+
+  // Retornar objeto validado
   return {
-    id: productos.length + 1,
-    nombre: document.getElementById("nombre").value,
-    categoria: document.getElementById("categoria").value,
-    marca: document.getElementById("marca").value,
-    precio: parseFloat(document.getElementById("precio").value),
-    stock: parseInt(document.getElementById("stock").value),
-    descripcion: document.getElementById("descripcion").value,
+    nombre: nombre,
+    categoria: categoria,
+    marca: marca,
+    precio: parseFloat(parseFloat(precio).toFixed(2)),
+    stock: Math.max(0, parseInt(stock)),
+    descripcion: descripcion,
     especificaciones: {
-      especificacion1: document.getElementById("especificacion1").value,
-      especificacion2: document.getElementById("especificacion2").value,
-      especificacion3: document.getElementById("especificacion3").value
-    },
-    imagen: "tarjeta.jpg" // temporal, se reemplaza si se selecciona archivo
+      especificacion1: especificacion1 || "No especificado",
+      especificacion2: especificacion2 || "No especificado",
+      especificacion3: especificacion3 || "No especificado"
+    }
+  };
+}
+
+function mostrarErrores(errores) {
+  const mensaje = "Errores en el formulario:\n\n• " + errores.join("\n• ");
+  alert(mensaje);
+}
+
+function crearProductoDesdeFormulario() {
+  const productoValidado = validarDatosProducto();
+  
+  if (!productoValidado) {
+    return null;
+  }
+
+  return {
+    id: Math.max(...productos.map(p => p.id), 0) + 1, // Mejor forma de generar ID
+    ...productoValidado,
+    imagen: "tarjeta.jpg" // temporal
   };
 }
 
 // agregar¿mos nuevo producto
 function agregarProducto(producto) {
+  if (!producto) {
+    console.error("No se pudo agregar el producto: datos inválidos");
+    return false;
+  }
+
   productos.push(producto);
   guardarProductos(productos);
   console.log("Catálogo actualizado:", productos);
   alert("Producto guardado correctamente");
+  return true;
 }
 
 //abrimos modal de crearproducto
 function abrirModalCrear() {
   document.getElementById("modalCrear").style.display = "block";
+  // Limpiar errores previos
+  limpiarEstilosError();
 }
 
 // iniciamos productos
@@ -262,27 +359,30 @@ const form = document.getElementById("formProducto");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
+  const producto = crearProductoDesdeFormulario();
+  if (!producto) return;
+
   const archivoImagen = document.getElementById("imagen").files[0];
 
   if (archivoImagen) {
-    const reader = new FileReader(); // Api 
+    const reader = new FileReader();
     reader.onload = function(event) {
-      const imagenBase64 = event.target.result;
-      const producto = crearProductoDesdeFormulario();
-      producto.imagen = imagenBase64; // agregamos imagen al producto
-      agregarProducto(producto);
-      form.reset();
-      document.getElementById("modalCrear").style.display = "none"; // cerrar modal
+      producto.imagen = event.target.result;
+      guardarYCerrar(producto);
     };
     reader.readAsDataURL(archivoImagen);
   } else {
-    const producto = crearProductoDesdeFormulario();
-    producto.imagen = "tarjeta.jpg"; // imagen por defecto
-    agregarProducto(producto);
-    form.reset();
-    document.getElementById("modalCrear").style.display = "none"; // cerrar modal
+    guardarYCerrar(producto);
   }
 });
+
+function guardarYCerrar(producto) {
+  if (agregarProducto(producto)) {
+    form.reset();
+    document.getElementById("modalCrear").style.display = "none";
+    mostrarProductos(); // Actualizar tabla
+  }
+}
 
 // MOSTRAR PRODUCTOS EN LA TABLA
 function mostrarProductos() {
@@ -312,7 +412,7 @@ function mostrarProductos() {
 
 
   // Llamar al cargar
-  mostrarProductos();
+mostrarProductos();
 
 agregarProducto(producto);
 productos = obtenerProductos(); // refrescar lista
@@ -326,18 +426,19 @@ function abrirModalEditar(id) {
   const producto = productos.find(p => p.id === id);
 
   if (producto) {
-    // Llenar los inputs del modal con los datos del producto
-    document.getElementById('nombre').value = producto.nombre;
-    document.getElementById('categoria').value = producto.categoria;
-    document.getElementById('marca').value = producto.marca;
-    document.getElementById('precio').value = producto.precio;
-    document.getElementById('stock').value = producto.stock;
-
-    // Guardar el id en un atributo para usarlo luego al guardar cambios
-    document.querySelector('.form-editar').setAttribute('data-id', id);
-
+    // Llenar formulario
+    document.getElementById("editNombre").value = producto.nombre;
+    document.getElementById("editCategoria").value = producto.categoria;
+    document.getElementById("editMarca").value = producto.marca;
+    document.getElementById("editPrecio").value = producto.precio;
+    document.getElementById("editStock").value = producto.stock;
+    document.getElementById("editDescripcion").value = producto.descripcion;
+    
+    // Guardar ID para luego
+    document.getElementById("formEditar").dataset.id = id;
+    
     // Mostrar modal
-    document.getElementById('modalEditar').style.display = 'block';
+    document.getElementById("modalEditar").style.display = "block";
   }
 }
 
@@ -346,26 +447,93 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
   e.preventDefault();
 
   const id = parseInt(this.getAttribute('data-id'));
-
   // Buscar el producto en el array
-  const producto = productos.find(p => p.id === id);
+  const producto = productos.findIndex(p => p.id === id);
 
-  if (producto) {
-    // Actualizar datos
-    producto.nombre = document.getElementById('nombre').value;
-    producto.categoria = document.getElementById('categoria').value;
-    producto.marca = document.getElementById('marca').value;
-    producto.precio = parseFloat(document.getElementById('precio').value);
-    producto.stock = parseInt(document.getElementById('stock').value);
-
-    // Cerrar modal
-    document.getElementById('modalEditar').style.display = 'none';
-
-    // Renderizar la tabla de nuevo
+  if (productoIndex !== -1) {
+    // Validar datos editados
+    const nombre = document.getElementById("editNombre").value.trim();
+    const precio = parseFloat(document.getElementById("editPrecio").value);
+    const stock = parseInt(document.getElementById("editStock").value);
+    
+    // Validaciones básicas
+    if (!nombre || nombre.length < 3) {
+      alert("El nombre debe tener al menos 3 caracteres");
+      return;
+    }
+    
+    if (isNaN(precio) || precio <= 0) {
+      alert("El precio debe ser un número mayor a 0");
+      return;
+    }
+    
+    if (isNaN(stock) || stock < 0) {
+      alert("El stock debe ser un número entero no negativo");
+      return;
+    }
+    
+    // Actualizar producto
+    productos[productoIndex] = {
+      ...productos[productoIndex],
+      nombre: nombre,
+      categoria: document.getElementById("editCategoria").value,
+      marca: document.getElementById("editMarca").value.trim(),
+      precio: precio,
+      stock: stock,
+      descripcion: document.getElementById("editDescripcion").value.trim()
+    };
+    
+    guardarProductos(productos);
+    document.getElementById("modalEditar").style.display = "none";
     mostrarProductos();
+    alert("Producto actualizado correctamente");
   }
 });
 
+function eliminarProducto(id) {
+  if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
+    productos = productos.filter(p => p.id !== id);
+    guardarProductos(productos);
+    mostrarProductos();
+    alert("Producto eliminado correctamente");
+  }
+}
+
+function limpiarEstilosError() {
+  // Limpiar estilos de error de todos los campos
+  const inputs = document.querySelectorAll('input, textarea, select');
+  inputs.forEach(input => {
+    input.style.borderColor = '';
+  });
+}
+
+
+// Iniciar productos
+
+console.log("Productos almacenados en localStorage:", productos);
+
+// Mostrar productos al cargar
+mostrarProductos();
+
+// Agregar validación en tiempo real
+document.addEventListener('DOMContentLoaded', function() {
+  // Validación en tiempo real para campos numéricos
+  const camposNumericos = ['precio', 'stock', 'editPrecio', 'editStock'];
+  
+  camposNumericos.forEach(id => {
+    const campo = document.getElementById(id);
+    if (campo) {
+      campo.addEventListener('input', function(e) {
+        const value = e.target.value;
+        if (value && (isNaN(parseFloat(value)) || parseFloat(value) < 0)) {
+          e.target.style.borderColor = 'red';
+        } else {
+          e.target.style.borderColor = '';
+        }
+      });
+    }
+  });
+});
 
 //muestra al cargar la pagina
 //mostrarProductos();

@@ -225,11 +225,11 @@ function renderProductos(categoria = 'all') {
         
         productCard.innerHTML = `
             <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
-      <div class="product-info">
-      <div class="product-category">${producto.categoria.toUpperCase()}</div>
-        <h3 class="product-title">${producto.nombre}</h3>
+            <div class="product-info">
+            <div class="product-category">${producto.categoria.toUpperCase()}</div>
+            <h3 class="product-title">${producto.nombre}</h3>
         
-        <span class="price">$${producto.precio.toLocaleString()}</span>
+            <span class="price">$${producto.precio.toLocaleString()}</span>
                 <button class="add-to-cart" data-id="${producto.id}">
                     <i class="fas fa-shopping-cart"></i> Agregar
                 </button>
