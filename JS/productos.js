@@ -1,20 +1,20 @@
 // Base de datos de productos (normalmente esto vendría de un servidor)
 const productos = [
     {
-    id: 1,
-    categoria: "Componentes",
-    nombre: "Procesador Intel Core i7 12700K",
-    marca: "Intel",
-    precio: 1500000,
-    stock: 12,
-    descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
-    imagen: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80", // imagen por defecto
-    especificaciones: {
-      socket: "LGA1700",
-      TDP: "125W",
-      graficaIntegrada: "Intel UHD Graphics 770"
-    }
-  },
+        id: 1,
+        categoria: "Componentes",
+        nombre: "Procesador Intel Core i7 12700K",
+        marca: "Intel",
+        precio: 1500000,
+        stock: 12,
+        descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
+        imagen: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80", // imagen por defecto
+        especificaciones: {
+            socket: "LGA1700",
+            TDP: "125W",
+            graficaIntegrada: "Intel UHD Graphics 770"
+        }
+    },
     {
         id: 2,
         categoria: "monitores",
@@ -25,9 +25,9 @@ const productos = [
         descripcion: "Panel QD-OLED de 3.ª Generación: calidad de imagen impresionante y tiempo de respuesta ultra rápido.",
         imagen: "https://clonesyperifericos.com/wp-content/uploads/2025/08/Monitor-MSI-GAMING-32-321CUP-QD-OLED-4K-165HZ-0.03MS.webp",
         especificaciones: {
-          resolucion: "4K",
-          tasaRefresco: "165Hz",
-          tiempoRespuesta: "0.03ms"
+            resolucion: "4K",
+            tasaRefresco: "165Hz",
+            tiempoRespuesta: "0.03ms"
         }
     },
     {
@@ -40,9 +40,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.",
         especificaciones: {
-          arquitectura: "RDNA 3",
-          rayTracing: "Sí",
-          memoria: "16GB GDDR6"
+            arquitectura: "RDNA 3",
+            rayTracing: "Sí",
+            memoria: "16GB GDDR6"
         }
     },
     {
@@ -54,9 +54,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.",
         especificaciones: {
-          tipo: "ATX",
-          material: "Acero y vidrio templado",
-          ventiladores: "3x ARGB incluidos"
+            tipo: "ATX",
+            material: "Acero y vidrio templado",
+            ventiladores: "3x ARGB incluidos"
         }
     },
     {
@@ -68,9 +68,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.",
         especificaciones: {
-          potencia: "750W",
-          certificacion: "80 Plus Gold",
-          modular: "Sí"
+            potencia: "750W",
+            certificacion: "80 Plus Gold",
+            modular: "Sí"
         }
     },
     {
@@ -82,9 +82,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.",
         especificaciones: {
-          potencia: "850W",
-          certificacion: "80 Plus Bronze",
-          modular: "Sí"
+            potencia: "850W",
+            certificacion: "80 Plus Bronze",
+            modular: "Sí"
         }
     },
     {
@@ -96,9 +96,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1593642633279-1796119d5482?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.",
         especificaciones: {
-          arquitectura: "Ada Lovelace",
-          rayTracing: "Sí",
-          memoria: "12GB GDDR6"
+            arquitectura: "Ada Lovelace",
+            rayTracing: "Sí",
+            memoria: "12GB GDDR6"
         }
     },
     {
@@ -110,9 +110,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1591485423007-765bde4139ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.",
         especificaciones: {
-          arquitectura: "RDNA 3",
-          rayTracing: "Sí",
-          memoria: "16GB GDDR6"
+            arquitectura: "RDNA 3",
+            rayTracing: "Sí",
+            memoria: "16GB GDDR6"
         }
     },
     {
@@ -124,9 +124,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.",
         especificaciones: {
-          tipo: "Mecánico",
-          retroiluminación: "RGB",
-          switch: "Blue"
+            tipo: "Mecánico",
+            retroiluminación: "RGB",
+            switch: "Blue"
         }
     },
     {
@@ -138,9 +138,9 @@ const productos = [
         imagen: "https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.",
         especificaciones: {
-          dpi: "16000",
-          retroiluminación: "RGB",
-          tipo: "Inalámbrico"
+            dpi: "16000",
+            retroiluminación: "RGB",
+            tipo: "Inalámbrico"
         }
     },
     {
@@ -152,10 +152,10 @@ const productos = [
         imagen: "https://th.bing.com/th/id/R.b9a527427cb27861be9374f4476e9d77?rik=sYxT2rX1UFni6A&pid=ImgRaw&r=0",
         descripcion: "Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.",
         especificaciones: {
-          tamaño: "27\"",
-          frecuencia: "144Hz",
-          tiempoRespuesta: "1ms",
-          tecnologia: "FreeSync"
+            tamaño: "27\"",
+            frecuencia: "144Hz",
+            tiempoRespuesta: "1ms",
+            tecnologia: "FreeSync"
         }
     },
     {
@@ -167,10 +167,10 @@ const productos = [
         imagen: "https://tse2.mm.bing.net/th/id/OIP.4stnZL5HyQQkBi4_dS5dDwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         descripcion: "Monitor Curvo 32\" 165Hz QHD, ideal para gamers.",
         especificaciones: {
-          tamaño: "32\"",
-          frecuencia: "165Hz",
-          resolucion: "QHD",
-          tecnologia: "Curvo"
+            tamaño: "32\"",
+            frecuencia: "165Hz",
+            resolucion: "QHD",
+            tecnologia: "Curvo"
         }
     },
     {
@@ -182,9 +182,9 @@ const productos = [
         imagen: "https://tse2.mm.bing.net/th/id/OIP.4stnZL5HyQQkBi4_dS5dDwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         descripcion: "Sistema de Refrigeración Líquida CPU 240mm RGB, eficiente y silencioso.",
         especificaciones: {
-          tipo: "Refrigeración Líquida",
-          tamaño: "240mm",
-          rgb: "Sí"
+            tipo: "Refrigeración Líquida",
+            tamaño: "240mm",
+            rgb: "Sí"
         }
     },
     {
@@ -196,80 +196,12 @@ const productos = [
         imagen: "https://m.media-amazon.com/images/I/71+PJTW+toL._SL1500_.jpg",
         descripcion: "Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.",
         especificaciones: {
-          tipo: "Ventilador",
-          tamaño: "120mm",
-          rgb: "Sí"
+            tipo: "Ventilador",
+            tamaño: "120mm",
+            rgb: "Sí"
         }
     }
 ];
 
-// Función para renderizar productos
-function renderProductos(categoria = 'all') {
-    const productsContainer = document.getElementById('products-container');
-    productsContainer.innerHTML = '';
-    
-    // Filtrar productos por categoría
-    let productosFiltrados = categoria === 'all' 
-        ? productos 
-        : productos.filter(producto => producto.categoria === categoria);
-    
-    if (productosFiltrados.length === 0) {
-        productsContainer.innerHTML = '<div class="no-products">No hay productos en esta categoría</div>';
-        return;
-    }
-    
-    // Crear HTML para cada producto
-    productosFiltrados.forEach(producto => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        
-        productCard.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
-      <div class="product-info">
-      <div class="product-category">${producto.categoria.toUpperCase()}</div>
-        <h3 class="product-title">${producto.nombre}</h3>
-        
-        <span class="price">$${producto.precio.toLocaleString()}</span>
-                <button class="add-to-cart" data-id="${producto.id}">
-                    <i class="fas fa-shopping-cart"></i> Agregar
-                </button>
-            </div>
-        `;
-        
-        productsContainer.appendChild(productCard);
-    });
-    
-    // Agregar event listeners a los botones de carrito
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-            const producto = productos.find(p => p.id == productId);
-            alert(`¡${producto.nombre} agregado al carrito!`);
-        });
-    });
-}
 
-// Funcionalidad para las categorías
-document.addEventListener('DOMContentLoaded', function() {
-    // Renderizar todos los productos al cargar
-    renderProductos('all');
-    
-    const categoryButtons = document.querySelectorAll('.category-btn');
-    
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remover la clase active de todos los botones
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Agregar la clase active al botón clickeado
-            this.classList.add('active');
-            
-            // Obtener la categoría del data attribute
-            const categoria = this.getAttribute('data-category');
-            
-            // Renderizar productos de esa categoría
-            renderProductos(categoria);
-        });
-    });
-});
 

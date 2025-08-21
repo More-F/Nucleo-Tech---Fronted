@@ -322,3 +322,78 @@ body {
 #modalCrear .close:hover {
     color: var(--primary-color);
 }
+
+nav {
+    position: fixed;  
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+ 
+.contenedor_nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1a1e298a;
+    backdrop-filter: blur(12px) saturate(160%);
+}
+ 
+/* Logo */
+.logo-nav {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    margin-left: 100px
+}
+ 
+.logo-nav a {
+    text-decoration: none;
+    color: var(--light-text);
+}
+ 
+.logo-nav:hover {
+    transform: scale(1.1);
+}
+ 
+.titulo-nav {
+    font-size: 1.7rem;
+    color: var(--light-text);
+    margin-left: 10px;
+    font-weight: 600;
+}
+ 
+#sp {
+    color: var(--primary-color);
+}
+ 
+/* Iconos (usuario) */
+.contenedor_iconos {
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+ 
+.bi {
+    font-size: 1.5rem;
+    color: var(--light-text);
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+ 
+.bi:hover {
+    color: var(--primary-color);
+}
+ 
+ 
+/* Responsive para móviles */
+@media (max-width: 900px) {
+    .contenedor_nav {
+        justify-content: space-between;
+    }
+ 
+    .menu-toggle {
+        display: block;
+    }
+}
