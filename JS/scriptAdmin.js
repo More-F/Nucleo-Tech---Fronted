@@ -2,13 +2,13 @@
 const productosBase = [
   {
     id: 1,
-    categoria: "Componentes",
+    categoria: "procesadores",
     nombre: "Procesador Intel Core i7 12700K",
     marca: "Intel",
     precio: 1500000,
     stock: 12,
     descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
-    imagen: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80", // imagen por defecto
+    imagen: "https://tse4.mm.bing.net/th/id/OIP.kOPVZocyX5MPdTLVZygitAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3", // imagen por defecto
     especificaciones: {
       socket: "LGA1700",
       TDP: "125W",
@@ -202,24 +202,24 @@ const productosBase = [
         }
     }
 ];
-
+ 
 // iniciamos local con producto base
 function inicializarProductos() {
   if (!localStorage.getItem("productos")) {
     localStorage.setItem("productos", JSON.stringify(productosBase));
   }
 }
-
+ 
 // recupera desde el local
 function obtenerProductos() {
   return JSON.parse(localStorage.getItem("productos")) || [];
 }
-
+ 
 // guardamos productos en localStorage
 function guardarProductos(productos) {
   localStorage.setItem("productos", JSON.stringify(productos));
 }
-
+ 
 // creamos producto desde formulario
 function validarDatosProducto(esEdicion = false, idExistente = null) {
   // Obtener valores
@@ -327,7 +327,7 @@ function crearProductoDesdeFormulario() {
     imagen: "tarjeta.jpg" // temporal
   };
 }
-
+ 
 // agregar¿mos nuevo producto
 function agregarProducto(producto) {
   if (!producto) {
@@ -341,14 +341,14 @@ function agregarProducto(producto) {
   alert("Producto guardado correctamente");
   return true;
 }
-
+ 
 //abrimos modal de crearproducto
 function abrirModalCrear() {
   document.getElementById("modalCrear").style.display = "block";
   // Limpiar errores previos
   limpiarEstilosError();
 }
-
+ 
 // iniciamos productos
 inicializarProductos();
 let productos = obtenerProductos();
@@ -387,8 +387,8 @@ function guardarYCerrar(producto) {
 // MOSTRAR PRODUCTOS EN LA TABLA
 function mostrarProductos() {
   const tbody = document.getElementById("tabla-productos");
-  tbody.innerHTML = ""; 
-
+  tbody.innerHTML = "";
+ 
   productos.forEach(prod => {
     const fila = `
       <tr>
@@ -409,8 +409,32 @@ function mostrarProductos() {
     tbody.innerHTML += fila;
   });
 }
-
-
+ 
+//capturar el form
+const form = document.getElementById("formProducto");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+ 
+  const archivoImagen = document.getElementById("imagen").files[0];
+ 
+  if (archivoImagen) {
+    const reader = new FileReader(); // Api
+    reader.onload = function(event) {
+      const imagenBase64 = event.target.result;
+      const producto = crearProductoDesdeFormulario(form, productos, imagenBase64);
+       agregarProducto(producto, productos);
+      form.reset()
+      document.getElementById("modalCrear").style.display = "none"; // cerrar modal
+    };
+    reader.readAsDataURL(archivoImagen);
+  } else {
+    const producto = crearProductoDesdeFormulario(form, productos, "tarjeta.jpg");
+    agregarProducto(producto, productos);
+    form.reset();
+    document.getElementById("modalCrear").style.display = "none"; // cerrar modal
+  }
+});
+ 
   // Llamar al cargar
 mostrarProductos();
 
@@ -419,12 +443,12 @@ productos = obtenerProductos(); // refrescar lista
 mostrarProductos();  
 
 //EDITAR PRODUCTO
-
+ 
 // Función para abrir el modal y cargar datos
 function abrirModalEditar(id) {
   // Buscar producto por id en tu array de productos
   const producto = productos.find(p => p.id === id);
-
+ 
   if (producto) {
     // Llenar formulario
     document.getElementById("editNombre").value = producto.nombre;
@@ -441,11 +465,11 @@ function abrirModalEditar(id) {
     document.getElementById("modalEditar").style.display = "block";
   }
 }
-
+ 
 // Manejar el submit del formulario
 document.querySelector('.form-editar').addEventListener('submit', function(e) {
   e.preventDefault();
-
+ 
   const id = parseInt(this.getAttribute('data-id'));
   // Buscar el producto en el array
   const producto = productos.findIndex(p => p.id === id);
