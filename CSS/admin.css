@@ -265,6 +265,17 @@ body {
     background-color: var(--light-text);
     color: var(--dark-bg);
     box-shadow: 0 2px 8px 0 rgba(35,88,132,0.07);
+    transition: all 0.3s ease;
+}
+
+.campo-invalido {
+    border: 2px solid #ff4444 !important;
+    background-color: #fff0f0 !important;
+}
+
+.campo-invalido:focus {
+    box-shadow: 0 0 5px #ff4444 !important;
+    outline: none !important;
 }
 
 #modalCrear textarea {
