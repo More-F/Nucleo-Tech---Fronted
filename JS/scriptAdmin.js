@@ -401,10 +401,9 @@ function limpiarFormularioYCerrarModal(form, camposRequeridos) {
   // Asegurarse de que la interfaz se actualice
   actualizarInterfaz();
 }
- 
-  // Llamar al cargar
-  mostrarProductos();
- 
+
+// Llamar al cargar
+mostrarProductos();
 // ==========================================
 // FUNCIONES DE EDICIÓN DE PRODUCTOS
 // ==========================================

@@ -143,6 +143,10 @@ nav {
     .menu-toggle .bi{
        width: 100px;
     }
+}
     
+.nav-text.active {
+  color: var(--primary-color);
+  font-weight: bold;
 }
 

@@ -18,9 +18,21 @@ animate(words, {
 });
 
 const menuToggle = document.getElementById("menu-toggle");
-    const navList = document.querySelector(".nav-list");
-
+const navList = document.querySelector(".nav-list");
+ 
+if (menuToggle && navList) {
     menuToggle.addEventListener("click", () => {
         navList.classList.toggle("active");
     });
+}
+
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".nav-text");
+    links.forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add("active");
+      }
+    });
+  });
