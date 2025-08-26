@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/contactanos.css">
+    <link rel="stylesheet" href="/CSS/estilasowasa.css">
+    <link rel="stylesheet" href="/CSS/catalogo.css">
+    <link rel="stylesheet" href="/CSS/navbar.css">
+</head>
+    <script type="module" src="/JS/navar.js"></script>
+    <script src="/JS/productos.js"></script>
+<body>
+    <nav>
+        <div class="contenedor_nav">
+            <div class="logo-nav">
+            <img src="/IMG/Group 8 (1).png" alt="" style="width: 30px;">
+            <a href="index.html"><h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2></a>
+            </div>
+            
+                <ul class="nav-list">
+                    <li ><a class="nav-text" href="index.html">Inicio</a></li>
+                    <li><a class="nav-text active"  href="catalogo.html">Catalogo</a></li>
+                    <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
+                    <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
+                </ul>
+            
+            <div class="contenedor_iconos">
+                <a href=""><i class="bi bi-cart3"></i></a>
+                <a href=""><i class="bi bi-person-circle"></i></a>
+            </div>
+            <a class="menu-toggle" id="menu-toggle">
+                <i class=" bi-list"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="section-title">¿Buscas solo componentes?</h2>
+        <p class="section-subtitle">Encuentra los mejores componentes al mejor precio</p>
+        
+        
+        <!-- Categorías -->
+        <div class="categories">
+            <button class="category-btn active" data-category="all"><i class="fas fa-star"></i> TODOS</button>
+            <button class="category-btn" data-category="chasis"><i class="fas fa-desktop"></i> CHASIS</button>
+            <button class="category-btn" data-category="fuentes"><i class="fas fa-bolt"></i> FUENTES</button>
+            <button class="category-btn" data-category="tarjetas-video"><i class="fas fa-microchip"></i> TARJETAS DE VIDEO</button>
+            <button class="category-btn" data-category="teclados-mouse"><i class="fas fa-keyboard"></i> TECLADOS / MOUSE</button>
+            <button class="category-btn" data-category="monitores"><i class="fas fa-tv"></i> MONITORES</button>
+            <button class="category-btn" data-category="refrigeracion"><i class="fas fa-fan"></i> REFRIGERACIÓN</button>
+        </div>
+        
+        <!-- Productos -->
+        <div class="products-grid" id="products-container">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+
+    <footer class="footer-custom">
+    <div class="footer-content">
+    <!-- Columna 1: Logo y redes -->
+    <div class="footer-col">
+        <img src="/IMG/Group 8 (1).png" alt="Nucleo Tech" class="logo-footer">
+        <div class="nombre-marca">
+        Nu<span class="letra-c">c</span>leo Te<span class="letra-c">c</span>h
+        </div>
+        <div class="footer-social">
+            <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://tiktok.com" target="_blank"><i class="bi bi-tiktok"></i></a>
+        </div>
+    </div>
+    <!-- Columna 2: Contacto -->
+    <div class="footer-col">
+        <h5>Contáctanos</h5>
+        <p>Email: soporte@nucleotech.com</p>
+        <p>Tel: +57 300 123 4567</p>
+        <p>WhatsApp: <a href="https://wa.me/573001234567" class="footer-link">Escríbenos</a></p>
+    </div>
+    <!-- Columna 3: Enlaces -->
+    <div class="footer-col">
+        <h5>Enlaces</h5>
+        <ul>
+            <li><a href="/productos" class="footer-link">Productos</a></li>
+            <li><a href="/asesoria" class="footer-link">Asesoría</a></li>
+            <li><a href="/preguntas" class="footer-link">Preguntas frecuentes</a></li>
+            <li><a href="/contacto" class="footer-link">Contacto</a></li>
+        </ul>
+    </div>
+    <!-- Columna 4: Horarios -->
+    <div class="footer-col">
+        <h5>Horarios</h5>
+        <p>Lunes a Viernes: 8:00 a.m. - 6:00 p.m.</p>
+        <p>Sábados: 9:00 a.m. - 1:00 p.m.</p>
+        <p>Domingos y festivos: Cerrado</p>
+    </div>
+        </div>
+    <div class="footer-bottom">
+        <small>&copy; 2025 Nucleo Tech. Todos los derechos reservados.</small>
+        </div>
+    </footer>
+    <a href="https://wa.me/573160588841?text=Hola,%20quiero%20más%20información%20sobre%20un%20producto"
+            class="whatsapp-float"
+            target="_blank"
+            title="Chatea con nosotros en WhatsApp">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
+</body>
+</html>

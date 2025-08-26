@@ -1,0 +1,152 @@
+:root {
+    --primary-color: #A5BF45;
+    --secondary-color: #235884;
+    --dark-bg: #1A1E29;
+    --light-text: #F2F2F2;
+    --card-bg: #2a2f3a;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav {
+    position: fixed;   
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;      
+}
+.contenedor_nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1a1e298a ;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.089);
+    backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+    position: relative;
+    z-index: 10;
+}
+.logo-nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+.logo-nav a{
+    text-decoration: none;
+    color: var(--light-text);
+}
+.logo-nav:hover{
+    transform: scale(1.1);
+}
+.nav-list{
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center ;
+    margin: 0;
+}
+.nav-list li {
+    margin: 0 15px;
+}
+.nav-list a {
+    text-decoration: none;
+    color: var(--light-text);
+    transition: color 0.3s;
+}
+.nav-list a:hover {
+    color: var(--primary-color);
+}
+.titulo-nav {
+    font-size: 1.7rem;
+    color: var(--light-text);
+    margin-left: 10px;
+    font-weight: 600;
+    
+}
+#sp{
+    color: var(--primary-color);
+}
+
+.contenedor-iconos{
+    display: flex;
+    align-items: center;
+}
+.bi{
+    font-size: 1.5rem;
+    color: var(--light-text);
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+.bi:hover {
+    color: var(--primary-color);
+}
+
+/* Botón hamburguesa oculto por defecto */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--light-text);
+    margin-right: 5px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .contenedor_nav {
+        justify-content: space-around;
+    }
+
+    /* La lista se oculta al inicio */
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: var(--light-text);
+        flex-direction: column;
+        width: 250px;
+        padding: 15px 15px;
+        border-radius: 0 0 8px 8px;
+    }
+
+    /* Elementos en columna */
+    .nav-list li {
+        margin: 10px 0;
+        text-align: center;
+    }
+    .nav-list li a {
+        padding: 10px 15px;
+        color: var(--secondary-color);
+        
+    }
+    .nav-list li:hover {
+         background-color: #2a2f3a14;
+    }
+    .nav-list li a:hover{
+        padding: 10px 15px;
+        color: var(--primary-color);
+    }
+
+    /* Mostrar lista cuando esté activa */
+    .nav-list.active {
+        display: flex;
+    }
+
+    /* Mostrar botón hamburguesa */
+    .menu-toggle {
+        display: block;
+    }
+    .menu-toggle .bi{
+       width: 100px;
+    }
+}
+    
+.nav-text.active {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+

@@ -9,12 +9,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
     <link rel="stylesheet" href="/CSS/sobrenosotros.css">
-
+    <link rel="stylesheet" href="/CSS/estilasowasa.css">
+    <link rel="stylesheet" href="/CSS/navbar.css">
 
 </head>
 
+<script type="module" src="/JS/navar.js"></script> // vinvular la pagina
+
 <body>
+    <nav>
+            <div class="contenedor_nav">
+                <div class="logo-nav">
+                <img src="/IMG/Group 8 (1).png" alt="" style="width: 30px;">
+                <a href="index.html"><h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2></a>
+                </div>
+                
+                    <ul class="nav-list">
+                        <li ><a class="nav-text" href="index.html">Inicio</a></li>
+                        <li><a class="nav-text" href="catalogo.html">Catalogo</a></li>
+                        <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
+                        <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
+                    </ul>
+                
+                <div class="contenedor_iconos">
+                    <a href=""><i class="bi bi-cart3"></i></a>
+                    <a href=""><i class="bi bi-person-circle"></i></a>
+                </div>
+                <a class="menu-toggle" id="menu-toggle">
+                    <i class=" bi-list"></i>
+                </a>
+            </div>
+        </nav>
 
     <!-- Nosotros Section -->
     <section class="py-5" id="nosotros">
@@ -37,11 +64,6 @@
                         necesidades de los usuarios no expertos. Nuestra plataforma ha sido pensada para que cualquier
                         persona pueda navegar,
                         elegir y comprar los productos que necesita sin dificultades.</p>
-                    <p>Nos identificamos por mantener una comunicación cercana con nuestros clientes, y por ofrecer un
-                        espacio donde
-                        la tecnología no sea un obstáculo, sino una herramienta que se adapta al ritmo de vida moderno.
-                        Desde freelancers hasta docentes virtuales,
-                        buscamos facilitar el camino hacia un entorno de trabajo funcional, estable y cómodo.</p>
                 </div>
             </div>
         </div>
@@ -127,7 +149,7 @@
     <!-- Equipo Section -->
     <section class="py-5 bg-light" id="equipo">
         <div class="container py-5">
-            <h2 class="text-center section-title"  >Nuestro Equipo</h2>
+            <h2 class="text-center section-title">Nuestro Equipo</h2>
             <p class="text-center mb-5">Conoce nuestro equipo de trabajo!</p>
 
             <div class="row">
@@ -138,8 +160,8 @@
                             <h4 class="card-title" style="color: #235884;">Andres Moreno</h4>
                             <h6 class="card-subtitle mb-3 text-muted" style="color: #F2F2F2;">Full Stack Developer</h6>
                             <div class="social-links">
-                                <a href="#" class="mx-2"><i style="color: #235884;" class="fab fa-linkedin"></i></a>
-                                <a href="#" class="mx-2"><i style="color: #235884;" class="fab fa-github"></i></a>
+                                <a href="www.linkedin.com/in/andres-moreno-30371b248" class="mx-2"><i style="color: #235884;" class="fab fa-linkedin"></i></a>
+                                <a href="https://github.com/More-F" class="mx-2"><i style="color: #235884;" class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
@@ -237,7 +259,12 @@
             <small>&copy; 2025 Nucleo Tech. Todos los derechos reservados.</small>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-1q8d6b2e4c9      
+        <a href="https://wa.me/573160588841?text=Hola,%20quiero%20más%20información%20sobre%20un%20producto"
+        class="whatsapp-float"
+        target="_blank"
+        title="Chatea con nosotros en WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>     
 </body>
 
 </html>
