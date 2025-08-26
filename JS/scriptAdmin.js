@@ -1,3 +1,7 @@
+// ==========================================
+// DATOS BASE Y CONFIGURACIÓN INICIAL
+// ==========================================
+
 // Productos base iniciales
 const productosBase = [
   {
@@ -8,7 +12,7 @@ const productosBase = [
     precio: 1500000,
     stock: 12,
     descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
-    imagen: "https://tse4.mm.bing.net/th/id/OIP.kOPVZocyX5MPdTLVZygitAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3", // imagen por defecto
+    imagen: "https://tse4.mm.bing.net/th/id/OIP.kOPVZocyX5MPdTLVZygitAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
     especificaciones: {
       socket: "LGA1700",
       TDP: "125W",
@@ -37,7 +41,7 @@ const productosBase = [
         marca: "ASRock",
         precio: 3700000,
         stock: 5,
-        imagen: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+        imagen: "https://tse2.mm.bing.net/th/id/OIP.BOZ5Qx1qOPy3ivojCQV8fwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         descripcion: "La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.",
         especificaciones: {
           arquitectura: "RDNA 3",
@@ -49,9 +53,10 @@ const productosBase = [
         id: 4,
         nombre: "Chasis Aerocool Ore Saturn FRGB Vidrio Templado",
         categoria: "chasis",
+        marca: "Aerocool",
         precio: 2007002,
         stock: 10,
-        imagen: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+        imagen: "https://tse4.mm.bing.net/th/id/OIP.lAJlAbvn3JrR1IfdpycWJQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         descripcion: "Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.",
         especificaciones: {
           tipo: "ATX",
@@ -63,7 +68,8 @@ const productosBase = [
         id: 5,
         nombre: "Fuente de Poder 80 Plus Gold 750W Modular",
         categoria: "fuentes",
-        precio: 109.99,
+        marca: "Corsair",
+        precio: 405600,
         stock: 15,
         imagen: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.",
@@ -77,9 +83,10 @@ const productosBase = [
         id: 6,
         nombre: "Fuente de Alimentación 850W 80 Plus Bronze",
         categoria: "fuentes",
-        precio: 79.99,
+        marca: "Corsair",
+        precio: 305000,
         stock: 10,
-        imagen: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+        imagen: "https://img.pccomponentes.com/articles/10/100849/l-link-fuente-de-alimentacion-850w-80-plus-bronze-modular-4.jpg",
         descripcion: "Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.",
         especificaciones: {
           potencia: "850W",
@@ -91,9 +98,10 @@ const productosBase = [
         id: 7,
         nombre: "Tarjeta de Video NVIDIA RTX 4070 12GB GDDR6",
         categoria: "tarjetas-video",
-        precio: 699.99,
+        marca: "NVIDIA",
+        precio: 2200000,
         stock: 3,
-        imagen: "https://images.unsplash.com/photo-1593642633279-1796119d5482?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+        imagen: "https://m.media-amazon.com/images/I/61aQwrGeLCL._AC_.jpg",
         descripcion: "La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.",
         especificaciones: {
           arquitectura: "Ada Lovelace",
@@ -105,9 +113,10 @@ const productosBase = [
         id: 8,
         nombre: "Tarjeta Gráfica AMD Radeon RX 7800 XT 16GB",
         categoria: "tarjetas-video",
-        precio: 549.99,
+        marca: "AMD",
+        precio: 3100000,
         stock: 3,
-        imagen: "https://images.unsplash.com/photo-1591485423007-765bde4139ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+        imagen: "https://www.notebookcheck.org/fileadmin/_processed_/9/1/csm_RX_7800_XT_22_bdb801c4f1.jpg",
         descripcion: "La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.",
         especificaciones: {
           arquitectura: "RDNA 3",
@@ -119,7 +128,8 @@ const productosBase = [
         id: 9,
         nombre: "Teclado Mecánico Gamer RGB Switch Blue",
         categoria: "teclados-mouse",
-        precio: 89.99,
+        marca: "Logitech",
+        precio: 370000,
         stock: 20,
         imagen: "https://images.unsplash.com/photo-1541140532154-b024d705b90a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.",
@@ -133,7 +143,8 @@ const productosBase = [
         id: 10,
         nombre: "Mouse Inalámbrico Gamer 16000DPI RGB",
         categoria: "teclados-mouse",
-        precio: 49.99,
+        marca: "Logitech",
+        precio: 245000,
         stock: 15,
         imagen: "https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
         descripcion: "Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.",
@@ -147,7 +158,8 @@ const productosBase = [
         id: 11,
         nombre: "Monitor Gaming 27\" 144Hz 1ms FreeSync",
         categoria: "monitores",
-        precio: 249.99,
+        marca: "Acer",
+        precio: 1250000,
         stock: 5,
         imagen: "https://th.bing.com/th/id/R.b9a527427cb27861be9374f4476e9d77?rik=sYxT2rX1UFni6A&pid=ImgRaw&r=0",
         descripcion: "Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.",
@@ -162,7 +174,8 @@ const productosBase = [
         id: 12,
         nombre: "Monitor Curvo 32\" 165Hz QHD",
         categoria: "monitores",
-        precio: 349.99,
+        marca: "Acer",
+        precio: 1460000,
         stock: 3,
         imagen: "https://tse2.mm.bing.net/th/id/OIP.4stnZL5HyQQkBi4_dS5dDwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         descripcion: "Monitor Curvo 32\" 165Hz QHD, ideal para gamers.",
@@ -177,7 +190,8 @@ const productosBase = [
         id: 13,
         nombre: "Sistema de Refrigeración Líquida CPU 240mm RGB",
         categoria: "refrigeracion",
-        precio: 119.99,
+        marca: "Corsair",
+        precio: 875000,
         stock: 10,
         imagen: "https://tse2.mm.bing.net/th/id/OIP.4stnZL5HyQQkBi4_dS5dDwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
         descripcion: "Sistema de Refrigeración Líquida CPU 240mm RGB, eficiente y silencioso.",
@@ -191,7 +205,8 @@ const productosBase = [
         id: 14,
         nombre: "Ventiladores RGB 120mm Pack de 3",
         categoria: "refrigeracion",
-        precio: 49.99,
+        marca: "Corsair",
+        precio: 135000,
         stock: 20,
         imagen: "https://m.media-amazon.com/images/I/71+PJTW+toL._SL1500_.jpg",
         descripcion: "Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.",
@@ -203,97 +218,29 @@ const productosBase = [
     }
 ];
  
-// iniciamos local con producto base
+// ==========================================
+// FUNCIONES DE MANEJO DE DATOS
+// ==========================================
+
+// Inicializar localStorage con productos base
 function inicializarProductos() {
   if (!localStorage.getItem("productos")) {
     localStorage.setItem("productos", JSON.stringify(productosBase));
   }
 }
  
-// recupera desde el local
+// Obtener productos desde localStorage
 function obtenerProductos() {
   return JSON.parse(localStorage.getItem("productos")) || [];
 }
  
-// guardamos productos en localStorage
+// Guardar productos en localStorage
 function guardarProductos(productos) {
   localStorage.setItem("productos", JSON.stringify(productos));
 }
  
-// creamos producto desde formulario
-function validarDatosProducto(esEdicion = false, idExistente = null) {
-  // Obtener valores
-  const nombre = document.getElementById("nombre").value.trim();
-  const categoria = document.getElementById("categoria").value;
-  const marca = document.getElementById("marca").value.trim();
-  const precio = document.getElementById("precio").value;
-  const stock = document.getElementById("stock").value;
-  const descripcion = document.getElementById("descripcion").value.trim();
-  const especificacion1 = document.getElementById("especificacion1").value.trim();
-  const especificacion2 = document.getElementById("especificacion2").value.trim();
-  const especificacion3 = document.getElementById("especificacion3").value.trim();
-
-  // Validaciones
-  let errores = [];
-
-  // Validar nombre
-  if (!nombre) {
-    errores.push("El nombre del producto es obligatorio");
-  } else if (nombre.length < 3) {
-    errores.push("El nombre debe tener al menos 3 caracteres");
-  } else if (!/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\-_.,()&!@#%]+$/.test(nombre)) {
-    errores.push("El nombre contiene caracteres no válidos");
-  }
-
-  // Validar categoría
-  if (!categoria) {
-    errores.push("La categoría es obligatoria");
-  }
-
-  // Validar marca
-  if (!marca) {
-    errores.push("La marca es obligatoria");
-  } else if (marca.length < 2) {
-    errores.push("La marca debe tener al menos 2 caracteres");
-  }
-
-  // Validar precio
-  if (!precio) {
-    errores.push("El precio es obligatorio");
-  } else if (isNaN(parseFloat(precio)) || parseFloat(precio) <= 0) {
-    errores.push("El precio debe ser un número mayor a 0");
-  } else if (parseFloat(precio) > 10000000) {
-    errores.push("El precio no puede ser mayor a 10,000,000");
-  }
-
-  // Validar stock
-  if (!stock) {
-    errores.push("El stock es obligatorio");
-  } else if (isNaN(parseInt(stock)) || parseInt(stock) < 0) {
-    errores.push("El stock debe ser un número entero no negativo");
-  } else if (parseInt(stock) > 10000) {
-    errores.push("El stock no puede ser mayor a 10,000 unidades");
-  }
-
-  // Validar descripción
-  if (!descripcion) {
-    errores.push("La descripción es obligatoria");
-  } else if (descripcion.length < 10) {
-    errores.push("La descripción debe tener al menos 10 caracteres");
-  }
-
-  // Validar nombre único (solo para creación, no edición)
-  if (!esEdicion && productos.some(p => p.nombre.toLowerCase() === nombre.toLowerCase())) {
-    errores.push("Ya existe un producto con ese nombre");
-  }
-
-  // Si hay errores, mostrarlos
-  if (errores.length > 0) {
-    mostrarErrores(errores);
-    return null;
-  }
-
-  // Retornar objeto validado
+// Crear nuevo producto desde el formulario
+function crearProductoDesdeFormulario(form, productos, imagenUrl) {
   return {
     nombre: nombre,
     categoria: categoria,
@@ -328,63 +275,36 @@ function crearProductoDesdeFormulario() {
   };
 }
  
-// agregar¿mos nuevo producto
-function agregarProducto(producto) {
-  if (!producto) {
-    console.error("No se pudo agregar el producto: datos inválidos");
-    return false;
-  }
+// ==========================================
+// FUNCIONES DE GESTIÓN DE PRODUCTOS
+// ==========================================
 
+// Agregar nuevo producto
+function agregarProducto(producto,productos) {
   productos.push(producto);
   guardarProductos(productos);
   console.log("Catálogo actualizado:", productos);
-  alert("Producto guardado correctamente");
-  return true;
+  mostrarModal('exito', `El producto "${producto.nombre}" ha sido agregado correctamente`, () => {
+    actualizarInterfaz();
+  });
 }
  
-//abrimos modal de crearproducto
+// Abrir modal para crear producto
 function abrirModalCrear() {
   document.getElementById("modalCrear").style.display = "block";
   // Limpiar errores previos
   limpiarEstilosError();
 }
  
-// iniciamos productos
+// Inicialización de productos
 inicializarProductos();
 let productos = obtenerProductos();
 console.log("Productos almacenados en localStorage:", productos);
+// ==========================================
+// FUNCIONES DE VISUALIZACIÓN
+// ==========================================
 
-//capturar el form
-const form = document.getElementById("formProducto");
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const producto = crearProductoDesdeFormulario();
-  if (!producto) return;
-
-  const archivoImagen = document.getElementById("imagen").files[0];
-
-  if (archivoImagen) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      producto.imagen = event.target.result;
-      guardarYCerrar(producto);
-    };
-    reader.readAsDataURL(archivoImagen);
-  } else {
-    guardarYCerrar(producto);
-  }
-});
-
-function guardarYCerrar(producto) {
-  if (agregarProducto(producto)) {
-    form.reset();
-    document.getElementById("modalCrear").style.display = "none";
-    mostrarProductos(); // Actualizar tabla
-  }
-}
-
-// MOSTRAR PRODUCTOS EN LA TABLA
+// Mostrar productos en la tabla
 function mostrarProductos() {
   const tbody = document.getElementById("tabla-productos");
   tbody.innerHTML = "";
@@ -410,11 +330,61 @@ function mostrarProductos() {
   });
 }
  
-//capturar el form
+// ==========================================
+// MANEJO DE EVENTOS DEL FORMULARIO
+// ==========================================
+
+// Capturar el formulario y manejar el envío
 const form = document.getElementById("formProducto");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
- 
+
+  // Validar campos requeridos
+  const camposRequeridos = ["categoria", "nombre", "marca", "precio", "stock", "descripcion"];
+  let faltanCampos = false;
+  
+  camposRequeridos.forEach(campo => {
+    const valor = document.getElementById(campo).value.trim();
+    if (!valor) {
+      faltanCampos = true;
+      document.getElementById(campo).classList.add('campo-invalido');
+    } else {
+      document.getElementById(campo).classList.remove('campo-invalido');
+    }
+  });
+
+  if (faltanCampos) {
+    alert("Por favor complete todos los campos requeridos");
+    return;
+  }
+
+  // Validar que el nombre no se repita
+  const nombreProducto = document.getElementById("nombre").value.trim();
+  const productos = obtenerProductos();
+  const nombreExiste = productos.some(p => p.nombre.toLowerCase() === nombreProducto.toLowerCase());
+
+  if (nombreExiste) {
+    alert("Ya existe un producto con ese nombre");
+    document.getElementById("nombre").classList.add('campo-invalido');
+    return;
+  }
+
+  // Validar que precio y stock sean números válidos
+  const precio = parseFloat(document.getElementById("precio").value);
+  const stock = parseInt(document.getElementById("stock").value);
+
+  if (isNaN(precio) || precio <= 0) {
+    alert("El precio debe ser un número mayor que 0");
+    document.getElementById("precio").classList.add('campo-invalido');
+    return;
+  }
+
+  if (isNaN(stock) || stock < 0) {
+    alert("El stock debe ser un número mayor o igual a 0");
+    document.getElementById("stock").classList.add('campo-invalido');
+    return;
+  }
+
   const archivoImagen = document.getElementById("imagen").files[0];
  
   if (archivoImagen) {
@@ -422,29 +392,42 @@ form.addEventListener("submit", function(e) {
     reader.onload = function(event) {
       const imagenBase64 = event.target.result;
       const producto = crearProductoDesdeFormulario(form, productos, imagenBase64);
-       agregarProducto(producto, productos);
-      form.reset()
-      document.getElementById("modalCrear").style.display = "none"; // cerrar modal
+      agregarProducto(producto, productos);
+      
+      // Limpiar formulario y cerrar modal
+      limpiarFormularioYCerrarModal(form, camposRequeridos);
     };
     reader.readAsDataURL(archivoImagen);
   } else {
     const producto = crearProductoDesdeFormulario(form, productos, "tarjeta.jpg");
     agregarProducto(producto, productos);
-    form.reset();
-    document.getElementById("modalCrear").style.display = "none"; // cerrar modal
+    
+    // Limpiar formulario y cerrar modal
+    limpiarFormularioYCerrarModal(form, camposRequeridos);
   }
 });
- 
-  // Llamar al cargar
+
+// Función auxiliar para limpiar el formulario y cerrar el modal
+function limpiarFormularioYCerrarModal(form, camposRequeridos) {
+  form.reset();
+  document.getElementById("modalCrear").style.display = "none";
+  
+  // Limpiar las clases de validación
+  camposRequeridos.forEach(campo => {
+    document.getElementById(campo).classList.remove('campo-invalido');
+  });
+  
+  // Asegurarse de que la interfaz se actualice
+  actualizarInterfaz();
+}
+
+// Llamar al cargar
 mostrarProductos();
+// ==========================================
+// FUNCIONES DE EDICIÓN DE PRODUCTOS
+// ==========================================
 
-agregarProducto(producto);
-productos = obtenerProductos(); // refrescar lista
-mostrarProductos();  
-
-//EDITAR PRODUCTO
- 
-// Función para abrir el modal y cargar datos
+// Abrir modal de edición y cargar datos del producto
 function abrirModalEditar(id) {
   // Buscar producto por id en tu array de productos
   const producto = productos.find(p => p.id === id);
@@ -472,92 +455,175 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
  
   const id = parseInt(this.getAttribute('data-id'));
   // Buscar el producto en el array
-  const producto = productos.findIndex(p => p.id === id);
-
-  if (productoIndex !== -1) {
-    // Validar datos editados
-    const nombre = document.getElementById("editNombre").value.trim();
-    const precio = parseFloat(document.getElementById("editPrecio").value);
-    const stock = parseInt(document.getElementById("editStock").value);
-    
-    // Validaciones básicas
-    if (!nombre || nombre.length < 3) {
-      alert("El nombre debe tener al menos 3 caracteres");
-      return;
-    }
-    
-    if (isNaN(precio) || precio <= 0) {
-      alert("El precio debe ser un número mayor a 0");
-      return;
-    }
-    
-    if (isNaN(stock) || stock < 0) {
-      alert("El stock debe ser un número entero no negativo");
-      return;
-    }
-    
-    // Actualizar producto
-    productos[productoIndex] = {
-      ...productos[productoIndex],
-      nombre: nombre,
-      categoria: document.getElementById("editCategoria").value,
-      marca: document.getElementById("editMarca").value.trim(),
-      precio: precio,
-      stock: stock,
-      descripcion: document.getElementById("editDescripcion").value.trim()
-    };
-    
+  const producto = productos.find(p => p.id === id);
+ 
+  if (producto) {
+    // Actualizar datos
+    producto.nombre = document.getElementById('nombre').value;
+    producto.categoria = document.getElementById('categoria').value;
+    producto.marca = document.getElementById('marca').value;
+    producto.precio = parseFloat(document.getElementById('precio').value);
+    producto.stock = parseInt(document.getElementById('stock').value);
+ 
+    // Guardar cambios
     guardarProductos(productos);
-    document.getElementById("modalEditar").style.display = "none";
-    mostrarProductos();
-    alert("Producto actualizado correctamente");
+ 
+    // Cerrar modal
+    document.getElementById('modalEditar').style.display = 'none';
+ 
+    // Actualizar la interfaz
+    actualizarInterfaz();
   }
 });
+// ==========================================
+// FUNCIONES DE INTERFAZ DE USUARIO
+// ==========================================
 
-function eliminarProducto(id) {
-  if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-    productos = productos.filter(p => p.id !== id);
-    guardarProductos(productos);
-    mostrarProductos();
-    alert("Producto eliminado correctamente");
-  }
-}
+// Función genérica para crear y mostrar modales
+function mostrarModal(tipo, mensaje, callback = null) {
+    let modal = document.getElementById(`modal-${tipo}`);
+    let icono, titulo, colorBoton;
 
-function limpiarEstilosError() {
-  // Limpiar estilos de error de todos los campos
-  const inputs = document.querySelectorAll('input, textarea, select');
-  inputs.forEach(input => {
-    input.style.borderColor = '';
-  });
-}
+    switch(tipo) {
+        case 'exito':
+            icono = 'fa-circle-check';
+            titulo = '¡Éxito!';
+            colorBoton = '#235884';
+            break;
+        case 'confirmar':
+            icono = 'fa-triangle-exclamation';
+            titulo = 'Confirmar acción';
+            colorBoton = '#A5BF45';
+            break;
+        case 'error':
+            icono = 'fa-circle-xmark';
+            titulo = 'Error';
+            colorBoton = '#ff4444';
+            break;
+    }
 
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = `modal-${tipo}`;
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100vw';
+        modal.style.height = '100vh';
+        modal.style.background = 'rgba(34,40,49,0.65)';
+        modal.style.display = 'flex';
+        modal.style.alignItems = 'center';
+        modal.style.justifyContent = 'center';
+        modal.style.zIndex = '9999';
 
-// Iniciar productos
-
-console.log("Productos almacenados en localStorage:", productos);
-
-// Mostrar productos al cargar
-mostrarProductos();
-
-// Agregar validación en tiempo real
-document.addEventListener('DOMContentLoaded', function() {
-  // Validación en tiempo real para campos numéricos
-  const camposNumericos = ['precio', 'stock', 'editPrecio', 'editStock'];
-  
-  camposNumericos.forEach(id => {
-    const campo = document.getElementById(id);
-    if (campo) {
-      campo.addEventListener('input', function(e) {
-        const value = e.target.value;
-        if (value && (isNaN(parseFloat(value)) || parseFloat(value) < 0)) {
-          e.target.style.borderColor = 'red';
+        let botones = '';
+        if (tipo === 'confirmar') {
+            botones = `
+                <button id='confirmar-accion' style='margin-top:1.5rem; background:${colorBoton}; color:#fff; border:none; border-radius:2rem; padding:0.6rem 2.2rem; font-size:1rem; font-weight:600; cursor:pointer; margin-right:1rem;'>Confirmar</button>
+                <button id='cancelar-accion' style='margin-top:1.5rem; background:#6c757d; color:#fff; border:none; border-radius:2rem; padding:0.6rem 2.2rem; font-size:1rem; font-weight:600; cursor:pointer;'>Cancelar</button>
+            `;
         } else {
-          e.target.style.borderColor = '';
+            botones = `<button id='cerrar-modal-${tipo}' style='margin-top:1.5rem; background:${colorBoton}; color:#fff; border:none; border-radius:2rem; padding:0.6rem 2.2rem; font-size:1rem; font-weight:600; cursor:pointer;'>Cerrar</button>`;
         }
-      });
+
+        modal.innerHTML = `
+            <div style="background: #fff; color: #235884; border-radius: 1.2rem; padding: 2.2rem 2.5rem; box-shadow: 0 8px 32px 0 rgba(34, 40, 49, 0.18); text-align: center; max-width: 90vw;">
+                <i class='fa-solid ${icono}' style='font-size:2.5rem; color:${colorBoton}; margin-bottom:1rem;'></i>
+                <h2 style='margin-bottom:0.7rem;'>${titulo}</h2>
+                <p style='font-size:1.1rem;'>${mensaje}</p>
+                ${botones}
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        modal.style.display = 'flex';
+        modal.querySelector('p').textContent = mensaje;
     }
-  });
+
+    if (tipo === 'confirmar') {
+        return new Promise((resolve) => {
+            document.getElementById('confirmar-accion').onclick = function() {
+                modal.style.display = 'none';
+                resolve(true);
+            };
+            document.getElementById('cancelar-accion').onclick = function() {
+                modal.style.display = 'none';
+                resolve(false);
+            };
+        });
+    } else {
+        document.getElementById(`cerrar-modal-${tipo}`).onclick = function() {
+            modal.style.display = 'none';
+            if (callback) callback();
+        };
+    }
+}
+
+function agregarProducto(producto, productos) {
+    productos.push(producto);
+    guardarProductos(productos);
+    console.log("Catálogo actualizado:", productos);
+    
+    mostrarModal('exito', `El producto "${producto.nombre}" ha sido agregado correctamente`, () => {
+        actualizarInterfaz();
+    });
+}
+
+// Función para eliminar producto
+async function eliminarProducto(id) {
+    let productos = obtenerProductos();
+    const producto = productos.find(p => p.id === id);
+    const confirmar = await mostrarModal('confirmar', `¿Estás seguro que deseas eliminar el producto "${producto.nombre}"?`);
+    if (confirmar) {
+        productos = productos.filter(p => p.id !== id);
+        guardarProductos(productos);
+        mostrarModal('exito', `El producto "${producto.nombre}" ha sido eliminado correctamente`, () => {
+            actualizarInterfaz();
+        });
+    }
+}
+
+// ==========================================
+// FUNCIONES DE ACTUALIZACIÓN AUTOMÁTICA
+// ==========================================
+
+// Función para actualizar la interfaz completa
+function actualizarInterfaz() {
+    // Obtener productos actualizados
+    productos = obtenerProductos();
+    console.log('Actualizando interfaz con productos:', productos);
+    
+    // Actualizar la tabla de productos
+    mostrarProductos();
+    
+    // Actualizar el catálogo si existe
+    const productsContainer = document.getElementById('products-container');
+    if (productsContainer) {
+        const categoriaActual = document.querySelector('.category-btn.active')?.dataset.category || 'all';
+        if (typeof renderProductos === 'function') {
+            console.log('Actualizando catálogo con categoría:', categoriaActual);
+            renderProductos(categoriaActual);
+        }
+    }
+
+    // Disparar evento custom para notificar cambios
+    window.dispatchEvent(new CustomEvent('productosActualizados', {
+        detail: { productos: productos }
+    }));
+}
+
+// Observador de cambios en localStorage
+window.addEventListener('storage', (e) => {
+    if (e.key === 'productos') {
+        console.log('Cambios detectados en localStorage');
+        actualizarInterfaz();
+    }
 });
 
-//muestra al cargar la pagina
-//mostrarProductos();
+// Actualizar al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Página cargada, actualizando interfaz');
+    actualizarInterfaz();
+});
+
+
