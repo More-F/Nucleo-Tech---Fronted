@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito de Compras</title>
+<link rel="stylesheet" href="/CSS/barracarrito.css">
+<link rel="stylesheet" href="/CSS/navbar.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="contenedor_nav">
+            <div class="logo-nav">
+                <img src="/IMG/Group 8 (1).png" alt="" style="width: 30px;">
+                <a href="index.html">
+                <h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2>
+                </a>
+            </div>
+            <ul class="nav-list">
+                <li><a class="nav-text" href="index.html">Inicio</a></li>
+                <li><a class="nav-text" href="catalogo.html">Catalogo</a></li>
+                <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
+                <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
+            </ul>
+            <div class="contenedor_iconos">
+                <a href="javascript:void(0)" id="cartBtn"><i class="bi bi-cart3"></i></a>
+                <a href=""><i class="bi bi-person-circle"></i></a>
+            </div>
+                <a class="menu-toggle" id="menu-toggle">
+                    <i class=" bi-list"></i>
+                </a>
+        </div>
+    </nav>
+    <!-- Overlay oscuro -->
+    <div class="overlay"></div>
+    <!-- Carrito lateral -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            Carrito de Compras
+            <button class="close-btn" id="closeCart">✖</button>
+        </div>
+
+        <!-- Contenedor dinámico de productos -->
+        <div id="cart-items"></div>
+
+        <!-- Footer -->
+        <div class="cart-footer">
+            <div class="total" id="cart-total">Total Parcial: $0</div>
+            <a href="/HTML/carritodecompra.html" class="btn">Ver Carrito</a>
+        </div>
+    </div>
+    <script src="/JS/barracarrito.js"></script>
+    <script src="/JS/productoacarrito.js"></script>
+
+</body>
+</html>

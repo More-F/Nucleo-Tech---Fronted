@@ -51,7 +51,33 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const productId = this.getAttribute('data-id');
                 const producto = obtenerProductos().find(p => p.id == productId);
-                alert(`¡${producto.nombre} agregado al carrito!`);
+
+                if (producto) {
+                    // Obtener carrito actual o inicializar vacío
+                    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+                    // Verificar si el producto ya existe en el carrito
+                    const index = carrito.findIndex(item => item.id == producto.id);
+
+                    if (index >= 0) {
+                        // Si ya existe, aumentar cantidad
+                        carrito[index].cantidad += 1;
+                    } else {
+                        // Si no existe, agregarlo con cantidad = 1
+                        carrito.push({
+                            id: producto.id,
+                            nombre: producto.nombre,
+                            precio: producto.precio,
+                            imagen: producto.imagen,
+                            cantidad: 1
+                        });
+                    }
+
+                    // Guardar carrito actualizado en localStorage
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+                    alert(`¡${producto.nombre} agregado al carrito!`);
+                }
             });
         });
     }
