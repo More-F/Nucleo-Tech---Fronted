@@ -31,23 +31,32 @@ function renderSidebarCarrito() {
     carrito.forEach(item => {
         total += item.precio * item.cantidad;
 
-        const itemHTML = `
-            <div class="cart-item">
-                <img src="${item.imagen}" alt="${item.nombre}" width="50">
-                <div class="cart-item-details">
-                    <h4>${item.nombre}</h4>
-                    <p>${new Intl.NumberFormat("es-CO", {
-                        style: "currency",
-                        currency: "COP",
-                        minimumFractionDigits: 0
-                    }).format(item.precio)} x ${item.cantidad}</p>
+        const itemDiv = document.createElement("div");
+        itemDiv.classList.add("cart-item");
+        itemDiv.innerHTML = `
+            <img src="${item.imagen}" alt="${item.nombre}" width="50">
+            
+            <div class="cart-item-details">
+                <h4>${item.nombre}</h4>
+                <p>${new Intl.NumberFormat("es-CO", {
+                    style: "currency",
+                    currency: "COP",
+                    minimumFractionDigits: 0
+                }).format(item.precio)} x ${item.cantidad}</p>
+
+                <!-- Controles de cantidad -->
+                <div class="quantity-controls">
+                    <button class="qty-btn decrease" data-id="${item.id}">-</button>
+                    <span class="qty-number">${item.cantidad}</span>
+                    <button class="qty-btn increase" data-id="${item.id}">+</button>
                 </div>
-                <!-- Botón eliminar -->
-                <button class="remove-btn" data-id="${item.id}">✖</button>
             </div>
+
+            <!-- Botón eliminar -->
+            <button class="remove-btn" data-id="${item.id}">✖</button>
         `;
 
-        sidebarItems.innerHTML += itemHTML;
+        sidebarItems.appendChild(itemDiv);
     });
 
     // Total
@@ -60,11 +69,33 @@ function renderSidebarCarrito() {
     sidebarTotal.textContent = `Total: ${totalFormateado}`;
 
     // 🔹 Eventos para eliminar productos
-    document.querySelectorAll(".remove-btn").forEach(btn => {
+    sidebarItems.querySelectorAll(".remove-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             const id = btn.getAttribute("data-id");
             let carrito = obtenerCarrito();
             carrito = carrito.filter(item => item.id != id);
+            guardarCarrito(carrito);
+            renderSidebarCarrito(); // refrescar vista
+        });
+    });
+
+    // 🔹 Eventos para cambiar cantidad
+    sidebarItems.querySelectorAll(".qty-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            let carrito = obtenerCarrito();
+
+            carrito = carrito.map(item => {
+                if (item.id == id) {
+                    if (btn.classList.contains("increase")) {
+                        item.cantidad++;
+                    } else if (btn.classList.contains("decrease") && item.cantidad > 1) {
+                        item.cantidad--;
+                    }
+                }
+                return item;
+            });
+
             guardarCarrito(carrito);
             renderSidebarCarrito(); // refrescar vista
         });
