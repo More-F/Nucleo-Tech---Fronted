@@ -212,7 +212,7 @@ body {
     margin-bottom: 25px;
 }
 .banner-btn {
-    background: var(--accent-color);
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 12px 30px;
