@@ -223,9 +223,9 @@ body {
     width: fit-content;
 }
 .banner-btn:hover {
-    background: #e55a2b;
+    background: var(--secondary-color);
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 5px 15px rgba(53, 134, 255, 0.4);
 }
 /* Mensaje cuando no hay productos */
 .no-products {

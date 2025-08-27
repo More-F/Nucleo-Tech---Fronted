@@ -2,12 +2,11 @@
 // Función para obtener productos del localStorage
 function obtenerProductos() {
     const productos = JSON.parse(localStorage.getItem("productos")) || productosBase;
-    console.log('Productos obtenidos del localStorage:', productos); // Debug
+    console.log('Productos obtenidos del localStorage:', productos); 
     return productos;
 }
 
-// Elementos del DOM
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const productsContainer = document.getElementById("products-container");
     const categoryButtons = document.querySelectorAll(".category-btn");
 
@@ -34,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3 class="product-title">${producto.nombre}</h3>
                     <p class="product-description">${producto.descripcion}</p>
                     <span class="price">${new Intl.NumberFormat("es-CO", {
-                        style: "currency",
-                        currency: "COP",
-                        minimumFractionDigits: 0
-                    }).format(producto.precio)}</span>
+                style: "currency",
+                currency: "COP",
+                minimumFractionDigits: 0
+            }).format(producto.precio)}</span>
                     <button class="add-to-cart" data-id="${producto.id}">
                         <i class="fas fa-shopping-cart"></i> Agregar
                     </button>
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Agregar event listeners a los botones de carrito
         document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const productId = this.getAttribute('data-id');
                 const producto = obtenerProductos().find(p => p.id == productId);
                 alert(`¡${producto.nombre} agregado al carrito!`);
@@ -58,32 +57,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Filtrar productos
     function filtrarProductos(categoria) {
-        console.log('Filtrando por categoría:', categoria); // Debug
-        categoriaSeleccionada = categoria; // guardamos la última categoría usada
+        console.log('Filtrando por categoría:', categoria); 
+        categoriaSeleccionada = categoria; 
         const productos = obtenerProductos();
-        console.log('Productos obtenidos:', productos); // Debug
-        
+        console.log('Productos obtenidos:', productos); 
+
         let productosMostrar;
         if (categoria === "all") {
             productosMostrar = productos;
         } else {
-            // Normalizar las categorías para la comparación
             productosMostrar = productos.filter(p => {
-                // Convertir ambas categorías a minúsculas y eliminar espacios extras
                 const categoriaProducto = p.categoria.toLowerCase().trim();
                 const categoriaFiltro = categoria.toLowerCase().trim();
                 console.log('Comparando categorías:', categoriaProducto, categoriaFiltro);
                 return categoriaProducto === categoriaFiltro;
             });
         }
-        console.log('Productos filtrados:', productosMostrar); // Debug
+        console.log('Productos filtrados:', productosMostrar); 
         renderProductos(productosMostrar);
     }
 
     // Eventos de botones de categoría
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            console.log('Botón de categoría clickeado:', btn.dataset.category); // Debug
+            console.log('Botón de categoría clickeado:', btn.dataset.category); 
             categoryButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             filtrarProductos(btn.dataset.category);

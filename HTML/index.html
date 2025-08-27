@@ -16,49 +16,9 @@
   <link rel="stylesheet" href="/CSS/catalogo.css">
   <link rel="stylesheet" href="/CSS/estilos.css">
   <link rel="stylesheet" href="/CSS/estilasowasa.css">
-
 </head>
 
 <script type="module" src="/JS/navar.js"></script>
-<script src="/JS/scriptAdmin.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Limpiamos lo que renderizó tu JS
-    const productsContainer = document.getElementById("products-container");
-    productsContainer.innerHTML = "";
-
-    // Tomamos solo los primeros 6 productos
-    const primeros6 = productos.slice(0, 6);
-
-    primeros6.forEach(producto => {
-      const productCard = document.createElement("div");
-      productCard.className = "product-card";
-      productCard.innerHTML = `
-        ${producto.nuevo ? '<span class="product-badge">NUEVO</span>' : ''}
-        ${!producto.nuevo && producto.descuento > 15 ? '<span class="product-badge">OFERTA</span>' : ''}
-        <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
-        <div class="product-info">
-            <div class="product-category">${producto.categoria.toUpperCase()}</div>
-            <h3 class="product-title">${producto.nombre}</h3>
-            <div class="product-price">
-                <div>
-                    <span class="price">${new Intl.NumberFormat("es-CO", {
-        style: "currency",
-        currency: "COP",
-        minimumFractionDigits: 0
-      }).format(producto.precio)
-        }</span>
-                </div>
-            </div>
-            <button class="add-to-cart" data-id="${producto.id}">
-                <i class="fas fa-shopping-cart"></i> Agregar
-            </button>
-        </div>
-      `;
-      productsContainer.appendChild(productCard);
-    });
-  });
-</script>
 
 <body>
   <nav>
@@ -69,14 +29,12 @@
           <h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2>
         </a>
       </div>
-
       <ul class="nav-list">
         <li><a class="nav-text" href="index.html">Inicio</a></li>
         <li><a class="nav-text" href="catalogo.html">Catalogo</a></li>
         <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
         <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
       </ul>
-
       <div class="contenedor_iconos">
         <a href=""><i class="bi bi-cart3"></i></a>
         <a href=""><i class="bi bi-person-circle"></i></a>
@@ -87,33 +45,48 @@
     </div>
   </nav>
 
-  <div class="banner">
-    <div class="contenedor-banner">
-      <img
-        src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
-        alt="Ofertas Gamer" class="img-banner">
-      <div class="banner-overlay">
-        <h2 class="banner-title">PARTES GAMER EN OFERTA</h2>
-        <p class="banner-subtitle">Descuentos increíbles en componentes de alta calidad para tu setup gaming</p>
-        <button class="banner-btn">Ver Ofertas</button>
+  <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="contenedor-banner">
+          <img src="/IMG/ChatGPT Image 26 ago 2025, 16_20_29.png" alt="Banner 1" class="img-banner">
+          <div class="banner-overlay">
+            <h2 class="banner-title">PERIFERICOS AL MEJOR PRECIO</h2>
+            <p class="banner-subtitle">Descuentos increíbles en componentes de alta calidad para tu setup gaming</p>
+            <button class="banner-btn"><a class="btn-link" href="catalogo.html">Ver Catalogo</a></button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="contenedor-banner">
+          <img src="/IMG/banner2.png" alt="Banner 2" class="img-banner">
+          <div class="banner-overlay">
+            <button class="banner-btn"><a class="btn-link" href="catalogo.html">Ver Catalogo</a></button>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="contenedor-banner">
+          <img src="/IMG/5898483.jpg" alt="Banner 3" class="img-banner">
+          <div class="banner-overlay">
+            <button class="banner-btn"><a class="btn-link" href="contactanos.html">Mas Info</a></button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <h2 class="titulo-index">Categorias</h2>
-  <br>
-  <div class="contenedor-categorias">
-    <div class="categoria-card">
-      <h3>Fuentes</h3>
-      <img src="" alt="">
-    </div>
-    <div class="categoria-card">
-      <h3>Teclados/Mouse</h3>
-      <img src="" alt="">
-    </div>
-    <div class="categoria-card">
-      <h3>Monitores</h3>
-      <img src="" alt="">
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 
   <main>
@@ -123,20 +96,26 @@
         <div class="products-grid" id="products-container">
           <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
-
       </div>
       <div class="boton-vermas">
         <button class="btn-ver-mas"><a class="btn-link" href="catalogo.html">Ver más</a></button>
       </div>
       <br>
-
     </section>
 
+    <h2 class="titulo-index">Productos por menos de $1.000.000</h2>
+    <section>
+      <div class="contenedor-productos">
+        <div class="products-grid" id="products-under-million">
+          <!-- Los productos bajo 1M se cargarán dinámicamente aquí -->
+        </div>
+      </div>
+      <br>
+    </section>
 
   </main>
   <footer class="footer-custom">
     <div class="footer-content">
-      <!-- Columna 1: Logo y redes -->
       <div class="footer-col">
         <img src="/IMG/Group 8 (1).png" alt="Nucleo Tech" class="logo-footer">
         <div class="nombre-marca">
@@ -148,14 +127,12 @@
           <a href="https://tiktok.com" target="_blank"><i class="bi bi-tiktok"></i></a>
         </div>
       </div>
-      <!-- Columna 2: Contacto -->
       <div class="footer-col">
         <h5>Contáctanos</h5>
         <p>Email: soporte@nucleotech.com</p>
         <p>Tel: +57 300 123 4567</p>
         <p>WhatsApp: <a href="https://wa.me/573001234567" class="footer-link">Escríbenos</a></p>
       </div>
-      <!-- Columna 3: Enlaces -->
       <div class="footer-col">
         <h5>Enlaces</h5>
         <ul>
@@ -165,7 +142,6 @@
           <li><a href="/contacto" class="footer-link">Contacto</a></li>
         </ul>
       </div>
-      <!-- Columna 4: Horarios -->
       <div class="footer-col">
         <h5>Horarios</h5>
         <p>Lunes a Viernes: 8:00 a.m. - 6:00 p.m.</p>
@@ -181,6 +157,8 @@
     class="whatsapp-float" target="_blank" title="Chatea con nosotros en WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/JS/index.js"></script>
 
 </body>
 
