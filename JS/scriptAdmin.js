@@ -218,9 +218,8 @@ const productosBase = [
     }
 ];
  
-// ==========================================
+
 // FUNCIONES DE MANEJO DE DATOS
-// ==========================================
 
 // Inicializar localStorage con productos base
 function inicializarProductos() {
@@ -258,9 +257,8 @@ function crearProductoDesdeFormulario(form, productos, imagenUrl) {
   };
 }
  
-// ==========================================
 // FUNCIONES DE GESTIÓN DE PRODUCTOS
-// ==========================================
+
 
 // Agregar nuevo producto
 function agregarProducto(producto,productos) {
@@ -282,9 +280,8 @@ function abrirModalCrear() {
 inicializarProductos();
 let productos = obtenerProductos();
 console.log("Productos almacenados en localStorage:", productos);
-// ==========================================
+
 // FUNCIONES DE VISUALIZACIÓN
-// ==========================================
 
 // Mostrar productos en la tabla
 function mostrarProductos() {
@@ -312,9 +309,7 @@ function mostrarProductos() {
   });
 }
  
-// ==========================================
 // MANEJO DE EVENTOS DEL FORMULARIO
-// ==========================================
 
 // Capturar el formulario y manejar el envío
 const form = document.getElementById("formProducto");
@@ -375,16 +370,12 @@ form.addEventListener("submit", function(e) {
       const imagenBase64 = event.target.result;
       const producto = crearProductoDesdeFormulario(form, productos, imagenBase64);
       agregarProducto(producto, productos);
-      
-      // Limpiar formulario y cerrar modal
       limpiarFormularioYCerrarModal(form, camposRequeridos);
     };
     reader.readAsDataURL(archivoImagen);
   } else {
     const producto = crearProductoDesdeFormulario(form, productos, "tarjeta.jpg");
     agregarProducto(producto, productos);
-    
-    // Limpiar formulario y cerrar modal
     limpiarFormularioYCerrarModal(form, camposRequeridos);
   }
 });
@@ -393,39 +384,27 @@ form.addEventListener("submit", function(e) {
 function limpiarFormularioYCerrarModal(form, camposRequeridos) {
   form.reset();
   document.getElementById("modalCrear").style.display = "none";
-  
-  // Limpiar las clases de validación
   camposRequeridos.forEach(campo => {
     document.getElementById(campo).classList.remove('campo-invalido');
   });
-  
-  // Asegurarse de que la interfaz se actualice
   actualizarInterfaz();
 }
 
-// Llamar al cargar
+
 mostrarProductos();
-// ==========================================
 // FUNCIONES DE EDICIÓN DE PRODUCTOS
-// ==========================================
 
 // Abrir modal de edición y cargar datos del producto
 function abrirModalEditar(id) {
-  // Buscar producto por id en tu array de productos
   const producto = productos.find(p => p.id === id);
  
   if (producto) {
-    // Llenar los inputs del modal con los datos del producto
     document.getElementById('nombre').value = producto.nombre;
     document.getElementById('categoria').value = producto.categoria;
     document.getElementById('marca').value = producto.marca;
     document.getElementById('precio').value = producto.precio;
     document.getElementById('stock').value = producto.stock;
- 
-    // Guardar el id en un atributo para usarlo luego al guardar cambios
     document.querySelector('.form-editar').setAttribute('data-id', id);
- 
-    // Mostrar modal
     document.getElementById('modalEditar').style.display = 'block';
   }
 }
@@ -436,30 +415,20 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
  
   const id = parseInt(this.getAttribute('data-id'));
  
-  // Buscar el producto en el array
   const producto = productos.find(p => p.id === id);
  
   if (producto) {
-    // Actualizar datos
     producto.nombre = document.getElementById('nombre').value;
     producto.categoria = document.getElementById('categoria').value;
     producto.marca = document.getElementById('marca').value;
     producto.precio = parseFloat(document.getElementById('precio').value);
     producto.stock = parseInt(document.getElementById('stock').value);
- 
-    // Guardar cambios
     guardarProductos(productos);
- 
-    // Cerrar modal
     document.getElementById('modalEditar').style.display = 'none';
- 
-    // Actualizar la interfaz
     actualizarInterfaz();
   }
 });
-// ==========================================
 // FUNCIONES DE INTERFAZ DE USUARIO
-// ==========================================
 
 // Función genérica para crear y mostrar modales
 function mostrarModal(tipo, mensaje, callback = null) {
@@ -556,21 +525,21 @@ async function eliminarProducto(id) {
     }
 }
 
-// ==========================================
+
 // FUNCIONES DE ACTUALIZACIÓN AUTOMÁTICA
-// ==========================================
 
 // Función para actualizar la interfaz completa
 function actualizarInterfaz() {
     // Obtener productos actualizados
     productos = obtenerProductos();
     console.log('Actualizando interfaz con productos:', productos);
-    
-    // Actualizar la tabla de productos
     mostrarProductos();
+<<<<<<< HEAD
     
     // Actualizar el catálogo si existe
     
+=======
+>>>>>>> origin/master
     const productsContainer = document.getElementById('products-container');
     if (productsContainer) {
         const categoriaActual = document.querySelector('.category-btn.active')?.dataset.category || 'all';
@@ -601,5 +570,4 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Página cargada, actualizando interfaz');
     actualizarInterfaz();
 });
-
 
