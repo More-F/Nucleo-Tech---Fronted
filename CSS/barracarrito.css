@@ -25,6 +25,9 @@
     padding: 20px;
     transition: right 0.3s ease-in-out;
     z-index: 1000;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
 
 .cart-sidebar.active {
@@ -39,6 +42,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 1;
 }
 
 .close-btn {
@@ -125,9 +132,12 @@
 
 /* Footer del carrito */
 .cart-footer {
-    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
     border-top: 1px solid #ddd;
     padding-top: 12px;
+    margin-top: 10px;
 }
 
 .cart-footer .total {

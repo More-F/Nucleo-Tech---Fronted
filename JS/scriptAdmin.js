@@ -1,6 +1,8 @@
-
+// ==========================================
 // DATOS BASE Y CONFIGURACIÓN INICIAL
+// ==========================================
 
+// Productos base iniciales
 const productosBase = [
   {
     id: 1,
@@ -215,6 +217,7 @@ const productosBase = [
         }
     }
 ];
+ 
 
 // FUNCIONES DE MANEJO DE DATOS
 
@@ -235,119 +238,7 @@ function guardarProductos(productos) {
   localStorage.setItem("productos", JSON.stringify(productos));
 }
  
-<<<<<<< HEAD
-// creamos producto desde formulario
-<<<<<<< HEAD
-function validarDatosProducto(esEdicion = false, idExistente = null) {
-  // Obtener valores
-  const nombre = document.getElementById("nombre").value.trim();
-  const categoria = document.getElementById("categoria").value;
-  const marca = document.getElementById("marca").value.trim();
-  const precio = document.getElementById("precio").value;
-  const stock = document.getElementById("stock").value;
-  const descripcion = document.getElementById("descripcion").value.trim();
-  const especificacion1 = document.getElementById("especificacion1").value.trim();
-  const especificacion2 = document.getElementById("especificacion2").value.trim();
-  const especificacion3 = document.getElementById("especificacion3").value.trim();
-
-  // Validaciones
-  let errores = [];
-
-  // Validar nombre
-  if (!nombre) {
-    errores.push("El nombre del producto es obligatorio");
-  } else if (nombre.length < 3) {
-    errores.push("El nombre debe tener al menos 3 caracteres");
-  } else if (!/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\-_.,()&!@#%]+$/.test(nombre)) {
-    errores.push("El nombre contiene caracteres no válidos");
-  }
-
-  // Validar categoría
-  if (!categoria) {
-    errores.push("La categoría es obligatoria");
-  }
-
-  // Validar marca
-  if (!marca) {
-    errores.push("La marca es obligatoria");
-  } else if (marca.length < 2) {
-    errores.push("La marca debe tener al menos 2 caracteres");
-  }
-
-  // Validar precio
-  if (!precio) {
-    errores.push("El precio es obligatorio");
-  } else if (isNaN(parseFloat(precio)) || parseFloat(precio) <= 0) {
-    errores.push("El precio debe ser un número mayor a 0");
-  } else if (parseFloat(precio) > 10000000) {
-    errores.push("El precio no puede ser mayor a 10,000,000");
-  }
-
-  // Validar stock
-  if (!stock) {
-    errores.push("El stock es obligatorio");
-  } else if (isNaN(parseInt(stock)) || parseInt(stock) < 0) {
-    errores.push("El stock debe ser un número entero no negativo");
-  } else if (parseInt(stock) > 10000) {
-    errores.push("El stock no puede ser mayor a 10,000 unidades");
-  }
-
-  // Validar descripción
-  if (!descripcion) {
-    errores.push("La descripción es obligatoria");
-  } else if (descripcion.length < 10) {
-    errores.push("La descripción debe tener al menos 10 caracteres");
-  }
-
-  // Validar nombre único (solo para creación, no edición)
-  if (!esEdicion && productos.some(p => p.nombre.toLowerCase() === nombre.toLowerCase())) {
-    errores.push("Ya existe un producto con ese nombre");
-  }
-
-  // Si hay errores, mostrarlos
-  if (errores.length > 0) {
-    mostrarErrores(errores);
-    return null;
-  }
-
-  // Retornar objeto validado
-=======
 // Crear nuevo producto desde el formulario
-function crearProductoDesdeFormulario(form, productos, imagenUrl) {
->>>>>>> Rama-AndresMore
-  return {
-    nombre: nombre,
-    categoria: categoria,
-    marca: marca,
-    precio: parseFloat(parseFloat(precio).toFixed(2)),
-    stock: Math.max(0, parseInt(stock)),
-    descripcion: descripcion,
-    especificaciones: {
-      especificacion1: especificacion1 || "No especificado",
-      especificacion2: especificacion2 || "No especificado",
-      especificacion3: especificacion3 || "No especificado"
-    }
-  };
-}
-
-function mostrarErrores(errores) {
-  const mensaje = "Errores en el formulario:\n\n• " + errores.join("\n• ");
-  alert(mensaje);
-}
-
-function crearProductoDesdeFormulario() {
-  const productoValidado = validarDatosProducto();
-  
-  if (!productoValidado) {
-    return null;
-  }
-
-  return {
-    id: Math.max(...productos.map(p => p.id), 0) + 1, // Mejor forma de generar ID
-    ...productoValidado,
-    imagen: "tarjeta.jpg" // temporal
-<<<<<<< HEAD
-=======
 function crearProductoDesdeFormulario(form, productos, imagenUrl) {
   return {
     id: productos.length + 1,
@@ -363,35 +254,11 @@ function crearProductoDesdeFormulario(form, productos, imagenUrl) {
       especificacion2: document.getElementById("especificacion2").value,
       especificacion3: document.getElementById("especificacion3").value
     }
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-  };
-}
- 
-// agregar¿mos nuevo producto
-<<<<<<< HEAD
-function agregarProducto(producto) {
-  if (!producto) {
-    console.error("No se pudo agregar el producto: datos inválidos");
-    return false;
-  }
-
-=======
-function agregarProducto(producto,productos) {
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-  productos.push(producto);
-  guardarProductos(productos);
-  console.log("Catálogo actualizado:", productos);
-  alert("Producto guardado correctamente");
-<<<<<<< HEAD
-  return true;
-=======
-  mostrarProductos();
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-=======
   };
 }
  
 // FUNCIONES DE GESTIÓN DE PRODUCTOS
+
 
 // Agregar nuevo producto
 function agregarProducto(producto,productos) {
@@ -401,68 +268,21 @@ function agregarProducto(producto,productos) {
   mostrarModal('exito', `El producto "${producto.nombre}" ha sido agregado correctamente`, () => {
     actualizarInterfaz();
   });
->>>>>>> Rama-AndresMore
 }
  
 // Abrir modal para crear producto
 function abrirModalCrear() {
   document.getElementById("modalCrear").style.display = "block";
-  // Limpiar errores previos
-  limpiarEstilosError();
 }
  
 // Inicialización de productos
 inicializarProductos();
 let productos = obtenerProductos();
 console.log("Productos almacenados en localStorage:", productos);
-<<<<<<< HEAD
 
-// FUNCIONES DE VISUALIZACIÓN DE TABLA
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-//capturar el form
-const form = document.getElementById("formProducto");
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const producto = crearProductoDesdeFormulario();
-  if (!producto) return;
-
-  const archivoImagen = document.getElementById("imagen").files[0];
-
-  if (archivoImagen) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      producto.imagen = event.target.result;
-      guardarYCerrar(producto);
-    };
-    reader.readAsDataURL(archivoImagen);
-  } else {
-    guardarYCerrar(producto);
-  }
-});
-
-function guardarYCerrar(producto) {
-  if (agregarProducto(producto)) {
-    form.reset();
-    document.getElementById("modalCrear").style.display = "none";
-    mostrarProductos(); // Actualizar tabla
-  }
-}
-
-=======
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-// MOSTRAR PRODUCTOS EN LA TABLA
-=======
-// ==========================================
 // FUNCIONES DE VISUALIZACIÓN
-// ==========================================
->>>>>>> 166957dc737cfc866d6e9de9bd34c5a0f9cbe15e
 
 // Mostrar productos en la tabla
->>>>>>> Rama-AndresMore
 function mostrarProductos() {
   const tbody = document.getElementById("tabla-productos");
   tbody.innerHTML = "";
@@ -544,7 +364,7 @@ form.addEventListener("submit", function(e) {
   const archivoImagen = document.getElementById("imagen").files[0];
  
   if (archivoImagen) {
-    const reader = new FileReader(); 
+    const reader = new FileReader(); // Api
     reader.onload = function(event) {
       const imagenBase64 = event.target.result;
       const producto = crearProductoDesdeFormulario(form, productos, imagenBase64);
@@ -558,87 +378,33 @@ form.addEventListener("submit", function(e) {
     limpiarFormularioYCerrarModal(form, camposRequeridos);
   }
 });
-<<<<<<< HEAD
- 
-  // Llamar al cargar
-<<<<<<< HEAD
-=======
 
 // Función auxiliar para limpiar el formulario y cerrar el modal
 function limpiarFormularioYCerrarModal(form, camposRequeridos) {
   form.reset();
   document.getElementById("modalCrear").style.display = "none";
-  
-  // Limpiar las clases de validación
   camposRequeridos.forEach(campo => {
     document.getElementById(campo).classList.remove('campo-invalido');
   });
-  
-  // Asegurarse de que la interfaz se actualice
   actualizarInterfaz();
 }
-// Llamar al cargar
->>>>>>> Rama-AndresMore
+
+
 mostrarProductos();
+// FUNCIONES DE EDICIÓN DE PRODUCTOS
 
-// FUNCIONES DE EDITAR PRODUCTOS
-
-<<<<<<< HEAD
-agregarProducto(producto);
-productos = obtenerProductos(); // refrescar lista
-mostrarProductos();  
-
-=======
-  mostrarProductos();
- 
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-//EDITAR PRODUCTO
- 
-// Función para abrir el modal y cargar datos
-=======
 // Abrir modal de edición y cargar datos del producto
->>>>>>> Rama-AndresMore
 function abrirModalEditar(id) {
   const producto = productos.find(p => p.id === id);
  
   if (producto) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Rama-AndresMore
-    // Llenar formulario
-    document.getElementById("editNombre").value = producto.nombre;
-    document.getElementById("editCategoria").value = producto.categoria;
-    document.getElementById("editMarca").value = producto.marca;
-    document.getElementById("editPrecio").value = producto.precio;
-    document.getElementById("editStock").value = producto.stock;
-    document.getElementById("editDescripcion").value = producto.descripcion;
-    
-    // Guardar ID para luego
-    document.getElementById("formEditar").dataset.id = id;
-    
-<<<<<<< HEAD
-=======
-    // Llenar los inputs del modal con los datos del producto
->>>>>>> 166957dc737cfc866d6e9de9bd34c5a0f9cbe15e
     document.getElementById('nombre').value = producto.nombre;
     document.getElementById('categoria').value = producto.categoria;
     document.getElementById('marca').value = producto.marca;
     document.getElementById('precio').value = producto.precio;
     document.getElementById('stock').value = producto.stock;
     document.querySelector('.form-editar').setAttribute('data-id', id);
-<<<<<<< HEAD
     document.getElementById('modalEditar').style.display = 'block';
-=======
- 
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-=======
->>>>>>> Rama-AndresMore
-    // Mostrar modal
-    document.getElementById("modalEditar").style.display = "block";
->>>>>>> 166957dc737cfc866d6e9de9bd34c5a0f9cbe15e
   }
 }
  
@@ -647,54 +413,7 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
   e.preventDefault();
  
   const id = parseInt(this.getAttribute('data-id'));
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-  // Buscar el producto en el array
-  const producto = productos.findIndex(p => p.id === id);
-
-  if (productoIndex !== -1) {
-    // Validar datos editados
-    const nombre = document.getElementById("editNombre").value.trim();
-    const precio = parseFloat(document.getElementById("editPrecio").value);
-    const stock = parseInt(document.getElementById("editStock").value);
-    
-    // Validaciones básicas
-    if (!nombre || nombre.length < 3) {
-      alert("El nombre debe tener al menos 3 caracteres");
-      return;
-    }
-    
-    if (isNaN(precio) || precio <= 0) {
-      alert("El precio debe ser un número mayor a 0");
-      return;
-    }
-    
-    if (isNaN(stock) || stock < 0) {
-      alert("El stock debe ser un número entero no negativo");
-      return;
-    }
-    
-    // Actualizar producto
-    productos[productoIndex] = {
-      ...productos[productoIndex],
-      nombre: nombre,
-      categoria: document.getElementById("editCategoria").value,
-      marca: document.getElementById("editMarca").value.trim(),
-      precio: precio,
-      stock: stock,
-      descripcion: document.getElementById("editDescripcion").value.trim()
-    };
-    
-    guardarProductos(productos);
-    document.getElementById("modalEditar").style.display = "none";
-=======
  
-=======
->>>>>>> Rama-AndresMore
-  // Buscar el producto en el array
->>>>>>> 166957dc737cfc866d6e9de9bd34c5a0f9cbe15e
   const producto = productos.find(p => p.id === id);
  
   if (producto) {
@@ -703,47 +422,17 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
     producto.marca = document.getElementById('marca').value;
     producto.precio = parseFloat(document.getElementById('precio').value);
     producto.stock = parseInt(document.getElementById('stock').value);
-<<<<<<< HEAD
-=======
- 
-<<<<<<< HEAD
-    // Cerrar modal
-    document.getElementById('modalEditar').style.display = 'none';
- 
-    // Renderizar la tabla de nuevo
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-    mostrarProductos();
-    alert("Producto actualizado correctamente");
-=======
-    // Guardar cambios
->>>>>>> 166957dc737cfc866d6e9de9bd34c5a0f9cbe15e
     guardarProductos(productos);
     document.getElementById('modalEditar').style.display = 'none';
-   
     actualizarInterfaz();
->>>>>>> Rama-AndresMore
   }
 });
+// FUNCIONES DE INTERFAZ DE USUARIO
 
-// FUNCIONES DE INTERFAZ DE USUARIO PARA MODALES
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-function eliminarProducto(id) {
-  if (confirm("¿Estás seguro de que quieres eliminar este producto?")) {
-    productos = productos.filter(p => p.id !== id);
-    guardarProductos(productos);
-    mostrarProductos();
-    alert("Producto eliminado correctamente");
-  }
-}
-=======
 // Función genérica para crear y mostrar modales
 function mostrarModal(tipo, mensaje, callback = null) {
     let modal = document.getElementById(`modal-${tipo}`);
     let icono, titulo, colorBoton;
->>>>>>> Rama-AndresMore
 
     switch(tipo) {
         case 'exito':
@@ -786,20 +475,6 @@ function mostrarModal(tipo, mensaje, callback = null) {
         } else {
             botones = `<button id='cerrar-modal-${tipo}' style='margin-top:1.5rem; background:${colorBoton}; color:#fff; border:none; border-radius:2rem; padding:0.6rem 2.2rem; font-size:1rem; font-weight:600; cursor:pointer;'>Cerrar</button>`;
         }
-<<<<<<< HEAD
-      });
-    }
-  });
-});
-=======
-//MOSTRAR PRODUCTOS EN EL CATALOGO 
-// Función para renderizar productos
-function renderProductos(categoria = 'all') {
-    const productsContainer = document.getElementById('products-container');
-    productsContainer.innerHTML = '';
->>>>>>> 67e8894ab9c6f49ec7b8d30857fc8c5ef8cb4927
-=======
->>>>>>> Rama-AndresMore
 
         modal.innerHTML = `
             <div style="background: #fff; color: #235884; border-radius: 1.2rem; padding: 2.2rem 2.5rem; box-shadow: 0 8px 32px 0 rgba(34, 40, 49, 0.18); text-align: center; max-width: 90vw;">
@@ -858,10 +533,12 @@ async function eliminarProducto(id) {
     }
 }
 
+
 // FUNCIONES DE ACTUALIZACIÓN AUTOMÁTICA
 
 // Función para actualizar la interfaz completa
 function actualizarInterfaz() {
+    // Obtener productos actualizados
     productos = obtenerProductos();
     console.log('Actualizando interfaz con productos:', productos);
     mostrarProductos();
@@ -873,11 +550,14 @@ function actualizarInterfaz() {
             renderProductos(categoriaActual);
         }
     }
+
+    // Disparar evento custom para notificar cambios
     window.dispatchEvent(new CustomEvent('productosActualizados', {
         detail: { productos: productos }
     }));
 }
 
+// Observador de cambios en localStorage
 window.addEventListener('storage', (e) => {
     if (e.key === 'productos') {
         console.log('Cambios detectados en localStorage');
@@ -890,5 +570,4 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Página cargada, actualizando interfaz');
     actualizarInterfaz();
 });
-
 
