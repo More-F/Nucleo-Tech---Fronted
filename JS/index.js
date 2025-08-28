@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     productsUnderMillion.innerHTML = "";
     const productosBaratos = productos
         .filter(producto => producto.precio < 1000000)
-        .slice(0, 3); // Solo mostrar 5 productos
+        .slice(0, 3); 
     productosBaratos.forEach(producto => renderProductCard(producto, productsUnderMillion));
     
     // Agregar event listeners para los botones de agregar al carrito
@@ -52,10 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 let productoEnCarrito = carrito.find(item => item.id == productId);
                 
                 if (productoEnCarrito) {
-                    // Si el producto ya está en el carrito, aumentar cantidad
                     productoEnCarrito.cantidad++;
                 } else {
-                    // Si no está en el carrito, agregarlo con cantidad 1
                     carrito.push({
                         id: producto.id,
                         nombre: producto.nombre,
@@ -66,8 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 
                 localStorage.setItem("carrito", JSON.stringify(carrito));
-                
-                // Mostrar el carrito lateral
                 const cartSidebar = document.getElementById('cartSidebar');
                 const overlay = document.querySelector('.overlay');
                 if (typeof renderSidebarCarrito === 'function') {
