@@ -1,3 +1,68 @@
+/* Modal confirmación carrito */
+.modal-carrito-agregado {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.modal-carrito-agregado .modal-content {
+    background: #fff;
+    color: #222;
+    border-radius: 1.2rem;
+    padding: 1.2rem 2rem 1.2rem 1.2rem;
+    box-shadow: 0 8px 32px 0 rgba(34, 40, 49, 0.18);
+    min-width: 350px;
+    position: relative;
+}
+.modal-carrito-agregado .close {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 1.5rem;
+    color: #235884;
+    cursor: pointer;
+}
+.modal-carrito-agregado .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.modal-carrito-agregado .modal-check {
+    color: #A5BF45;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.modal-carrito-agregado .modal-producto {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.modal-carrito-agregado .modal-producto img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
+.modal-carrito-agregado .btn-ver-carrito {
+    background: #235884;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 22px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.modal-carrito-agregado .btn-ver-carrito:hover {
+    background: #A5BF45;
+    color: #222;
+}
 :root {
     --primary-color: #A5BF45;
     --secondary-color: #235884;
@@ -100,11 +165,28 @@ body {
 .product-image {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: scale-down; 
+    background-color: white;
+    padding: 10px;
     border-bottom: 2px solid rgba(165, 191, 69, 0.2);
 }
 .product-info {
     padding: 20px;
+}
+/*precio*/
+.product-info .price {
+  font-size: 18px;   
+  font-weight: bold;
+  display: block;    
+}
+/*precio y botón */
+.product-info .add-to-cart {
+  margin-top: 18px;   /*espacio arriba del botón */
+}
+
+/*descripción del producto */
+.product-info .product-description {
+  margin-bottom: 20px; /* espacio debajo del texto */
 }
 .product-category {
     font-size: 0.85rem;

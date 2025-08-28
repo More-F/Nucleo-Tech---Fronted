@@ -22,6 +22,17 @@
 <script type="module" src="/JS/navar.js"></script>
 
 <body>
+  <div id="modalCarritoAgregado" class="modal-carrito-agregado" style="display:none;">
+    <div class="modal-content">
+      <span class="close" onclick="document.getElementById('modalCarritoAgregado').style.display='none'">&times;</span>
+      <div class="modal-body">
+        <div class="modal-check">&#10003;</div>
+        <span>Artículo añadido a tu carrito</span>
+        <div class="modal-producto" id="modal-producto-info"></div>
+        <button class="btn-ver-carrito" onclick="window.location.href='/HTML/carritodecompra.html'">Ver carrito</button>
+      </div>
+    </div>
+  </div>
   <nav>
     <div class="contenedor_nav">
       <div class="logo-nav">

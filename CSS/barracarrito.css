@@ -155,22 +155,25 @@
 }
 
 .qty-btn {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border: none;
     border-radius: 50%;
-    background: #333;
-    color: #fff;
-    font-size: 14px;
+    background: #eef1e0bc;
+    color: #2a2f3a;
+    font-size: 26px; /* más grande y visible */
+    font-weight: bold;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(255,152,0,0.15);
     transition: 0.2s;
 }
 
 .qty-btn:hover {
-    background: #555;
+    background: #235884;
+    color: #F2F2F2;
 }
 
 .qty-number {

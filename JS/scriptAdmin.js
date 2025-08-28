@@ -294,7 +294,7 @@ function mostrarProductos() {
         <td>${prod.categoria}</td>
         <td>${prod.nombre}</td>
         <td>${prod.marca || "-"}</td>
-        <td>$${prod.precio}</td>
+        <td>$${prod.precio.toLocaleString('es-CO')}</td>
         <td>${prod.stock}</td>
         <td>
           <button class="btn-accion editar"
@@ -392,17 +392,37 @@ function limpiarFormularioYCerrarModal(form, camposRequeridos) {
 
 mostrarProductos();
 // FUNCIONES DE EDICIÓN DE PRODUCTOS
+// Mostrar vista previa de imagen al seleccionar nueva en edición
+document.getElementById('imagenEditar').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      document.getElementById('previewImagenEditar').src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
 
 // Abrir modal de edición y cargar datos del producto
 function abrirModalEditar(id) {
   const producto = productos.find(p => p.id === id);
  
   if (producto) {
-    document.getElementById('nombre').value = producto.nombre;
-    document.getElementById('categoria').value = producto.categoria;
-    document.getElementById('marca').value = producto.marca;
-    document.getElementById('precio').value = producto.precio;
-    document.getElementById('stock').value = producto.stock;
+    document.getElementById('nombreEditar').value = producto.nombre;
+    document.getElementById('nombreEditar').placeholder = producto.nombre;
+    document.getElementById('categoriaEditar').value = producto.categoria;
+    document.getElementById('categoriaEditar').placeholder = producto.categoria;
+    document.getElementById('marcaEditar').value = producto.marca;
+    document.getElementById('marcaEditar').placeholder = producto.marca;
+    document.getElementById('precioEditar').value = producto.precio;
+    document.getElementById('precioEditar').placeholder = producto.precio;
+    document.getElementById('stockEditar').value = producto.stock;
+    document.getElementById('stockEditar').placeholder = producto.stock;
+  document.getElementById('descripcionEditar').value = producto.descripcion || '';
+  document.getElementById('descripcionEditar').placeholder = producto.descripcion || '';
+  document.getElementById('previewImagenEditar').src = producto.imagen || '';
+  document.getElementById('imagenEditar').value = '';
     document.querySelector('.form-editar').setAttribute('data-id', id);
     document.getElementById('modalEditar').style.display = 'block';
   }
@@ -411,20 +431,33 @@ function abrirModalEditar(id) {
 // Manejar el submit del formulario
 document.querySelector('.form-editar').addEventListener('submit', function(e) {
   e.preventDefault();
- 
+
   const id = parseInt(this.getAttribute('data-id'));
- 
+
   const producto = productos.find(p => p.id === id);
- 
+
   if (producto) {
-    producto.nombre = document.getElementById('nombre').value;
-    producto.categoria = document.getElementById('categoria').value;
-    producto.marca = document.getElementById('marca').value;
-    producto.precio = parseFloat(document.getElementById('precio').value);
-    producto.stock = parseInt(document.getElementById('stock').value);
-    guardarProductos(productos);
-    document.getElementById('modalEditar').style.display = 'none';
-    actualizarInterfaz();
+    producto.nombre = document.getElementById('nombreEditar').value;
+    producto.categoria = document.getElementById('categoriaEditar').value;
+    producto.marca = document.getElementById('marcaEditar').value;
+    producto.precio = parseFloat(document.getElementById('precioEditar').value);
+    producto.stock = parseInt(document.getElementById('stockEditar').value);
+    producto.descripcion = document.getElementById('descripcionEditar').value;
+    const archivoImagen = document.getElementById('imagenEditar').files[0];
+    if (archivoImagen) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        producto.imagen = event.target.result;
+        guardarProductos(productos);
+        document.getElementById('modalEditar').style.display = 'none';
+        actualizarInterfaz();
+      };
+      reader.readAsDataURL(archivoImagen);
+    } else {
+      guardarProductos(productos);
+      document.getElementById('modalEditar').style.display = 'none';
+      actualizarInterfaz();
+    }
   }
 });
 // FUNCIONES DE INTERFAZ DE USUARIO

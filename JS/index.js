@@ -44,34 +44,42 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Agregar event listeners para los botones de agregar al carrito
     document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = this.getAttribute('data-id');
-            const producto = productos.find(p => p.id == productId);
-            if (producto) {
-                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-                let productoEnCarrito = carrito.find(item => item.id == productId);
-                
-                if (productoEnCarrito) {
-                    productoEnCarrito.cantidad++;
-                } else {
-                    carrito.push({
-                        id: producto.id,
-                        nombre: producto.nombre,
-                        precio: producto.precio,
-                        imagen: producto.imagen,
-                        cantidad: 1
-                    });
-                }
-                
-                localStorage.setItem("carrito", JSON.stringify(carrito));
-                const cartSidebar = document.getElementById('cartSidebar');
-                const overlay = document.querySelector('.overlay');
-                if (typeof renderSidebarCarrito === 'function') {
-                    renderSidebarCarrito();
-                    cartSidebar.classList.add('active');
-                    overlay.style.display = 'block';
-                }
-            }
-        });
+                button.addEventListener('click', function() {
+                        const productId = this.getAttribute('data-id');
+                        const producto = productos.find(p => p.id == productId);
+                        if (producto) {
+                                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                                let productoEnCarrito = carrito.find(item => item.id == productId);
+
+                                if (productoEnCarrito) {
+                                        productoEnCarrito.cantidad++;
+                                } else {
+                                        carrito.push({
+                                                id: producto.id,
+                                                nombre: producto.nombre,
+                                                precio: producto.precio,
+                                                imagen: producto.imagen,
+                                                cantidad: 1
+                                        });
+                                }
+
+                                localStorage.setItem("carrito", JSON.stringify(carrito));
+
+                                // Mostrar modal de confirmación con info del producto
+                                const modal = document.getElementById('modalCarritoAgregado');
+                                const info = document.getElementById('modal-producto-info');
+                                info.innerHTML = `
+                                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                                    <div>
+                                        <div style="font-weight:600;">${producto.nombre}</div>
+                                        <div style="font-size:0.95rem;">Title: ${producto.marca || '-'}</div>
+                                    </div>
+                                `;
+                                modal.style.display = 'flex';
+                                setTimeout(() => {
+                                    modal.style.display = 'none';
+                                }, 2500);
+                        }
+                });
     });
 });
