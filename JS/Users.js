@@ -33,7 +33,7 @@ const defaultUsers = [
         rolTipo: "IT Support"
     }
 ];
-
+const nameUser = document.getElementById("nameUser");
 //Inicializar usuarios por defecto
 
 function initDefaultUsers()
@@ -73,9 +73,9 @@ function loginUser(email, password) {
     const user = users.find(u => u.email === email && u.password === password);
     if (user) {
         localStorage.setItem('sesion', JSON.stringify(user));
-        return { success: true, user };
+        return { success: true, user }; // <-- Agrega este return
     }
-    return { success: false, message: "Credenciales incorrectas." };
+    return { success: false, message: "Credenciales incorrectas." }; // <-- Y este
 }
 
 // Obtener usuario en sesión

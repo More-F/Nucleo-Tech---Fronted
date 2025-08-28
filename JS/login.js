@@ -1,3 +1,4 @@
+
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const email = this[0].value;
@@ -6,7 +7,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     if (res.success) {
         if (res.user.rol === 'customer') {
             window.location.href = 'index.html';
-        } else {
+        } else if (res.user.rol === 'admin') {
             window.location.href = 'admin.html';
         }
     } else {

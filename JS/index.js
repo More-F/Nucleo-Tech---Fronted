@@ -45,9 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Agregar event listeners para los botones de agregar al carrito
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
+            const user = getSessionUser();
             const productId = this.getAttribute('data-id');
             const producto = productos.find(p => p.id == productId);
-            if (producto) {
+            if(user)
+            {
+              if (producto) {
                 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
                 let productoEnCarrito = carrito.find(item => item.id == productId);
                 
@@ -76,6 +79,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     overlay.style.display = 'block';
                 }
             }
+            }else
+            {
+                alert("Debe iniciar sesion para agregar al carrito");
+            }
+            
         });
     });
 });
+
+
+
+
