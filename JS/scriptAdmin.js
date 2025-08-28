@@ -271,6 +271,7 @@ function agregarProducto(producto,productos) {
     actualizarInterfaz();
   });
 }
+
  
 // Abrir modal para crear producto
 function abrirModalCrear() {
@@ -540,15 +541,6 @@ function mostrarModal(tipo, mensaje, callback = null) {
     }
 }
 
-function agregarProducto(producto, productos) {
-    productos.push(producto);
-    guardarProductos(productos);
-    console.log("Catálogo actualizado:", productos);
-    
-    mostrarModal('exito', `El producto "${producto.nombre}" ha sido agregado correctamente`, () => {
-        actualizarInterfaz();
-    });
-}
 
 // Función para eliminar producto
 async function eliminarProducto(id) {
@@ -578,12 +570,13 @@ function actualizarInterfaz() {
     mostrarProductos();
     
     // Actualizar el catálogo si existe
+    
     const productsContainer = document.getElementById('products-container');
     if (productsContainer) {
         const categoriaActual = document.querySelector('.category-btn.active')?.dataset.category || 'all';
-        if (typeof renderProductos === 'function') {
+        if (typeof obtenerProductos === 'function') {
             console.log('Actualizando catálogo con categoría:', categoriaActual);
-            renderProductos(categoriaActual);
+            obtenerProductos(categoriaActual);
         }
     }
 
@@ -591,6 +584,8 @@ function actualizarInterfaz() {
     window.dispatchEvent(new CustomEvent('productosActualizados', {
         detail: { productos: productos }
     }));
+
+    
 }
 
 // Observador de cambios en localStorage
