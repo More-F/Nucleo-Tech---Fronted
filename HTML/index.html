@@ -9,7 +9,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <link rel="stylesheet" href="../CSS/footer.css">
   <link rel="stylesheet" href="../CSS/catalogo.css">
   <link rel="stylesheet" href="../CSS/estilos.css">
@@ -17,62 +16,10 @@
   <link rel="stylesheet" href="../CSS/catalogo.css">
   <link rel="stylesheet" href="../CSS/estilos.css">
   <link rel="stylesheet" href="../CSS/estilasowasa.css">
-
+  <link rel="stylesheet" href="../CSS/barracarrito.css">
 </head>
 
 <script type="module" src="../JS/navar.js"></script>
-<script src="../JS/scriptAdmin.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Limpiamos lo que renderizó tu JS
-    const productsContainer = document.getElementById("products-container");
-    productsContainer.innerHTML = "";
-
-    // Tomamos solo los primeros 6 productos
-    const primeros6 = productos.slice(0, 6);
-
-    primeros6.forEach(producto => {
-      const productCard = document.createElement("div");
-      productCard.className = "product-card";
-      productCard.innerHTML = `
-        ${producto.nuevo ? '<span class="product-badge">NUEVO</span>' : ''}
-        ${!producto.nuevo && producto.descuento > 15 ? '<span class="product-badge">OFERTA</span>' : ''}
-        <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
-        <div class="product-info">
-            <div class="product-category">${producto.categoria.toUpperCase()}</div>
-            <h3 class="product-title">${producto.nombre}</h3>
-            <div class="product-price">
-                <div>
-                    <span class="price">${new Intl.NumberFormat("es-CO", {
-        style: "currency",
-        currency: "COP",
-        minimumFractionDigits: 0
-      }).format(producto.precio)
-        }</span>
-                </div>
-            </div>
-            <button class="add-to-cart" data-id="${producto.id}">
-                <i class="fas fa-shopping-cart"></i> Agregar
-            </button>
-        </div>
-      `;
-      productsContainer.appendChild(productCard);
-    });
-  });
-</script>
-=======
-  <link rel="stylesheet" href="/CSS/footer.css">
-  <link rel="stylesheet" href="/CSS/catalogo.css">
-  <link rel="stylesheet" href="/CSS/estilos.css">
-  <link rel="stylesheet" href="/CSS/navbar.css">
-  <link rel="stylesheet" href="/CSS/catalogo.css">
-  <link rel="stylesheet" href="/CSS/estilos.css">
-  <link rel="stylesheet" href="/CSS/estilasowasa.css">
-  <link rel="stylesheet" href="/CSS/barracarrito.css">
-</head>
-
-<script type="module" src="/JS/navar.js"></script>
->>>>>>> origin/master
 
 <body>
   <nav>
@@ -91,7 +38,7 @@
       </ul>
       <div class="contenedor_iconos">
         <a href="javascript:void(0)" id="cartBtn"><i class="bi bi-cart3"></i></a>
-        <a href=""><i class="bi bi-person-circle"></i></a>
+        <a href="login.html"><i class="bi bi-person-circle"></i></a>
       </div>
       <a class="menu-toggle" id="menu-toggle">
         <i class=" bi-list"></i>
@@ -114,7 +61,7 @@
         <!-- Footer -->
         <div class="cart-footer">
             <div class="total" id="cart-total">Total Parcial: $0</div>
-            <a href="/HTML/carritodecompra.html" class="btn">Ver Carrito</a>
+            <a href="../HTML/carritodecompra.html" class="btn">Ver Carrito</a>
         </div>
     </div>
 
@@ -127,7 +74,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="contenedor-banner">
-          <img src="/IMG/experiencia-en-programacion-con-una-persona-que-trabaja-con-codigos-en-la-computadora.jpg" alt="Banner 1" class="img-banner">
+          <img src="../IMG/experiencia-en-programacion-con-una-persona-que-trabaja-con-codigos-en-la-computadora.jpg" alt="Banner 1" class="img-banner">
           <div class="banner-overlay">
             <h2 class="banner-title">PERIFERICOS AL MEJOR PRECIO</h2>
             <p class="banner-subtitle">Descuentos increíbles en componentes de alta calidad para tu setup gaming</p>
@@ -137,7 +84,7 @@
       </div>
       <div class="carousel-item">
         <div class="contenedor-banner">
-          <img src="/IMG/banner2.png" alt="Banner 2" class="img-banner">
+          <img src="../IMG/banner2.png" alt="Banner 2" class="img-banner">
           <div class="banner-overlay">
             <button class="banner-btn"><a class="btn-link" href="catalogo.html">Ver Catalogo</a></button>
           </div>
@@ -145,7 +92,7 @@
       </div>
       <div class="carousel-item">
         <div class="contenedor-banner">
-          <img src="/IMG/5898483.jpg" alt="Banner 3" class="img-banner">
+          <img src="../IMG/5898483.jpg" alt="Banner 3" class="img-banner">
           <div class="banner-overlay">
             <button class="banner-btn"><a class="btn-link" href="contactanos.html">Mas Info</a></button>
           </div>
@@ -168,85 +115,85 @@
     <div class="slide-track">
       <!-- Logos con nombres -->
       <div class="slide">
-        <img src="/IMG/lenovo.png" alt="">
+        <img src="../IMG/lenovo.png" alt="">
         <p>Lenovo</p>
       </div>
       <div class="slide">
-        <img src="/IMG/apple.webp" alt="">
+        <img src="../IMG/apple.webp" alt="">
         <p>Apple</p>
       </div>
       <div class="slide">
-        <img src="/IMG/hp.png" alt="">
+        <img src="../IMG/hp.png" alt="">
         <p>HP</p>
       </div>
       <div class="slide">
-        <img src="/IMG/toshiba.png" alt="">
+        <img src="../IMG/toshiba.png" alt="">
         <p>Toshiba</p>
       </div>
       <div class="slide">
-        <img src="/IMG/DELL.png" alt="Dell">
+        <img src="../IMG/DELL.png" alt="Dell">
         <p>Dell</p>
       </div>
       <div class="slide">
-        <img src="/IMG/ASUS.jpg" alt="Asus">
+        <img src="../IMG/ASUS.jpg" alt="Asus">
         <p>Asus</p>
       </div>
       <div class="slide">
-        <img src="/IMG/MSI.jpeg" alt="MSI">
+        <img src="../IMG/MSI.jpeg" alt="MSI">
         <p>MSI</p>
       </div>
       <div class="slide">
-        <img src="/IMG/TRELLIX.png" alt="Trellix">
+        <img src="../IMG/TRELLIX.png" alt="Trellix">
         <p>Trellix</p>
       </div>
       <div class="slide">
-        <img src="/IMG/TPLINK.png" alt="TP-Link">
+        <img src="../IMG/TPLINK.png" alt="TP-Link">
         <p>TP-Link</p>
       </div>
       <div class="slide">
-        <img src="/IMG/ZKTECO.png" alt="ZKTeco">
+        <img src="../IMG/ZKTECO.png" alt="ZKTeco">
         <p>ZKTeco</p>
       </div>
 
       <!--duplicado para scroll infinito -->
       <div class="slide">
-        <img src="/IMG/lenovo.png" alt="">
+        <img src="../IMG/lenovo.png" alt="">
         <p>Lenovo</p>
       </div>
       <div class="slide">
-        <img src="/IMG/apple.webp" alt="">
+        <img src="../IMG/apple.webp" alt="">
         <p>Apple</p>
       </div>
       <div class="slide">
-        <img src="/IMG/hp.png" alt="">
+        <img src="../IMG/hp.png" alt="">
         <p>HP</p>
       </div>
       <div class="slide">
-        <img src="/IMG/toshiba.png" alt="">
+        <img src="../IMG/toshiba.png" alt="">
         <p>Toshiba</p>
       </div>
       <div class="slide">
-        <img src="/IMG/DELL.png" alt="Dell">
+        <img src="../IMG/DELL.png" alt="Dell">
         <p>Dell</p>
       </div>
       <div class="slide">
-        <img src="/IMG/ASUS.jpg" alt="Asus">
+        <img src="../IMG/ASUS.jpg" alt="Asus">
         <p>Asus</p>
       </div>
       <div class="slide">
-        <img src="/IMG/MSI.jpeg" alt="MSI">
+        <img src="../IMG/MSI.jpeg" alt="MSI">
         <p>MSI</p>
       </div>
       <div class="slide">
-        <img src="/IMG/TRELLIX.png" alt="Trellix">
+        <img src="../IMG/TRELLIX.png" alt="Trellix">
         <p>Trellix</p>
       </div>
       <div class="slide">
-        <img src="/IMG/TPLINK.png" alt="TP-Link">
+        <img src="../IMG/TPLINK.png" alt="TP-Link">
         <p>TP-Link</p>
       </div>
       <div class="slide">
-        <img src="/IMG/ZKTECO.png" alt="ZKTeco">
+        <img src="../IMG/ZKTECO.png" alt="ZKTeco">
         <p>ZKTeco</p>
       </div>
 
@@ -323,8 +270,8 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/JS/index.js"></script>
-<script src="/JS/barracarrito.js"></script>
+<script src="../JS/index.js"></script>
+<script src="../JS/barracarrito.js"></script>
 
 </body>
 
