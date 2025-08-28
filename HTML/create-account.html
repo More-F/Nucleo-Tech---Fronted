@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <link rel="stylesheet" href="../CSS/create-account.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Create an Account</h2>
+    <p>Enter your credentials below</p>
+
+
+    <!-- FORM CUSTOMER -->
+    <form id="formCustomer" class="active">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Password" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="text" placeholder="Address" required>
+      
+      <label class="checkbox">
+        <input type="checkbox" required> I agree with Terms & Conditions
+      </label>
+      <button type="submit" class="btn-submit">Create Account</button>
+    </form>
+
+     <p class="extra-links">
+        <a href="login.html">¿Ya tienes una cuenta?  Iniciar sesion</a> 
+      </p>
+  </div>
+
+  <script src="../JS/Users.js"></script>
+  <script src="../JS/create-account.js"></script>
+</body>
+</html>
+

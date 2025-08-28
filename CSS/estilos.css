@@ -269,6 +269,16 @@ body {
   }
 }
 
+.logoutBtn {
+  background-color: var(--primary-color);
+  color: var(--dark-bg);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 .btn-ver-mas {
   background-color: var(--primary-color);
   color: var(--dark-bg);

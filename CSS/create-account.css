@@ -1,0 +1,134 @@
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0d0f1a;
+  color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.form-container {
+  background-color: #151822;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 5px;
+}
+
+.form-container p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+/* Botones toggle */
+.toggle-buttons {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.toggle-buttons button {
+  flex: 1;
+  padding: 0.7rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #1e2130;
+  color: #f1f1f1;
+  border-radius: 6px 6px 0 0;
+  transition: background 0.3s;
+}
+
+.toggle-buttons button.active {
+  background: #9bc53d;
+  color: #0d0f1a;
+}
+
+/* Formularios */
+form {
+  display: none;
+  flex-direction: column;
+}
+
+form.active {
+  display: flex;
+}
+
+input, select {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #1e2130;
+  color: #f1f1f1;
+}
+
+input::placeholder {
+  color: #888;
+}
+
+/* Checkbox */
+.checkbox {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #aaa;
+}
+
+/* Botón */
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+.btn-submit {
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  background: #9bc53d;
+  color: #0d0f1a;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background: #8ab031;
+}
+.extra-links {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+.extra-links a {
+  color: #a3c940;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
