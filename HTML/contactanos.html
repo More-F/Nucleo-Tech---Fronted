@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/CSS/contactanos.css">
     <link rel="stylesheet" href="/CSS/estilasowasa.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="/CSS/barracarrito.css">
     <title>Nucleo Tech</title>
 </head>
 
@@ -33,7 +34,7 @@
                     </ul>
                 
                 <div class="contenedor_iconos">
-                  <a href=""><i class="bi bi-cart3"></i></a>
+                  <a href="javascript:void(0)" id="cartBtn"><i class="bi bi-cart3"></i></a>
                   <a href=""><i class="bi bi-person-circle"></i></a>
                 </div>
                 <a class="menu-toggle" id="menu-toggle">
@@ -43,6 +44,25 @@
     </nav>
         <br>
         <br>
+
+        <!-- Overlay oscuro -->
+    <div class="overlay"></div>
+    <!-- Carrito lateral -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            Carrito de Compras
+            <button class="close-btn" id="closeCart">✖</button>
+        </div>
+
+        <!-- Contenedor dinámico de productos -->
+        <div id="cart-items"></div>
+
+        <!-- Footer -->
+        <div class="cart-footer">
+            <div class="total" id="cart-total">Total Parcial: $0</div>
+            <a href="/HTML/carritodecompra.html" class="btn">Ver Carrito</a>
+        </div>
+    </div>
 
     <div class="container my-5">
         <h1 class="text-center">¡Contáctenos!</h1>
@@ -136,6 +156,7 @@
     </a>
 
     <script src="/JS/script.js"></script>
+    <script src="/JS/barracarrito.js"></script>
 
 </body>
 

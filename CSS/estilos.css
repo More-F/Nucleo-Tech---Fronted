@@ -231,3 +231,55 @@ body {
   color: var(--light-text)
 }
 
+.banner-empresas {
+  width: 100%;
+  background: var(--dark-bg);
+  padding: 2rem 0;
+  overflow: hidden;
+  /*background: rgba(0, 0, 0, 0.5);*/
+  opacity: 0.8;  
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide-track {
+  display: flex;
+  gap: 4rem;
+  animation: scroll 20s linear infinite;
+}
+
+.slide {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.banner-empresas .slide img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  background: #fff;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.1);
+}
+
+.slide p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--light-text);
+  font-weight: 500;
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+

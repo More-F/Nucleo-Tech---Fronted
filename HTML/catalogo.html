@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/CSS/estilasowasa.css">
     <link rel="stylesheet" href="/CSS/catalogo.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
+    <link rel="stylesheet" href="/CSS/barracarrito.css">
 </head>
     <script type="module" src="/JS/navar.js"></script>
     <script src="/JS/productos.js"></script>
@@ -32,7 +33,7 @@
                 </ul>
             
             <div class="contenedor_iconos">
-                <a href=""><i class="bi bi-cart3"></i></a>
+                <a href="javascript:void(0)" id="cartBtn"><i class="bi bi-cart3"></i></a>
                 <a href=""><i class="bi bi-person-circle"></i></a>
             </div>
             <a class="menu-toggle" id="menu-toggle">
@@ -40,6 +41,25 @@
             </a>
         </div>
     </nav>
+<!-- Overlay oscuro -->
+    <div class="overlay"></div>
+    <!-- Carrito lateral -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            Carrito de Compras
+            <button class="close-btn" id="closeCart">✖</button>
+        </div>
+
+        <!-- Contenedor dinámico de productos -->
+        <div id="cart-items"></div>
+
+        <!-- Footer -->
+        <div class="cart-footer">
+            <div class="total" id="cart-total">Total Parcial: $0</div>
+            <a href="/HTML/carritodecompra.html" class="btn">Ver Carrito</a>
+        </div>
+    </div>
+
     <div class="container">
         <h2 class="section-title">¿Buscas solo componentes?</h2>
         <p class="section-subtitle">Encuentra los mejores componentes al mejor precio</p>
@@ -111,5 +131,6 @@
             title="Chatea con nosotros en WhatsApp">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
     </a>
+    <script src="/JS/barracarrito.js"></script>
 </body>
 </html>

@@ -48,7 +48,33 @@ document.addEventListener("DOMContentLoaded", function () {
             const productId = this.getAttribute('data-id');
             const producto = productos.find(p => p.id == productId);
             if (producto) {
-                alert(`¡${producto.nombre} agregado al carrito!`);
+                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                let productoEnCarrito = carrito.find(item => item.id == productId);
+                
+                if (productoEnCarrito) {
+                    // Si el producto ya está en el carrito, aumentar cantidad
+                    productoEnCarrito.cantidad++;
+                } else {
+                    // Si no está en el carrito, agregarlo con cantidad 1
+                    carrito.push({
+                        id: producto.id,
+                        nombre: producto.nombre,
+                        precio: producto.precio,
+                        imagen: producto.imagen,
+                        cantidad: 1
+                    });
+                }
+                
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                
+                // Mostrar el carrito lateral
+                const cartSidebar = document.getElementById('cartSidebar');
+                const overlay = document.querySelector('.overlay');
+                if (typeof renderSidebarCarrito === 'function') {
+                    renderSidebarCarrito();
+                    cartSidebar.classList.add('active');
+                    overlay.style.display = 'block';
+                }
             }
         });
     });
