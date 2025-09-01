@@ -73,9 +73,9 @@ function loginUser(email, password) {
     const user = users.find(u => u.email === email && u.password === password);
     if (user) {
         localStorage.setItem('sesion', JSON.stringify(user));
-        return { success: true, user }; // <-- Agrega este return
+        return { success: true, user }; 
     }
-    return { success: false, message: "Credenciales incorrectas." }; // <-- Y este
+    return { success: false, message: "Credenciales incorrectas." }; 
 }
 
 // Obtener usuario en sesión

@@ -2,16 +2,24 @@ window.addEventListener('DOMContentLoaded', function() {
     const user = getSessionUser();
     const nav = document.querySelector('.contenedor_nav') || document.body;
     if (user) {
-        // Mostrar nombre y botón de cerrar sesión
-        const userDiv = document.createElement('div');
-        userDiv.innerHTML = `
-            <span>Hola, ${user.nombre}</span>
-            <button id="logoutBtn" ">Cerrar sesión</button>
-        `;
-        nav.appendChild(userDiv);
-        document.getElementById('logoutBtn').onclick = function() {
-            logoutUser();
-            window.location.href = 'login.html';
-        };
+        // Mostrar solo el primer saludo y el icono de cerrar sesión
+        if (!document.getElementById('userGreeting')) {
+            const userDiv = document.createElement('div');
+            userDiv.id = 'userGreeting';
+            userDiv.style.display = 'flex';
+            userDiv.style.alignItems = 'center';
+            const primerNombre = user.nombre.split(' ')[0];
+            userDiv.innerHTML = `
+                <span style="margin-right:8px;">Hola, ${primerNombre}</span>
+                <button id="logoutBtn" style="background:none;border:none;cursor:pointer;">
+                    <i class="bi bi-box-arrow-right" title="Cerrar sesión" style="font-size:1.5rem;color:#A5BF45;"></i>
+                </button>
+            `;
+            nav.appendChild(userDiv);
+            document.getElementById('logoutBtn').onclick = function() {
+                logoutUser();
+                window.location.href = 'login.html';
+            };
+        }
     }
 });
