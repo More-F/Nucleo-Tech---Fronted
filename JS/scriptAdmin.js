@@ -603,4 +603,3 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Página cargada, actualizando interfaz');
     actualizarInterfaz();
 });
-

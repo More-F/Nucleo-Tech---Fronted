@@ -141,5 +141,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
  
 //Animacion
-
-
