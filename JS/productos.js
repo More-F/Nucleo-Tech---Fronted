@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             card.innerHTML = `
                 <a href="javascript:void(0)" onclick="verDetalle(${producto.id})">
-                    <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
+                    <img src="${rutaImagen}" alt="${producto.nombre}" class="product-image">
                 </a>
                 <div class="product-info">
                     <div class="product-category">${producto.categoria.toUpperCase()}</div>
@@ -90,13 +90,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const modal = document.getElementById('modalCarritoAgregado');
                     const info = document.getElementById('modal-producto-info');
-                    info.innerHTML = `
-                        <img src="${producto.imagen}" alt="${producto.nombre}">
-                        <div>
-                            <div style="font-weight:600;">${producto.nombre}</div>
-                            <div style="font-size:0.95rem;">Marca: ${producto.marca || '-'}</div>
-                        </div>
-                    `;
+                        info.innerHTML = `
+                            <div style="display:flex;align-items:center;gap:16px;">
+                                <img src="${producto.imagen}" alt="${producto.nombre}" style="width:80px;height:80px;object-fit:contain;border-radius:8px;box-shadow:0 2px 8px #0002;">
+                                <div>
+                                    <div style="font-weight:600;font-size:1.1rem;">${producto.nombre}</div>
+                                    <div style="font-size:0.95rem;color:#555;">Marca: ${producto.marca || '-'} </div>
+                                </div>
+                            </div>
+                        `;
                     modal.style.display = 'flex';
                     setTimeout(() => {
                         modal.style.display = 'none';
