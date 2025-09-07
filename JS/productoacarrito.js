@@ -22,13 +22,18 @@ function renderCarrito() {
         return;
     }
 
+    // Detecta si el HTML actual está en una subcarpeta
+    const isSubfolder = window.location.pathname.includes('/HTML/');
     carrito.forEach(item => {
         total += item.precio * item.cantidad;
-
+        let rutaImagen = item.imagen;
+        if (isSubfolder) {
+            rutaImagen = '../' + item.imagen;
+        }
         const div = document.createElement("div");
         div.classList.add("cart-item");
         div.innerHTML = `
-            <img src="${item.imagen}" alt="${item.nombre}" width="60">
+            <img src="${rutaImagen}" alt="${item.nombre}" width="60">
             
             <div class="item-info">
                 <h4>${item.nombre}</h4>
