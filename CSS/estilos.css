@@ -81,7 +81,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
 body {
     font-family: 'Exo 2', sans-serif;
     overflow-x: hidden;
-    background-color: #1A1E29;
+    background-color: #0d0f1a;
     padding-top: 39px;
     color: #F2F2F2;
 }
@@ -309,7 +309,7 @@ body {
 
 .banner-empresas {
   width: 100%;
-  background: var(--dark-bg);
+  background: #0d0f1a;
   padding: 2rem 0;
   overflow: hidden;
   /*background: rgba(0, 0, 0, 0.5);*/

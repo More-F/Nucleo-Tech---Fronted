@@ -20,32 +20,35 @@
 
 <body>
     <nav>
-            <div class="contenedor_nav">
-                <div class="logo-nav">
+        <div class="contenedor_nav">
+            <div class="logo-nav">
                 <img src="/IMG/Group 8 (1).png" alt="" style="width: 30px;">
-                <a href="index.html"><h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2></a>
-                </div>
-                
-                    <ul class="nav-list">
-                        <li ><a class="nav-text" href="index.html">Inicio</a></li>
-                        <li><a class="nav-text" href="catalogo.html">Catalogo</a></li>
-                        <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
-                        <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
-                    </ul>
-                
-                <div class="contenedor_iconos">
-                  <a href="javascript:void(0)" id="cartBtn"><i class="bi bi-cart3"></i></a>
-                  <a href=""><i class="bi bi-person-circle"></i></a>
-                </div>
-                <a class="menu-toggle" id="menu-toggle">
-                  <i class=" bi-list"></i>
+                <a href="../index.html">
+                    <h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2>
                 </a>
             </div>
-    </nav>
-        <br>
-        <br>
 
-        <!-- Overlay oscuro -->
+            <ul class="nav-list">
+                <li><a class="nav-text" href="../index.html">Inicio</a></li>
+                <li><a class="nav-text" href="/HTML/catalogo.html">Catalogo</a></li>
+                <li><a class="nav-text" href="/HTML/sobreNosotros.html">Sobre Nosotros</a></li>
+                <li><a class="nav-text" href="/HTML/contactanos.html">Contactanos</a></li>
+            </ul>
+
+            <div class="contenedor_iconos">
+                <a href="javascript:void(0)" id="cartBtn"><i class="bi bi-cart3"></i></a>
+                <a href="/HTML/login.html"><i class="bi bi-person-circle"></i><span id="nameUser"
+                        style="display:none; font-size: 10px;">Name user</span></a>
+            </div>
+            <a class="menu-toggle" id="menu-toggle">
+                <i class=" bi-list"></i>
+            </a>
+        </div>
+    </nav>
+    <br>
+    <br>
+
+    <!-- Overlay oscuro -->
     <div class="overlay"></div>
     <!-- Carrito lateral -->
     <div class="cart-sidebar" id="cartSidebar">
@@ -72,19 +75,19 @@
         <form id="contactForm" action="https://formspree.io/f/xeozpygn" method="POST">
             <div class="form-group">
                 <label for="nombre">¿Cuál es tu nombre?</label>
-                <input name="name" type="text" class="form-control" id="nombre"  placeholder="Tu nombre">
+                <input name="name" type="text" class="form-control" id="nombre" placeholder="Tu nombre">
             </div>
             <div class="form-group">
                 <label for="celular">Celular</label>
-                <input name="phone" type="tel" class="form-control" id="celular"  placeholder="Tu celular">
+                <input name="phone" type="tel" class="form-control" id="celular" placeholder="Tu celular">
             </div>
             <div class="form-group">
                 <label for="correo">Correo electrónico</label>
-                <input name="email" type="email" class="form-control" id="correo"  placeholder="Tu correo electrónico">
+                <input name="email" type="email" class="form-control" id="correo" placeholder="Tu correo electrónico">
             </div>
             <div class="form-group">
                 <label for="mensaje">¿Cómo podemos ayudarte?</label>
-                <textarea name="message" class="form-control" id="mensaje"  rows="3" placeholder="Tu mensaje"></textarea>
+                <textarea name="message" class="form-control" id="mensaje" rows="3" placeholder="Tu mensaje"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <div id="mensaje-form" style="margin-top:10px;"></div>
@@ -132,10 +135,10 @@
             <div class="footer-col">
                 <h5>Enlaces</h5>
                 <ul>
-                    <li><a href="/productos" class="footer-link">Productos</a></li>
-                    <li><a href="/asesoria" class="footer-link">Asesoría</a></li>
-                    <li><a href="/preguntas" class="footer-link">Preguntas frecuentes</a></li>
-                    <li><a href="/contacto" class="footer-link">Contacto</a></li>
+                    <li><a href="/HTML/catalogo.html" class="footer-link">Productos</a></li>
+                    <li><a href="/HTML/asesoria.html" class="footer-link">Asesoría</a></li>
+                    <li><a href="/HTML/preguntas.html" class="footer-link">Preguntas frecuentes</a></li>
+                    <li><a href="/HTML/contactanos.html" class="footer-link">Contacto</a></li>
                 </ul>
             </div>
             <!-- Columna 4: Horarios -->

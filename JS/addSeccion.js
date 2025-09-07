@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function() {
             nav.appendChild(userDiv);
             document.getElementById('logoutBtn').onclick = function() {
                 logoutUser();
-                window.location.href = 'login.html';
+                window.location.href = '/HTML/login.html';
             };
         }
     }

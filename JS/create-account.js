@@ -1,18 +1,72 @@
-document.getElementById('formCustomer').addEventListener('submit', function(e) {
+document.getElementById('formCustomer').addEventListener('submit', function (e) {
     e.preventDefault();
+    // Limpiar mensaje previo
+    let errorMsg = document.getElementById('error-msg-create-account');
+    if (!errorMsg) {
+        errorMsg = document.createElement('div');
+        errorMsg.id = 'error-msg-create-account';
+        errorMsg.style.color = '#ff4444';
+        errorMsg.style.marginBottom = '1rem';
+        errorMsg.style.textAlign = 'left';
+        errorMsg.style.maxWidth = '400px';
+        errorMsg.style.margin = '0 auto 1rem auto';
+        errorMsg.style.fontSize = '0.92rem';
+        const btn = this.querySelector('button[type="submit"]');
+        if (btn) {
+            btn.parentNode.insertBefore(errorMsg, btn);
+        } else {
+            this.appendChild(errorMsg);
+        }
+    }
+    errorMsg.innerHTML = '';
+
+    const nombre = this[0].value;
+    const email = this[1].value;
+    const password = this[2].value;
+    const telefono = this[3].value;
+    const direccion = this[4].value;
+
+    // Validaciones
+    let errores = [];
+    // Validación de campos vacíos
+    if (nombre === '' || email === '' || password === '') {
+        errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Todos los campos son obligatorios.</li></ul>';
+        return;
+    }
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (!emailRegex.test(email)) {
+        errores.push('Correo electrónico no es válido.');
+    }
+    if (password.length < 5) {
+        errores.push('Contraseña es demasiado corta (mínimo 5 caracteres).');
+    }
+    const mayusculaRegex = /[A-Z]/;
+    if (!mayusculaRegex.test(password)) {
+        errores.push('La contraseña debe contener al menos una letra mayúscula.');
+    }
+    const simboloRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    if (!simboloRegex.test(password)) {
+        errores.push('La contraseña debe contener al menos un símbolo especial.');
+    }
+
+    if (errores.length > 0) {
+        errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;">' + errores.map(e => `<li>${e}</li>`).join('') + '</ul>';
+        return;
+    }
+
     const user = {
-        nombre: this[0].value,
-        email: this[1].value,
-        password: this[2].value,
-        telefono: this[3].value,
-        direccion: this[4].value,
+        nombre,
+        email,
+        password,
+        telefono,
+        direccion,
         rol: 'customer'
     };
     const res = registerUser(user);
     if (res.success) {
         mostrarModalCreacionExitosa(user.nombre);
     } else {
-        mostrarModalError(res.message);
+        errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>' + res.message + '</li></ul>';
     }
 
     // Modal de creacion de cuenta exitosa
@@ -44,7 +98,7 @@ document.getElementById('formCustomer').addEventListener('submit', function(e) {
             modal.style.display = 'flex';
             modal.querySelector('b').textContent = nombre.split(' ')[0];
         }
-        document.getElementById('cerrar-modal-creacion').onclick = function() {
+        document.getElementById('cerrar-modal-creacion').onclick = function () {
             modal.style.display = 'none';
             window.location.href = 'login.html';
         };
@@ -79,7 +133,7 @@ document.getElementById('formCustomer').addEventListener('submit', function(e) {
             modal.style.display = 'flex';
             modal.querySelector('p').textContent = mensaje;
         }
-        document.getElementById('cerrar-modal-error').onclick = function() {
+        document.getElementById('cerrar-modal-error').onclick = function () {
             modal.style.display = 'none';
         };
     }

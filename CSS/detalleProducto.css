@@ -1,0 +1,209 @@
+:root {
+  --primary-color: #A5BF45;
+  --secondary-color: #235884;
+  --dark-bg: #1A1E29;
+  --light-text: #F2F2F2;
+  --card-bg: #2a2f3a;
+  --accent-color: #FF6B35;
+}
+
+/* Espacio debajo del nav  */
+body {
+  background-color: #0d0f1a;
+  color: var(--light-text);
+  font-family: 'Exo 2', sans-serif;
+  padding-top: 90px; /* evita que el nav se pegue */
+}
+
+/* Sección de detalle  */
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 40px 0;
+   align-items: flex-start; /*alinea ambos bloques arriba */
+}
+
+/* Galería */
+/*.product-gallery {
+  flex: 1 1 35%;  antes 45%, ahora más compacto 
+  display: flex;
+  justify-content: center; /* centra horizontal 
+  align-items: center;     /* centra vertical 
+}*/
+.product-gallery {
+  flex: 1 1 45%;
+  background: var(--card-bg); /* mismo fondo que la descripción */
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* sombra ligera */
+   align-items: flex-start; /* Imagen arriba */
+}
+
+.product-gallery .main-image {
+  width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+   background: transparent; /* sin fondo */
+  border-radius: 12px;
+  padding: 15px;
+  border: 2px solid rgba(165, 191, 69, 0.2);
+  transition: transform 0.3s ease; /* efecto zoom */
+  cursor: zoom-in;
+}
+
+.product-gallery .main-image:hover {
+  transform: scale(1.15);
+}
+
+.product-gallery .main-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  border: 2px solid rgba(165, 191, 69, 0.2);
+}
+
+
+
+/* Efecto imgagen*/
+.product-gallery {
+  width: 100%;
+  max-width: 500px; /* opcional, para no hacerla gigante */
+  overflow: hidden; /* evita que se salga cuando haga zoom */
+}
+
+.product-gallery .main-image {
+  width: 100%;
+  transition: transform 0.3s ease; /* animación suave */
+  cursor: zoom-in;
+}
+
+.product-gallery .main-image:hover {
+  transform: scale(1.2); /* efecto de agrandar */
+}
+
+/* Información del producto */
+.product-info-detail {
+  flex: 1 1 50%;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.product-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.product-sku {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 15px;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.product-price .price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.product-price .old-price {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 1rem;
+}
+
+.product-price .discount {
+  background: var(--accent-color);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* Descripción corta */
+.short-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Botones */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.quantity {
+  width: 70px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.add-to-cart,
+.buy-now {
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart {
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+.add-to-cart:hover {
+  background: #1a466e;
+}
+
+.buy-now {
+  background: var(--primary-color);
+  color: #1A1E29;
+}
+
+.buy-now:hover {
+  background: #8fa83a;
+}
+
+/* Descripción larga */
+.long-description {
+  margin-top: 30px;
+}
+
+.long-description h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.long-description p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* === Responsive === */
+@media (max-width: 992px) {
+  .product-detail {
+    flex-direction: column;
+  }
+}

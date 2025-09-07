@@ -81,7 +81,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
 }
 body {
     overflow-x: hidden;
-    background-color: var(--dark-bg);
+    background-color: #0d0f1a;
     color: var(--light-text);
     padding-top: 39px;
 }
@@ -117,14 +117,15 @@ body {
     background: var(--card-bg);
     border: none;
     color: var(--light-text);
-    padding: 12px 25px;
+    padding: 8px 18px;
     border-radius: 30px;
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
+    font-size: 0.95rem;
 }
 .category-btn:hover, .category-btn.active {
     background: var(--primary-color);
