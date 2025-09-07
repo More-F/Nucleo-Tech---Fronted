@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del Producto</title>
-  <link rel="stylesheet" href="catalogo.css">
-  <link rel="stylesheet" href="../CSS/navbar.css">
+  <link rel="stylesheet" href="/CSS/catalogo.css">
+  <link rel="stylesheet" href="/CSS/navbar.css">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 </head>
 
 <script type="module" src="/JS/navar.js"></script>
-<script type="module" src="/JS/destalleProducto.js"></script>
+<script type="module" src="/JS/detalle.js"></script>
 
 <body>
   <div id="modalCarritoAgregado" class="modal-carrito-agregado" style="display:none;">
@@ -41,13 +41,13 @@
     <div class="contenedor_nav">
       <div class="logo-nav">
         <img src="/IMG/Group 8 (1).png" alt="" style="width: 30px;">
-        <a href="index.html">
+        <a href="../index.html">
           <h2 class="titulo-nav">Nu<span id="sp">c</span>leo Te<span id="sp">c</span>h</h2>
         </a>
       </div>
 
       <ul class="nav-list">
-        <li><a class="nav-text" href="index.html">Inicio</a></li>
+        <li><a class="nav-text" href="../index.html">Inicio</a></li>
         <li><a class="nav-text active" href="catalogo.html">Catalogo</a></li>
         <li><a class="nav-text" href="sobreNosotros.html">Sobre Nosotros</a></li>
         <li><a class="nav-text" href="contactanos.html">Contactanos</a></li>
@@ -82,47 +82,40 @@
     </div>
   </div>
 
+ <!-- Contenido dinámico del producto -->
   <div class="container">
     <section class="product-detail">
+      <!-- Galería -->
       <div class="product-gallery">
-        <img src="/IMG/TECLADO.jpg" alt="Producto principal" class="main-image">
+        <img src="" alt="Producto principal" class="main-image">
       </div>
 
-      <!-- información del producto -->
+      <!-- Información -->
       <div class="product-info-detail">
-        <h1 class="product-title">Ventilador RGB PCCOOLER FX120</h1>
-        <p class="product-sku">SKU: FX120-3PACK</p>
+        <h1 class="product-title"></h1>
+        <p class="product-sku">SKU: -</p>
 
         <div class="product-price">
-          <span class="price">$30.000</span>
-
+          <span class="price"></span>
         </div>
 
-        <p class="short-description">
-          Paquete de 3 ventiladores RGB con rodamiento hidráulico, bajo ruido y alto rendimiento para refrigeración de
-          PC.
-        </p>
+        <p class="short-description"></p>
 
-        <!-- botones -->
+        <!-- Botones -->
         <div class="actions">
           <input type="number" value="1" min="1" class="quantity">
           <button class="add-to-cart">Añadir al carrito</button>
           <button class="buy-now">Comprar ahora</button>
         </div>
 
-        <!-- descripción -->
+        <!-- Descripción larga 
         <div class="long-description">
           <h2>Descripción</h2>
-          <p>
-            Estos ventiladores de 120mm ofrecen una refrigeración eficiente y silenciosa gracias a su rodamiento
-            hidráulico.
-            Con iluminación RGB direccionable y control remoto, son ideales para personalizar tu setup gaming.
-          </p>
-        </div>
+          <p></p>
+        </div>-->
       </div>
     </section>
   </div>
-
 
   <footer class="footer-custom">
     <div class="footer-content">
@@ -171,9 +164,10 @@
     class="whatsapp-float" target="_blank" title="Chatea con nosotros en WhatsApp">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
   </a>
-  <script src="../JS/barracarrito.js"></script>
-  <script src="../JS/Users.js"></script>
-  <script src="../JS/addSeccion.js"></script>
+  <script src="/JS/barracarrito.js"></script>
+  <script src="/JS/Users.js"></script>
+  <script src="/JS/addSeccion.js"></script>
+  <script src="/JS/detalle.js"></script>
 </body>
 
 </html>

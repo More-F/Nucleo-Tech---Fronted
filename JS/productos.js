@@ -1,9 +1,14 @@
-
 // Función para obtener productos del localStorage
 function obtenerProductos() {
     const productos = JSON.parse(localStorage.getItem("productos")) || productosBase;
     console.log('Productos obtenidos del localStorage:', productos); 
     return productos;
+}
+
+// Función para guardar el id del producto seleccionado y redirigir al detalle
+function verDetalle(id) {
+    localStorage.setItem("productoSeleccionado", id);
+    window.location.href = "detalle.html"; // Redirige seguro al detalle
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -18,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Renderizar productos
     function renderProductos(lista) {
-        console.log('Renderizando lista de productos:', lista); // Debug
+        console.log('Renderizando lista de productos:', lista);
         productsContainer.innerHTML = "";
 
         if (!lista || lista.length === 0) {
@@ -36,16 +41,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 rutaImagen = '../' + producto.imagen;
             }
             card.innerHTML = `
-                <img src="${rutaImagen}" alt="${producto.nombre}" class="product-image">
+                <a href="javascript:void(0)" onclick="verDetalle(${producto.id})">
+                    <img src="${producto.imagen}" alt="${producto.nombre}" class="product-image">
+                </a>
                 <div class="product-info">
                     <div class="product-category">${producto.categoria.toUpperCase()}</div>
-                    <h3 class="product-title">${producto.nombre}</h3>
+                    <a href="javascript:void(0)" onclick="verDetalle(${producto.id})">
+                        <h3 class="product-title">${producto.nombre}</h3>
+                    </a>
                     <p class="product-description">${producto.descripcion}</p>
                     <span class="price">${new Intl.NumberFormat("es-CO", {
-                style: "currency",
-                currency: "COP",
-                minimumFractionDigits: 0
-            }).format(producto.precio)}</span>
+                        style: "currency",
+                        currency: "COP",
+                        minimumFractionDigits: 0
+                    }).format(producto.precio)}</span>
                     <button class="add-to-cart" data-id="${producto.id}">
                         <i class="fas fa-shopping-cart"></i> Agregar
                     </button>
@@ -61,17 +70,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 const producto = obtenerProductos().find(p => p.id == productId);
 
                 if (producto) {
-                    // Obtener carrito actual o inicializar vacío
                     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-                    // Verificar si el producto ya existe en el carrito
                     const index = carrito.findIndex(item => item.id == producto.id);
 
                     if (index >= 0) {
-                        // Si ya existe, aumentar cantidad
                         carrito[index].cantidad += 1;
                     } else {
-                        // Si no existe, agregarlo con cantidad = 1
                         carrito.push({
                             id: producto.id,
                             nombre: producto.nombre,
@@ -81,22 +86,16 @@ document.addEventListener('DOMContentLoaded', function () {
                         });
                     }
 
-                    // Guardar carrito actualizado en localStorage
                     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-                    // Mostrar modal de confirmación con info del producto
                     const modal = document.getElementById('modalCarritoAgregado');
                     const info = document.getElementById('modal-producto-info');
-                    let rutaImagen = producto.imagen;
-                    if (isSubfolder) {
-                        rutaImagen = '../' + producto.imagen;
-                    }
                     info.innerHTML = `
-                        <img src="${rutaImagen}" alt="${producto.nombre}">
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
                         <div>
                             <div style="font-weight:600;">${producto.nombre}</div>
-                            <div style="font-size:0.95rem;">Title: ${producto.marca || '-'}<\/div>
-                        <\/div>
+                            <div style="font-size:0.95rem;">Marca: ${producto.marca || '-'}</div>
+                        </div>
                     `;
                     modal.style.display = 'flex';
                     setTimeout(() => {
@@ -109,10 +108,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Filtrar productos
     function filtrarProductos(categoria) {
-        console.log('Filtrando por categoría:', categoria); 
-        categoriaSeleccionada = categoria; 
+        console.log('Filtrando por categoría:', categoria);
+        categoriaSeleccionada = categoria;
         const productos = obtenerProductos();
-        console.log('Productos obtenidos:', productos); 
 
         let productosMostrar;
         if (categoria === "all") {
@@ -121,18 +119,15 @@ document.addEventListener('DOMContentLoaded', function () {
             productosMostrar = productos.filter(p => {
                 const categoriaProducto = p.categoria.toLowerCase().trim();
                 const categoriaFiltro = categoria.toLowerCase().trim();
-                console.log('Comparando categorías:', categoriaProducto, categoriaFiltro);
                 return categoriaProducto === categoriaFiltro;
             });
         }
-        console.log('Productos filtrados:', productosMostrar); 
         renderProductos(productosMostrar);
     }
 
     // Eventos de botones de categoría
     categoryButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            console.log('Botón de categoría clickeado:', btn.dataset.category); 
             categoryButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             filtrarProductos(btn.dataset.category);
@@ -142,6 +137,3 @@ document.addEventListener('DOMContentLoaded', function () {
     // Inicialización: mostrar todos los productos
     filtrarProductos("all");
 });
-
-
-

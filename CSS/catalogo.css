@@ -339,3 +339,22 @@ body {
     }
 }
 
+/* Quitar subrayado de títulos de productos */
+.products-grid a,
+.products-grid a:hover,
+.products-grid a:visited {
+    text-decoration: none !important;
+    color: inherit; 
+    cursor: pointer;
+}
+/* ===== Efectos de hover y clic en títulos de productos ===== */
+.products-grid a:hover .product-title {
+    color: #A5BF45;
+    transition: color 0.3s ease, transform 0.2s ease;
+    transform: scale(1.05);
+}
+
+.products-grid a:active .product-title {
+    color: #FF6B35;
+    transform: scale(0.98);
+}

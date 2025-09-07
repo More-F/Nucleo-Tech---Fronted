@@ -100,6 +100,18 @@ body {
   font-size: 2rem;
   margin-bottom: 10px;
   color: var(--primary-color);
+  text-decoration: none;   
+  border-bottom: none; 
+}
+.card-title a,
+.product-title a {
+  text-decoration: none !important; /* Quita la línea */
+  color: inherit; /* Mantiene el color del texto */
+}
+
+.card-title {
+  text-decoration: none !important;
+  border-bottom: none !important;
 }
 
 .product-sku {
