@@ -207,12 +207,40 @@
         <img src="../IMG/ZKTECO.png" alt="ZKTeco">
         <p>ZKTeco</p>
       </div>
-
     </div>
   </div>
 </section>
 
   <main>
+
+    <!-- Compatibilidad: buscador y lista de productos filtrados -->
+        <section class="compatibilidad-componentes" style="background:#2a2f3a88; border-radius:1.2rem; margin:2.5rem 0; padding:2.5rem 1.5rem; box-shadow:0 2px 16px rgba(34,40,49,0.18); max-width:700px; margin-left:auto; margin-right:auto; color:#f1f1f1;">
+          <h2 style="color:#A5BF45; margin-bottom:1.2rem; text-align:center; font-weight:700; letter-spacing:1px;">¿Es compatible tu producto?</h2>
+          <p style="text-align:center; color:#f1f1f1; margin-bottom:2rem; font-size:1.12rem;">Busca el producto que te interesa y descubre con qué otros productos de nuestra tienda es compatible. ¡Haz clic en el producto para ver sus compatibles!</p>
+          <div class="compatibilidad-buscador-wrap" style="margin-bottom:2rem; text-align:center; position:relative; max-width:500px; margin-left:auto; margin-right:auto;">
+            <input type="text" id="buscadorCompatibilidad" placeholder="Buscar producto..." class="compatibilidad-input" style="width:100%; padding:0.9rem 1.2rem; border-radius:2rem; border:2px solid #A5BF45; background:#23283a; color:#f1f1f1; font-size:1.08rem; box-shadow:0 2px 8px rgba(34,40,49,0.10);">
+            <div id="dropdownCompatibilidad" class="compatibilidad-dropdown" style="position:absolute; left:0; right:0; width:100%; background:#23283a; color:#f1f1f1; border-radius:0 0 1rem 1rem; box-shadow:0 4px 16px rgba(34,40,49,0.22); z-index:20; display:none; border:2px solid #A5BF45; border-top:none; max-height:320px; overflow-y:auto;"></div>
+          </div>
+          <div id="listaCompatibilidad" style="width:100%; min-height:80px;"></div>
+          <style>
+            @media (max-width: 600px) {
+              .compatibilidad-componentes { padding: 1.2rem 0.5rem; }
+              .compatibilidad-buscador-wrap { max-width: 99vw; }
+              .compatibilidad-input { font-size: 1rem !important; padding: 0.7rem 0.8rem !important; }
+              .compatibilidad-dropdown { font-size: 0.98rem !important; max-height: 220px !important; }
+              .item-producto { flex-wrap: wrap; gap:0.5rem !important; }
+              .item-producto img { width: 32px !important; height: 32px !important; }
+              #listaCompatibilidad { min-height: 60px; }
+            }
+            @media (max-width: 900px) {
+              .compatibilidad-componentes { max-width: 99vw; }
+              .compatibilidad-buscador-wrap { max-width: 99vw; }
+            }
+            .compatibilidad-dropdown .item-producto { flex-wrap: wrap; }
+            .compatibilidad-dropdown img { width: 40px !important; height: 40px !important; }
+          </style>
+        </section>
+    
     <h2 class="titulo-index">Productos destacados</h2>
     <section>
       <div class="contenedor-productos">
@@ -235,6 +263,7 @@
       </div>
       <br>
     </section>
+        
 
   </main>
   <footer class="footer-custom">
