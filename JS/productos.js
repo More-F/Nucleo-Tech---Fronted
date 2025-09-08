@@ -68,8 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
             button.addEventListener('click', function () {
                 const productId = this.getAttribute('data-id');
                 const producto = obtenerProductos().find(p => p.id == productId);
+                const user = JSON.parse(localStorage.getItem("sesion"));
 
-                if (producto) {
+                if (!user) {
+                    alert("Por favor, inicia sesión para agregar productos al carrito.");
+                    return;
+                } else {
+                      if (producto) {
                     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
                     const index = carrito.findIndex(item => item.id == producto.id);
@@ -104,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         modal.style.display = 'none';
                     }, 2500);
                 }
+
+                }
+              
             });
         });
     }
