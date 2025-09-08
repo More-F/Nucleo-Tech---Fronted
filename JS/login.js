@@ -19,3 +19,14 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             document.getElementById('loginError').textContent = 'Email o contraseña incorrecta.';
     }
 });
+
+ 
+// Mostrar/ocultar contraseña con ojito
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    this.classList.remove(isPassword ? 'fa-eye' : 'fa-eye-slash');
+    this.classList.add(isPassword ? 'fa-eye-slash' : 'fa-eye');
+
+});

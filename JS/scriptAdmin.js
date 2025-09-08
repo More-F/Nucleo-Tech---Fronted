@@ -11,7 +11,7 @@ const productosBase = [
     marca: "Intel",
     precio: 1500000,
     stock: 12,
-  descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.".slice(0,120) + ("12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.".length > 120 ? "..." : ""),
+    descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
     imagen: "IMG/Procesador Intel Core i7 12700K.webp",
     especificaciones: {
       socket: "LGA1700",
@@ -26,7 +26,7 @@ const productosBase = [
         marca: "MSI",
         precio: 4997000,
         stock: 8,
-  descripcion: "Panel QD-OLED de 3.ª Generación: calidad de imagen impresionante y tiempo de respuesta ultra rápido.".slice(0,120) + ("Panel QD-OLED de 3.ª Generación: calidad de imagen impresionante y tiempo de respuesta ultra rápido.".length > 120 ? "..." : ""),
+        descripcion: "Panel QD-OLED de 3.ª Generación: calidad de imagen impresionante y tiempo de respuesta ultra rápido.",
         imagen: "IMG/Monitor MSI GAMING 32″ 321CUP QD-OLED 4K, 165HZ, 0.03MS.webp",
         especificaciones: {
           resolucion: "4K",
@@ -42,7 +42,7 @@ const productosBase = [
         precio: 3700000,
         stock: 5,
         imagen: "IMG/Tarjeta ASRock AMD Radeon RX 9070 XT Steel Legend Dark 16GB.webp",
-  descripcion: "La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.".slice(0,120) + ("La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.".length > 120 ? "..." : ""),
+        descripcion: "La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.",
         especificaciones: {
           arquitectura: "RDNA 3",
           rayTracing: "Sí",
@@ -57,7 +57,7 @@ const productosBase = [
         precio: 2007002,
         stock: 10,
         imagen: "IMG/Chasis Aerocool Ore Saturn FRGB Vidrio Templado.jpg",
-  descripcion: "Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.".slice(0,120) + ("Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.".length > 120 ? "..." : ""),
+        descripcion: "Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.",
         especificaciones: {
           tipo: "ATX",
           material: "Acero y vidrio templado",
@@ -72,7 +72,7 @@ const productosBase = [
         precio: 405600,
         stock: 15,
         imagen: "IMG/Fuente de Poder 80 Plus Gold 750W Modular.jpg",
-  descripcion: "Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.".slice(0,120) + ("Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.".length > 120 ? "..." : ""),
+        descripcion: "Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.",
         especificaciones: {
           potencia: "750W",
           certificacion: "80 Plus Gold",
@@ -87,7 +87,7 @@ const productosBase = [
         precio: 305000,
         stock: 10,
         imagen: "IMG/Fuente de Alimentación 850W 80 Plus Bronze.webp",
-  descripcion: "Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.".slice(0,120) + ("Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.".length > 120 ? "..." : ""),
+        descripcion: "Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.",
         especificaciones: {
           potencia: "850W",
           certificacion: "80 Plus Bronze",
@@ -102,7 +102,7 @@ const productosBase = [
         precio: 2200000,
         stock: 3,
         imagen: "IMG/Tarjeta de Video NVIDIA RTX 4070 12GB GDDR6.jpg",
-  descripcion: "La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.".slice(0,120) + ("La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.".length > 120 ? "..." : ""),
+        descripcion: "La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.",
         especificaciones: {
           arquitectura: "Ada Lovelace",
           rayTracing: "Sí",
@@ -117,7 +117,7 @@ const productosBase = [
         precio: 3100000,
         stock: 3,
         imagen: "IMG/Tarjeta Gráfica AMD Radeon RX 7800 XT 16GB.jpg",
-  descripcion: "La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.".slice(0,120) + ("La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.".length > 120 ? "..." : ""),
+        descripcion: "La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.",
         especificaciones: {
           arquitectura: "RDNA 3",
           rayTracing: "Sí",
@@ -132,7 +132,7 @@ const productosBase = [
         precio: 370000,
         stock: 20,
         imagen: "IMG/Teclado Mecánico Gamer RGB Switch Blue.jpg",
-  descripcion: "Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.".slice(0,120) + ("Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.".length > 120 ? "..." : ""),
+        descripcion: "Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.",
         especificaciones: {
           tipo: "Mecánico",
           retroiluminación: "RGB",
@@ -147,7 +147,7 @@ const productosBase = [
         precio: 245000,
         stock: 15,
         imagen: "IMG/Mouse Inalámbrico Gamer 16000DPI RGB.jpg",
-  descripcion: "Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.".slice(0,120) + ("Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.".length > 120 ? "..." : ""),
+        descripcion: "Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.",
         especificaciones: {
           dpi: "16000",
           retroiluminación: "RGB",
@@ -162,7 +162,7 @@ const productosBase = [
         precio: 1250000,
         stock: 5,
         imagen: "IMG/Monitor Gaming 27 144Hz 1ms FreeSync.jpg",
-  descripcion: "Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.".slice(0,120) + ("Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.".length > 120 ? "..." : ""),
+        descripcion: "Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.",
         especificaciones: {
           tamaño: "27\"",
           frecuencia: "144Hz",
@@ -178,7 +178,7 @@ const productosBase = [
         precio: 1460000,
         stock: 3,
         imagen: "IMG/Monitor Curvo 32 165Hz QHD.jpg",
-  descripcion: "Monitor Curvo 32\" 165Hz QHD, ideal para gamers.".slice(0,120) + ("Monitor Curvo 32\" 165Hz QHD, ideal para gamers.".length > 120 ? "..." : ""),
+        descripcion: "Monitor Curvo 32\" 165Hz QHD, ideal para gamers.",
         especificaciones: {
           tamaño: "32\"",
           frecuencia: "165Hz",
@@ -194,7 +194,7 @@ const productosBase = [
         precio: 875000,
         stock: 10,
         imagen: "IMG/Sistema de Refrigeración Líquida CPU 240mm RGB.jpg",
-  descripcion: "Sistema de Refrigeración Líquida CPU 240mm RGB, eficiente y silencioso.".slice(0,120) + ("Sistema de Refrigeración Líquida CPU 240mm RGB, eficiente y silencioso.".length > 120 ? "..." : ""),
+        descripcion: "Sistema de Refrigeración Líquida CPU 240mm RGB, eficiente y silencioso.",
         especificaciones: {
           tipo: "Refrigeración Líquida",
           tamaño: "240mm",
@@ -209,7 +209,7 @@ const productosBase = [
         precio: 135000,
         stock: 20,
         imagen: "IMG/PCCOOLER Ventilador de carcasa RGB de 4.724 in con rodamiento hidráulico, paquete de 3 unidades Magic Moon, PC-FX120.jpg",
-  descripcion: "Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.".slice(0,120) + ("Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.".length > 120 ? "..." : ""),
+        descripcion: "Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.",
         especificaciones: {
           tipo: "Ventilador",
           tamaño: "120mm",
@@ -444,23 +444,19 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
     producto.stock = parseInt(document.getElementById('stockEditar').value);
     producto.descripcion = document.getElementById('descripcionEditar').value;
     const archivoImagen = document.getElementById('imagenEditar').files[0];
-    const cerrarYActualizar = () => {
-      document.getElementById('modalEditar').style.display = 'none';
-      mostrarModal('exito', `El producto "${producto.nombre}" ha sido editado correctamente`, () => {
-        actualizarInterfaz();
-      });
-    };
     if (archivoImagen) {
       const reader = new FileReader();
       reader.onload = function(event) {
         producto.imagen = event.target.result;
         guardarProductos(productos);
-        cerrarYActualizar();
+        document.getElementById('modalEditar').style.display = 'none';
+        actualizarInterfaz();
       };
       reader.readAsDataURL(archivoImagen);
     } else {
       guardarProductos(productos);
-      cerrarYActualizar();
+      document.getElementById('modalEditar').style.display = 'none';
+      actualizarInterfaz();
     }
   }
 });

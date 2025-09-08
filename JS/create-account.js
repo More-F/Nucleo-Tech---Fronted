@@ -1,3 +1,15 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('toggleCreatePassword');
+    const passwordInput = document.getElementById('createPassword');
+    if (toggle && passwordInput) {
+        toggle.addEventListener('click', function () {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            this.classList.remove(isPassword ? 'fa-eye' : 'fa-eye-slash');
+            this.classList.add(isPassword ? 'fa-eye-slash' : 'fa-eye');
+        });
+    }
+});
 document.getElementById('formCustomer').addEventListener('submit', function (e) {
     e.preventDefault();
     // Limpiar mensaje previo
