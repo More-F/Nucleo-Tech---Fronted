@@ -12,10 +12,10 @@ function renderProductCard(producto, container) {
             <div class="product-price">
                 <div>
                     <span class="price">${new Intl.NumberFormat("es-CO", {
-                        style: "currency",
-                        currency: "COP",
-                        minimumFractionDigits: 0
-                    }).format(producto.precio)}</span>
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0
+    }).format(producto.precio)}</span>
                 </div>
             </div>
             <button class="add-to-cart" data-id="${producto.id}">
@@ -51,35 +51,35 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         buscador.addEventListener('input', function () {
-                        const valor = buscador.value.toLowerCase();
-                        let filtrados = productos.filter(p => p.nombre.toLowerCase().includes(valor));
-                        filtrados = filtrados.slice(0, 4); // Solo los primeros 4
-                        if (valor === '' || filtrados.length === 0) {
-                                dropdown.style.display = 'none';
-                                dropdown.innerHTML = '';
-                                listaCompatibilidad.innerHTML = '';
-                                return;
-                        }
-                        let html = '';
-                        filtrados.forEach(p => {
-                                    html += `
+            const valor = buscador.value.toLowerCase();
+            let filtrados = productos.filter(p => p.nombre.toLowerCase().includes(valor));
+            filtrados = filtrados.slice(0, 4); // Solo los primeros 4
+            if (valor === '' || filtrados.length === 0) {
+                dropdown.style.display = 'none';
+                dropdown.innerHTML = '';
+                listaCompatibilidad.innerHTML = '';
+                return;
+            }
+            let html = '';
+            filtrados.forEach(p => {
+                html += `
                                         <div class="item-producto" data-id="${p.id}" style="display:flex; align-items:center; gap:1rem; padding:0.8rem 1rem; border-bottom:1px solid #23283a; cursor:pointer; transition:background 0.2s;">
                                             <span style="font-size:1.08rem; color:#A5BF45; font-weight:600;">${p.nombre}</span>
                                         </div>
                                     `;
-                        });
-                        dropdown.innerHTML = html;
-                        dropdown.style.display = 'block';
-                        // Evento click para cada producto filtrado
-                        dropdown.querySelectorAll('.item-producto').forEach(el => {
-                                el.addEventListener('click', function (e) {
-                                        const id = this.getAttribute('data-id');
-                                        mostrarCompatibles(id);
-                                        dropdown.style.display = 'none';
-                                        buscador.value = this.querySelector('span').textContent;
-                                        e.stopPropagation();
-                                });
-                        });
+            });
+            dropdown.innerHTML = html;
+            dropdown.style.display = 'block';
+            // Evento click para cada producto filtrado
+            dropdown.querySelectorAll('.item-producto').forEach(el => {
+                el.addEventListener('click', function (e) {
+                    const id = this.getAttribute('data-id');
+                    mostrarCompatibles(id);
+                    dropdown.style.display = 'none';
+                    buscador.value = this.querySelector('span').textContent;
+                    e.stopPropagation();
+                });
+            });
         });
 
         // Ocultar dropdown si se hace click fuera
@@ -125,10 +125,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
     };
     const rams = {
-        b660: [ 'DDR4', 'DDR5' ],
-        z690: [ 'DDR4', 'DDR5' ],
-        b550: [ 'DDR4' ],
-        x570: [ 'DDR4' ]
+        b660: ['DDR4', 'DDR5'],
+        z690: ['DDR4', 'DDR5'],
+        b550: ['DDR4'],
+        x570: ['DDR4']
     };
     const gpuCompat = {
         b660: ['nvidia', 'amd-gpu'],
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
         'amd-gpu': ['650w', '550w']
     };
 
-    cpuSelect && cpuSelect.addEventListener('change', function() {
+    cpuSelect && cpuSelect.addEventListener('change', function () {
         motherboardSelect.innerHTML = '<option value="">Selecciona una tarjeta madre</option>';
         ramSelect.innerHTML = '<option value="">Selecciona una memoria RAM</option>';
         gpuSelect.innerHTML = '<option value="">Selecciona una GPU</option>';
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    motherboardSelect && motherboardSelect.addEventListener('change', function() {
+    motherboardSelect && motherboardSelect.addEventListener('change', function () {
         ramSelect.innerHTML = '<option value="">Selecciona una memoria RAM</option>';
         gpuSelect.innerHTML = '<option value="">Selecciona una GPU</option>';
         storageSelect.innerHTML = '<option value="">Selecciona almacenamiento</option>';
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    gpuSelect && gpuSelect.addEventListener('change', function() {
+    gpuSelect && gpuSelect.addEventListener('change', function () {
         psuSelect.innerHTML = '<option value="">Selecciona una fuente</option>';
         if (psuCompat[this.value]) {
             psuCompat[this.value].forEach(psu => {
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.getElementById('verCompatibilidad')?.addEventListener('click', function() {
+    document.getElementById('verCompatibilidad')?.addEventListener('click', function () {
         const cpu = cpuSelect.value;
         const mb = motherboardSelect.value;
         const ram = ramSelect.value;
@@ -233,65 +233,92 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     const productos = JSON.parse(localStorage.getItem('productos')) || [];
-    
+
     // Renderizar productos destacados (primeros 6)
     const productsContainer = document.getElementById("products-container");
     productsContainer.innerHTML = "";
     const primeros6 = productos.slice(0, 6);
     primeros6.forEach(producto => renderProductCard(producto, productsContainer));
-    
+
     // Renderizar productos bajo 1 millón
     const productsUnderMillion = document.getElementById("products-under-million");
     productsUnderMillion.innerHTML = "";
     const productosBaratos = productos
         .filter(producto => producto.precio < 1000000)
-        .slice(0, 3); 
+        .slice(0, 3);
     productosBaratos.forEach(producto => renderProductCard(producto, productsUnderMillion));
-    
+
     // Agregar event listeners para los botones de agregar al carrito
     document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.stopPropagation(); // <--- Esto evita que el clic llegue al <a>
-        e.preventDefault();  // <--- Evita que el <a> haga navegación por accidente
-        const productId = this.getAttribute('data-id');
-        const producto = productos.find(p => p.id == productId);
-        if (producto) {
-            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-            let productoEnCarrito = carrito.find(item => item.id == productId);
-
-            if (productoEnCarrito) {
-                productoEnCarrito.cantidad++;
+        button.addEventListener('click', function (e) {
+            e.stopPropagation(); // <--- Esto evita que el clic llegue al <a>
+            e.preventDefault(); // <--- Evita que el <a> haga navegación por accidente
+            const productId = this.getAttribute('data-id');
+            const producto = productos.find(p => p.id == productId);
+            const user = JSON.parse(localStorage.getItem('sesion'));
+            if (user) {
+                if (producto) {
+                    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                    let productoEnCarrito = carrito.find(item => item.id == productId);
+                    if (productoEnCarrito) {
+                        productoEnCarrito.cantidad++;
+                    } else {
+                        carrito.push({
+                            id: producto.id,
+                            nombre: producto.nombre,
+                            precio: producto.precio,
+                            imagen: producto.imagen,
+                            cantidad: 1
+                        });
+                    }
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+                    // Mostrar modal de confirmación con info del producto
+                    const modal = document.getElementById('modalCarritoAgregado');
+                    const info = document.getElementById('modal-producto-info');
+                    info.innerHTML = `
+<img src="${producto.imagen}" alt="${producto.nombre}">
+<div>
+<div style="font-weight:600;">${producto.nombre}</div>
+<div style="font-size:0.95rem;">Title: ${producto.marca || '-'}</div>
+</div>
+`;
+                    modal.style.display = 'flex';
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 2500);
+                }
             } else {
-                carrito.push({
-                    id: producto.id,
-                    nombre: producto.nombre,
-                    precio: producto.precio,
-                    imagen: producto.imagen,
-                    cantidad: 1
-                });
+                // Modal personalizado para login/registro
+                let modal = document.getElementById('modal-login-required');
+                if (!modal) {
+                    modal = document.createElement('div');
+                    modal.id = 'modal-login-required';
+                    modal.className = 'modal-carrito-agregado';
+                    modal.style.display = 'flex';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close" onclick="document.getElementById('modal-login-required').style.display='none'">&times;</span>
+                            <div class="modal-body">
+                                <div class="modal-check" style="color:#ff4444;">&#9888;</div>
+                                <span style="font-weight:600;">Debes iniciar sesión o crear una cuenta para agregar productos al carrito.</span>
+                                <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
+                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='/HTML/login.html'">Iniciar sesión</button>
+                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='/HTML/create-account.html'">Crear cuenta</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                } else {
+                    modal.style.display = 'flex';
+                }
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 6000);
             }
-
-            localStorage.setItem("carrito", JSON.stringify(carrito));
-
-            // Mostrar modal de confirmación con info del producto
-            const modal = document.getElementById('modalCarritoAgregado');
-            const info = document.getElementById('modal-producto-info');
-            info.innerHTML = `
-                <img src="${producto.imagen}" alt="${producto.nombre}">
-                <div>
-                    <div style="font-weight:600;">${producto.nombre}</div>
-                    <div style="font-size:0.95rem;">Title: ${producto.marca || '-'}</div>
-                </div>
-            `;
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 2500);
-        }
+        });
     });
-    });
-});
-
+ });
 
 
 
