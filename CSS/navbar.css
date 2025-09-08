@@ -112,6 +112,9 @@ nav {
         padding: 15px 15px;
         border-radius: 0 0 8px 8px;
     }
+        .titulo-nav {
+            display: none !important;
+        }
 
     /* Elementos en columna */
     .nav-list li {
