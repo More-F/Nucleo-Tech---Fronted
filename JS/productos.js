@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="modal-check" style="color:#ff4444;">&#9888;</div>
                                 <span style="font-weight:600;">Debes iniciar sesión o crear una cuenta para agregar productos al carrito.</span>
                                 <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
-                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='../login.html'">Iniciar sesión</button>
-                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='../create-account.html'">Crear cuenta</button>
+                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='C:/Users/123/OneDrive/Escritorio/ANDRE/Generation/Proyecto_Final/Nucleo-Tech---Fronted/HTML/login.html'">Iniciar sesión</button>
+                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='C:/Users/123/OneDrive/Escritorio/ANDRE/Generation/Proyecto_Final/Nucleo-Tech---Fronted/HTML/create-account.html'">Crear cuenta</button>
                                 </div>
                             </div>
                         </div>
