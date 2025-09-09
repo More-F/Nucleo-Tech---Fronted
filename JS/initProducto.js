@@ -8,7 +8,7 @@ if (!localStorage.getItem('productos')) {
             precio: 1500000,
             stock: 12,
             descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
-            imagen: "IMG/Procesador Intel Core i7 12700K.webp",
+            imagen: "../IMG/Procesador Intel Core i7 12700K.webp",
             especificaciones: {
                 socket: "LGA1700",
                 TDP: "125W",
@@ -23,7 +23,7 @@ if (!localStorage.getItem('productos')) {
             precio: 4997000,
             stock: 8,
             descripcion: "Panel QD-OLED de 3.ª Generación: calidad de imagen impresionante y tiempo de respuesta ultra rápido.",
-            imagen: "IMG/Monitor MSI GAMING 32″ 321CUP QD-OLED 4K, 165HZ, 0.03MS.webp",
+            imagen: "../IMG/Monitor MSI GAMING 32″ 321CUP QD-OLED 4K, 165HZ, 0.03MS.webp",
             especificaciones: {
                 resolucion: "4K",
                 tasaRefresco: "165Hz",
@@ -37,7 +37,7 @@ if (!localStorage.getItem('productos')) {
             marca: "ASRock",
             precio: 3700000,
             stock: 5,
-            imagen: "IMG/Tarjeta ASRock AMD Radeon RX 9070 XT Steel Legend Dark 16GB.webp",
+            imagen: "../IMG/Tarjeta ASRock AMD Radeon RX 9070 XT Steel Legend Dark 16GB.webp",
             descripcion: "La ASRock AMD Radeon RX 9070 XT Steel Legend Dark es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, diseñada para gamers y creadores de contenido.",
             especificaciones: {
                 arquitectura: "RDNA 3",
@@ -52,7 +52,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Aerocool",
             precio: 2007002,
             stock: 10,
-            imagen: "IMG/Chasis Aerocool Ore Saturn FRGB Vidrio Templado.jpg",
+            imagen: "../IMG/Chasis Aerocool Ore Saturn FRGB Vidrio Templado.jpg",
             descripcion: "Chasis Aerocool Ore Saturn FRGB con vidrio templado y diseño elegante.",
             especificaciones: {
                 tipo: "ATX",
@@ -67,7 +67,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Corsair",
             precio: 405600,
             stock: 15,
-            imagen: "IMG/Fuente de Poder 80 Plus Gold 750W Modular.jpg",
+            imagen: "../IMG/Fuente de Poder 80 Plus Gold 750W Modular.jpg",
             descripcion: "Fuente de Poder 80 Plus Gold 750W Modular, eficiente y silenciosa.",
             especificaciones: {
                 potencia: "750W",
@@ -82,7 +82,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Corsair",
             precio: 305000,
             stock: 10,
-            imagen: "IMG/Fuente de Alimentación 850W 80 Plus Bronze.webp",
+            imagen: "../IMG/Fuente de Alimentación 850W 80 Plus Bronze.webp",
             descripcion: "Fuente de Alimentación 850W 80 Plus Bronze, eficiente y silenciosa.",
             especificaciones: {
                 potencia: "850W",
@@ -97,7 +97,7 @@ if (!localStorage.getItem('productos')) {
             marca: "NVIDIA",
             precio: 2200000,
             stock: 3,
-            imagen: "IMG/Tarjeta de Video NVIDIA RTX 4070 12GB GDDR6.jpg",
+            imagen: "../IMG/Tarjeta de Video NVIDIA RTX 4070 12GB GDDR6.jpg",
             descripcion: "La NVIDIA RTX 4070 es una tarjeta gráfica de alto rendimiento con 12GB de memoria GDDR6, ideal para gaming y creación de contenido.",
             especificaciones: {
                 arquitectura: "Ada Lovelace",
@@ -112,7 +112,7 @@ if (!localStorage.getItem('productos')) {
             marca: "AMD",
             precio: 3100000,
             stock: 3,
-            imagen: "IMG/Tarjeta Gráfica AMD Radeon RX 7800 XT 16GB.jpg",
+            imagen: "../IMG/Tarjeta Gráfica AMD Radeon RX 7800 XT 16GB.jpg",
             descripcion: "La AMD Radeon RX 7800 XT es una tarjeta gráfica de alto rendimiento con 16GB de memoria GDDR6, ideal para gaming y creación de contenido.",
             especificaciones: {
                 arquitectura: "RDNA 3",
@@ -127,7 +127,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Logitech",
             precio: 370000,
             stock: 20,
-            imagen: "IMG/Teclado Mecánico Gamer RGB Switch Blue.jpg",
+            imagen: "../IMG/Teclado Mecánico Gamer RGB Switch Blue.jpg",
             descripcion: "Teclado Mecánico Gamer RGB Switch Blue, ideal para gamers.",
             especificaciones: {
                 tipo: "Mecánico",
@@ -142,7 +142,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Logitech",
             precio: 245000,
             stock: 15,
-            imagen: "IMG/Mouse Inalámbrico Gamer 16000DPI RGB.jpg",
+            imagen: "../IMG/Mouse Inalámbrico Gamer 16000DPI RGB.jpg",
             descripcion: "Mouse Inalámbrico Gamer 16000DPI RGB, preciso y ergonómico.",
             especificaciones: {
                 dpi: "16000",
@@ -157,7 +157,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Acer",
             precio: 1250000,
             stock: 5,
-            imagen: "IMG/Monitor Gaming 27 144Hz 1ms FreeSync.jpg",
+            imagen: "../IMG/Monitor Gaming 27 144Hz 1ms FreeSync.jpg",
             descripcion: "Monitor Gaming 27\" 144Hz 1ms FreeSync, ideal para gamers.",
             especificaciones: {
                 tamaño: "27\"",
@@ -173,7 +173,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Acer",
             precio: 1460000,
             stock: 3,
-            imagen: "IMG/Monitor Curvo 32 165Hz QHD.jpg",
+            imagen: "../IMG/Monitor Curvo 32 165Hz QHD.jpg",
             descripcion: "Monitor Curvo 32\" 165Hz QHD, ideal para gamers.",
             especificaciones: {
                 tamaño: "32\"",
@@ -204,7 +204,7 @@ if (!localStorage.getItem('productos')) {
             marca: "Corsair",
             precio: 135000,
             stock: 20,
-            imagen: "IMG/PCCOOLER Ventilador de carcasa RGB de 4.724 in con rodamiento hidráulico, paquete de 3 unidades Magic Moon, PC-FX120.jpg",
+            imagen: "../IMG/PCCOOLER Ventilador de carcasa RGB de 4.724 in con rodamiento hidráulico, paquete de 3 unidades Magic Moon, PC-FX120.jpg",
             descripcion: "Ventiladores RGB 120mm Pack de 3, ideales para mejorar la refrigeración de tu PC.",
             especificaciones: {
                 tipo: "Ventilador",
