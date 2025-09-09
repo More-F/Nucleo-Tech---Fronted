@@ -222,22 +222,17 @@
   <main>
 
     <!-- Compatibilidad: buscador y lista de productos filtrados -->
-    <section class="compatibilidad-componentes"
-      style="background:#2a2f3a88; border-radius:1.2rem; margin:2.5rem 0; padding:2.5rem 1.5rem; box-shadow:0 2px 16px rgba(34,40,49,0.18); max-width:700px; margin-left:auto; margin-right:auto; color:#f1f1f1;">
-      <h2 style="color:#A5BF45; margin-bottom:1.2rem; text-align:center; font-weight:700; letter-spacing:1px;">¿Es
-        compatible tu producto?</h2>
-      <p style="text-align:center; color:#f1f1f1; margin-bottom:2rem; font-size:1.12rem;">Busca el producto que te
-        interesa y descubre con qué otros productos de nuestra tienda es compatible. ¡Haz clic en el producto para ver
-        sus compatibles!</p>
-      <div class="compatibilidad-buscador-wrap"
-        style="margin-bottom:2rem; text-align:center; position:relative; max-width:500px; margin-left:auto; margin-right:auto;">
-        <input type="text" id="buscadorCompatibilidad" placeholder="Buscar producto..." class="compatibilidad-input"
-          style="width:100%; padding:0.9rem 1.2rem; border-radius:2rem; border:2px solid #A5BF45; background:#23283a; color:#f1f1f1; font-size:1.08rem; box-shadow:0 2px 8px rgba(34,40,49,0.10);">
-        <div id="dropdownCompatibilidad" class="compatibilidad-dropdown"
-          style="position:absolute; left:0; right:0; width:100%; background:#23283a; color:#f1f1f1; border-radius:0 0 1rem 1rem; box-shadow:0 4px 16px rgba(34,40,49,0.22); z-index:20; display:none; border:2px solid #A5BF45; border-top:none; max-height:320px; overflow-y:auto;">
+    <section class="compatibilidad-componentes promo-banner custom-banner">
+      <div class="banner-info">
+        <h2>"Compra seguro: sin riesgos de incompatibilidad"</h2>
+        <p>Busca el producto que te interesa y descubre con qué otros productos de nuestra tienda es compatible. ¡Haz clic en el producto para ver sus compatibles!</p>
+        <div class="compatibilidad-buscador-wrap">
+          <input type="text" id="buscadorCompatibilidad" placeholder="Buscar producto..." class="compatibilidad-input">
+          <div id="dropdownCompatibilidad" class="compatibilidad-dropdown"></div>
         </div>
+        <div id="listaCompatibilidad"></div>
       </div>
-      <div id="listaCompatibilidad" style="width:100%; min-height:80px;"></div>
+      <div class="banner-img" style="display:none;"></div>
       <style>
         @media (max-width: 600px) {
           .compatibilidad-componentes {
@@ -294,7 +289,7 @@
       </style>
     </section>
 
-    <h2 class="titulo-index">Productos destacados</h2>
+    <h2 class="titulo-index">Los Favoritos de Nuestros Clientes</h2>
     <section>
       <div class="contenedor-productos">
         <div class="products-grid" id="products-container">
@@ -305,9 +300,29 @@
         <button class="btn-ver-mas"><a class="btn-link" href="HTML/catalogo.html">Ver más</a></button>
       </div>
       <br>
+      <br>
+      <!-- Banner promocional personalizado -->
+      <section class="promo-banner custom-banner">
+        <div class="banner-info">
+          <h2>Descubre la potencia y versatilidad</h2>
+          <p>Nuestros Chasis y Monitores en Colombia te ofrecen rendimiento, diseño y tecnología de última generación. ¡Encuentra el equipo perfecto para tu trabajo, estudio o gaming!</p>
+          <ul>
+            <li>Envíos rápidos y seguros</li>
+            <li>Garantía y soporte local</li>
+            <li>Variedad en marcas y modelos</li>
+            <li>Promociones exclusivas</li>
+          </ul>
+          <button class="btn btn-catalogo" onclick="window.location.href='HTML/catalogo.html?categoria=monitores'">Ver nuestros productos</button>
+        </div>
+        <div class="banner-img">
+          <img src="IMG/71MA1NOwL7L._AC_SL1500_sinfondo.png" alt="Banner Monitores" />
+        </div>
+      </section>
+  <link rel="stylesheet" href="CSS/promo-banner.css">
     </section>
+    <br>
 
-    <h2 class="titulo-index">Productos por menos de $1.000.000</h2>
+    <h2 class="titulo-index">Grandes ofertas tech por menos de $1.000.000</h2>
     <section>
       <div class="contenedor-productos">
         <div class="products-grid" id="products-under-million">

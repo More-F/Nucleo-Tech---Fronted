@@ -340,7 +340,7 @@ form.addEventListener("submit", function(e) {
   const nombreExiste = productos.some(p => p.nombre.toLowerCase() === nombreProducto.toLowerCase());
 
   if (nombreExiste) {
-    alert("Ya existe un producto con ese nombre");
+    mostrarModal('error', 'Ya existe un producto con ese nombre');
     document.getElementById("nombre").classList.add('campo-invalido');
     return;
   }

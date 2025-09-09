@@ -12,24 +12,32 @@ function renderCarrito() {
     const carrito = obtenerCarrito();
     const contenedor = document.getElementById("cart-items"); // contenedor en HTML
     const totalDiv = document.getElementById("cart-total");   // total en HTML
+    const countDiv = document.getElementById("cart-count");   // cantidad en HTML
 
     contenedor.innerHTML = "";
     let total = 0;
+    let cantidadTotal = 0;
 
     if (carrito.length === 0) {
         contenedor.innerHTML = "<p>El carrito está vacío.</p>";
         totalDiv.textContent = "Total: $0";
+        if (countDiv) countDiv.textContent = "Productos: 0";
         return;
     }
 
     // Detecta si el HTML actual está en una subcarpeta
     const isSubfolder = window.location.pathname.includes('/HTML/');
+    // Obtener productos actualizados
+    const productosActuales = JSON.parse(localStorage.getItem("productos")) || [];
     carrito.forEach(item => {
         total += item.precio * item.cantidad;
-        let rutaImagen = item.imagen;
+        cantidadTotal += item.cantidad;
+        // Buscar el producto original para obtener la imagen actualizada
+        const productoOriginal = productosActuales.find(p => p.id == item.id);
+        let rutaImagen = productoOriginal && productoOriginal.imagen ? productoOriginal.imagen : item.imagen;
         // Si estamos en subcarpeta y la imagen NO es base64, ajusta la ruta
         if (isSubfolder && !(rutaImagen.startsWith('data:image/'))) {
-            rutaImagen = '../' + item.imagen;
+            rutaImagen = '../' + rutaImagen;
         }
         const div = document.createElement("div");
         div.classList.add("cart-item");
@@ -57,12 +65,14 @@ function renderCarrito() {
         `;
         contenedor.appendChild(div);
     });
+    
 
     totalDiv.textContent = `Total: ${new Intl.NumberFormat("es-CO", {
         style: "currency",
         currency: "COP",
         minimumFractionDigits: 0
     }).format(total)}`;
+    if (countDiv) countDiv.textContent = `Productos: ${cantidadTotal}`;
 
     // Eventos para eliminar
     document.querySelectorAll(".remove-btn").forEach(btn => {

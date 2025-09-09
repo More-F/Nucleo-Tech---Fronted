@@ -246,7 +246,7 @@ body {
     gap: 5px;
 }
 .add-to-cart:hover {
-    background: #1a466e;
+    background: var(--primary-color);
 }
 /* Banner */
 .banner {

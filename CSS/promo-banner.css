@@ -1,0 +1,136 @@
+/* Input con ícono de búsqueda */
+.promo-banner .input-search-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.promo-banner .input-search-wrap .compatibilidad-input {
+  padding-right: 2.5rem;
+}
+.promo-banner .search-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Animación para el dropdown */
+.promo-banner .compatibilidad-dropdown {
+  transition: opacity 0.25s, transform 0.25s;
+  opacity: 0;
+  transform: translateY(-10px);
+  display: block;
+}
+.promo-banner .compatibilidad-dropdown[style*="display: block"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Estilos para el input de compatibilidad dentro del banner */
+.promo-banner .compatibilidad-input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border-radius: 2rem;
+  border: 2px solid var(--primary-color, #A5BF45);
+  background: #23283a;
+  color: #f1f1f1;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px rgba(34,40,49,0.10);
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.promo-banner .compatibilidad-input:focus {
+  border-color: var(--secondary-color, #A5BF45);
+  box-shadow: 0 2px 12px rgba(165,191,69,0.18);
+}
+/* Banner promocional personalizado para index */
+.promo-banner.custom-banner {
+  width: 100%;
+  margin: 0 auto 32px auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, var(--dark-bg) 60%, var(--secondary-color) 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(34, 40, 49, 0.08);
+  padding: 32px 16px;
+}
+.promo-banner .banner-info {
+  flex: 1 1 320px;
+  min-width: 260px;
+  max-width: 650px;
+  padding: 12px 24px;
+  color: var(--light-text);
+}
+.promo-banner .banner-info h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--primary-color);
+  text-shadow: 0 2px 8px rgba(34,40,49,0.08);
+}
+.promo-banner .banner-info p {
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  color: #fff;
+}
+.promo-banner .banner-info ul {
+  font-size: 1rem;
+  margin-bottom: 18px;
+  padding-left: 18px;
+  color: #fff;
+}
+.promo-banner .banner-info li {
+  margin-bottom: 6px;
+}
+.promo-banner .btn-catalogo {
+  background: var(--primary-color);
+  color: var(--dark-bg);
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(34,40,49,0.08);
+  border: none;
+  transition: background 0.2s, color 0.2s;
+}
+.promo-banner .btn-catalogo:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+.promo-banner .banner-img {
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.promo-banner .banner-img img {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(34,40,49,0.12);
+  object-fit: cover;
+}
+@media (max-width: 900px) {
+  .promo-banner.custom-banner {
+    flex-direction: column;
+    padding: 24px 8px;
+  }
+  .promo-banner .banner-info, .promo-banner .banner-img {
+    max-width: 100%;
+    padding: 12px 0;
+    text-align: center;
+  }
+  .promo-banner .banner-info h2 {
+    font-size: 1.5rem;
+  }
+}

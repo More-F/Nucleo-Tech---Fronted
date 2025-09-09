@@ -1,10 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Toggle para contraseña principal
     const toggle = document.getElementById('toggleCreatePassword');
     const passwordInput = document.getElementById('createPassword');
     if (toggle && passwordInput) {
         toggle.addEventListener('click', function () {
             const isPassword = passwordInput.type === 'password';
             passwordInput.type = isPassword ? 'text' : 'password';
+            this.classList.remove(isPassword ? 'fa-eye' : 'fa-eye-slash');
+            this.classList.add(isPassword ? 'fa-eye-slash' : 'fa-eye');
+        });
+    }
+    // Toggle para confirmar contraseña
+    const toggleConfirm = document.getElementById('toggleConfirmPassword');
+    const confirmInput = document.getElementById('confirmPassword');
+    if (toggleConfirm && confirmInput) {
+        toggleConfirm.addEventListener('click', function () {
+            const isPassword = confirmInput.type === 'password';
+            confirmInput.type = isPassword ? 'text' : 'password';
             this.classList.remove(isPassword ? 'fa-eye' : 'fa-eye-slash');
             this.classList.add(isPassword ? 'fa-eye-slash' : 'fa-eye');
         });
@@ -35,14 +47,21 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
     const nombre = this[0].value;
     const email = this[1].value;
     const password = this[2].value;
-    const telefono = this[3].value;
-    const direccion = this[4].value;
+    const confirmPassword = this[3].value;
+    // Si tienes más campos como teléfono/dirección, ajusta los índices
+    // Para compatibilidad, si no existen, se asigna vacío
+    const telefono = '';
+    const direccion = '';
 
     // Validaciones
     let errores = [];
     // Validación de campos vacíos
-    if (nombre === '' || email === '' || password === '') {
+    if (nombre === '' || email === '' || password === '' || confirmPassword === '') {
         errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Todos los campos son obligatorios.</li></ul>';
+        return;
+    }
+    if (password !== confirmPassword) {
+        errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Las contraseñas no coinciden.</li></ul>';
         return;
     }
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;

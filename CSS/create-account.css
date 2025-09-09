@@ -3,8 +3,10 @@
   transition: color 0.2s;
   position: absolute;
   right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: 1.1em;
   font-size: 1.1rem;
   cursor: pointer;
   z-index: 2;
@@ -147,7 +149,10 @@ input::placeholder {
   width: 100%;
   padding-right: 2.5rem; /* espacio para el ojito */
 }
-
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
 
 /* Responsive */
 @media (max-width: 768px) {

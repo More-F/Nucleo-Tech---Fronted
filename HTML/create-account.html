@@ -47,15 +47,18 @@
     <form id="formCustomer" class="active">
       <input type="text" placeholder="Nombres" required>
       <input type="email" placeholder="Correo Electrónico" required>
-        <div class="password-container">
-          <input type="password" id="createPassword" placeholder="Contraseña" required>
-          <i id="toggleCreatePassword" class="fa fa-eye toggle-password"></i>
-        </div>
-        
-        <label class="checkbox">
-          <input type="checkbox" required> Acepto los Términos y Condiciones
-        </label>
-        <button type="submit" class="btn-submit">Crear Cuenta</button>
+      <div class="password-container">
+        <input type="password" id="createPassword" placeholder="Contraseña" required>
+        <i id="toggleCreatePassword" class="fa fa-eye toggle-password"></i>
+      </div>
+      <div class="password-container">
+        <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+        <i id="toggleConfirmPassword" class="fa fa-eye toggle-password"></i>
+      </div>
+      <label class="checkbox">
+        <input type="checkbox" required> Acepto los Términos y Condiciones
+      </label>
+      <button type="submit" class="btn-submit">Crear Cuenta</button>
     </form>
 
      <p class="extra-links">
