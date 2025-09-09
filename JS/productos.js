@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(() => {
                         modal.style.display = 'none';
                     }, 2500);
+                    updateCartCount();
                 } 
             });
         });
@@ -177,3 +178,23 @@ document.addEventListener('DOMContentLoaded', function () {
     filtrarProductos("all");
 });
 
+function updateCartCount() {
+    const cartCountSpan = document.getElementById('cart-count');
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let count = carrito.reduce((total, item) => total + (item.cantidad || 1), 0);
+    if (count === 0) {
+        cartCountSpan.style.display = 'none';
+        return;
+    }
+    let text = count;
+    if (count > 10 && count < 20) {
+        text = '10+';
+    } else if (count >= 20) {
+        text = '20+';
+    }
+    cartCountSpan.textContent = text;
+    cartCountSpan.style.display = 'flex';
+}
+// Llama la función al cargar la página y cada vez que cambie el carrito
+document.addEventListener('DOMContentLoaded', updateCartCount);
+window.addEventListener('storage', updateCartCount);

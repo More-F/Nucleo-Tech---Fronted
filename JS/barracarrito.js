@@ -80,7 +80,8 @@ function renderSidebarCarrito() {
             let carrito = obtenerCarrito();
             carrito = carrito.filter(item => item.id != id);
             guardarCarrito(carrito);
-            renderSidebarCarrito(); // refrescar vista
+            renderSidebarCarrito();
+            updateCartCount(); // refrescar vista
         });
     });
 
@@ -102,10 +103,12 @@ function renderSidebarCarrito() {
             });
 
             guardarCarrito(carrito);
-            renderSidebarCarrito(); // refrescar vista
+            renderSidebarCarrito();
+            updateCartCount(); // refrescar vista
         });
     });
 }
+
 
 // 🔹 Abrir carrito
 cartBtn.addEventListener('click', () => {

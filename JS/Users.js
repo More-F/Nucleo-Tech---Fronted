@@ -86,6 +86,7 @@ function getSessionUser() {
 // Cerrar sesión
 function logoutUser() {
     localStorage.removeItem('sesion');
+    localStorage.removeItem('carrito'); 
 }
 
 // Ejecutar al cargar el archivo

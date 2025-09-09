@@ -153,3 +153,11 @@ nav {
   font-weight: bold;
 }
 
+@media (max-width: 900px) {
+  .contenedor_nav {
+    display: flex;
+    flex-direction: row;
+  }
+  .contenedor-iconos { order: 2; }
+  .menu-toggle { order: 3; align-self: flex-end; }
+}

@@ -27,7 +27,8 @@ function renderCarrito() {
     carrito.forEach(item => {
         total += item.precio * item.cantidad;
         let rutaImagen = item.imagen;
-        if (isSubfolder) {
+        // Si estamos en subcarpeta y la imagen NO es base64, ajusta la ruta
+        if (isSubfolder && !(rutaImagen.startsWith('data:image/'))) {
             rutaImagen = '../' + item.imagen;
         }
         const div = document.createElement("div");
