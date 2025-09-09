@@ -8,7 +8,7 @@ if (!localStorage.getItem('productos')) {
             precio: 1500000,
             stock: 12,
             descripcion: "12 núcleos, 20 hilos, frecuencia base 3.6GHz, ideal para gaming y multitarea.",
-            imagen: "../IMG/Procesador Intel Core i7 12700K.webp",
+            imagen: "IMG/Procesador Intel Core i7 12700K.webp",
             especificaciones: {
                 socket: "LGA1700",
                 TDP: "125W",
