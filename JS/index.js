@@ -33,22 +33,90 @@ document.addEventListener("DOMContentLoaded", function () {
     const listaCompatibilidad = document.getElementById('listaCompatibilidad');
     const dropdown = document.getElementById('dropdownCompatibilidad');
     if (buscador && listaCompatibilidad && dropdown) {
-        const productos = JSON.parse(localStorage.getItem('productos')) || [
-            { id: 1, nombre: 'Mouse Logitech G203', imagen: '../IMG/apple.webp' },
-            { id: 2, nombre: 'Teclado Redragon Kumara', imagen: '../IMG/ASUS.jpg' },
-            { id: 3, nombre: 'Monitor Samsung 24"', imagen: '../IMG/DELL.png' },
-            { id: 4, nombre: 'Audífonos HyperX Cloud', imagen: '../IMG/MSI.jpeg' },
-            { id: 5, nombre: 'Webcam Genius 1080p', imagen: '../IMG/TPLINK.png' },
-            { id: 6, nombre: 'Mousepad Corsair XL', imagen: '../IMG/banner ajustado.png' }
-        ];
-        const compatibilidad = {
-            1: [2, 6],
-            2: [1, 6],
-            3: [4, 5],
-            4: [3],
-            5: [3],
-            6: [1, 2]
-        };
+        const productos = JSON.parse(localStorage.getItem('productos')) || [];
+        // Generar compatibilidad inteligente por especificaciones
+        const compatibilidad = {};
+        productos.forEach(p => {
+            let compatibles = [];
+            if (p.categoria === 'tarjetas-video') {
+                // Compatibles con fuentes de poder (potencia >= 650W), chasis (ATX), procesadores (arquitectura compatible)
+                compatibles = productos.filter(other => {
+                    if (other.categoria === 'fuentes') {
+                        // Potencia mínima recomendada para tarjetas de video modernas
+                        const potencia = parseInt(other.especificaciones?.potencia);
+                        return potencia >= 650;
+                    }
+                    if (other.categoria === 'chasis') {
+                        // Chasis ATX o Mid Tower
+                        return (other.especificaciones?.tipo?.toLowerCase().includes('atx'));
+                    }
+                    if (other.categoria === 'procesadores') {
+                        // Procesadores con gráfica integrada o arquitectura moderna
+                        return other.especificaciones?.graficaIntegrada !== 'No';
+                    }
+                    return false;
+                });
+            } else if (p.categoria === 'procesadores') {
+                // Compatibles con motherboards (por socket), RAM (por tipo), refrigeración (por tipo)
+                compatibles = productos.filter(other => {
+                    if (other.categoria === 'ram') {
+                        // DDR4 o DDR5 según procesador
+                        if (p.especificaciones?.socket === 'LGA1700') {
+                            return other.especificaciones?.tipo === 'DDR5';
+                        }
+                        if (p.especificaciones?.socket === 'AM5') {
+                            return other.especificaciones?.tipo === 'DDR5';
+                        }
+                        return other.especificaciones?.tipo === 'DDR4';
+                    }
+                    if (other.categoria === 'refrigeracion') {
+                        // Todos los sistemas de refrigeración
+                        return true;
+                    }
+                    if (other.categoria === 'chasis') {
+                        // Chasis ATX o Mid Tower
+                        return (other.especificaciones?.tipo?.toLowerCase().includes('atx'));
+                    }
+                    return false;
+                });
+            } else if (p.categoria === 'monitores') {
+                // Compatibles con teclados, mouse
+                compatibles = productos.filter(other => {
+                    return ['teclados-mouse'].includes(other.categoria);
+                });
+            } else if (p.categoria === 'fuentes') {
+                // Compatibles con tarjetas de video y chasis
+                compatibles = productos.filter(other => {
+                    return ['tarjetas-video', 'chasis'].includes(other.categoria);
+                });
+            } else if (p.categoria === 'ram') {
+                // Compatibles con procesadores y motherboards
+                compatibles = productos.filter(other => {
+                    return ['procesadores'].includes(other.categoria);
+                });
+            } else if (p.categoria === 'almacenamiento') {
+                // Compatibles con motherboards y chasis
+                compatibles = productos.filter(other => {
+                    return ['chasis'].includes(other.categoria);
+                });
+            } else if (p.categoria === 'refrigeracion') {
+                // Compatibles con procesadores y chasis
+                compatibles = productos.filter(other => {
+                    return ['procesadores', 'chasis'].includes(other.categoria);
+                });
+            } else if (p.categoria === 'chasis') {
+                // Compatibles con fuentes, tarjetas de video, almacenamiento
+                compatibles = productos.filter(other => {
+                    return ['fuentes', 'tarjetas-video', 'almacenamiento'].includes(other.categoria);
+                });
+            } else if (p.categoria === 'teclados-mouse') {
+                // Compatibles con monitores
+                compatibles = productos.filter(other => {
+                    return other.categoria === 'monitores';
+                });
+            }
+            compatibilidad[p.id] = compatibles.map(other => other.id);
+        });
 
         buscador.addEventListener('input', function () {
             const valor = buscador.value.toLowerCase();
@@ -63,10 +131,10 @@ document.addEventListener("DOMContentLoaded", function () {
             let html = '';
             filtrados.forEach(p => {
                 html += `
-                                        <div class="item-producto" data-id="${p.id}" style="display:flex; align-items:center; gap:1rem; padding:0.8rem 1rem; border-bottom:1px solid #23283a; cursor:pointer; transition:background 0.2s;">
-                                            <span style="font-size:1.08rem; color:#A5BF45; font-weight:600;">${p.nombre}</span>
-                                        </div>
-                                    `;
+                    <div class="item-producto" data-id="${p.id}" style="display:flex; align-items:center; gap:1rem; padding:0.8rem 1rem; border-bottom:1px solid #23283a; cursor:pointer; transition:background 0.2s;">
+                        <span style="font-size:1.08rem; color:#A5BF45; font-weight:600;">${p.nombre}</span>
+                    </div>
+                `;
             });
             dropdown.innerHTML = html;
             dropdown.style.display = 'block';

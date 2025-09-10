@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <a href="javascript:void(0)" onclick="verDetalle(${producto.id})">
                         <h3 class="product-title">${producto.nombre}</h3>
                     </a>
-                    <p class="product-description">${producto.descripcion}</p>
+                    <p class="product-description">${producto.descripcion.length > 100 ? producto.descripcion.slice(0, 100) + '...' : producto.descripcion}</p>
                     <span class="price">${new Intl.NumberFormat("es-CO", {
                 style: "currency",
                 currency: "COP",
