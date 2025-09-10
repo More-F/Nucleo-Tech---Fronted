@@ -449,14 +449,16 @@ document.querySelector('.form-editar').addEventListener('submit', function(e) {
       reader.onload = function(event) {
         producto.imagen = event.target.result;
         guardarProductos(productos);
-        document.getElementById('modalEditar').style.display = 'none';
-        actualizarInterfaz();
+  document.getElementById('modalEditar').style.display = 'none';
+  actualizarInterfaz();
+  document.getElementById('modalEdicionExitosa').style.display = 'flex';
       };
-      reader.readAsDataURL(archivoImagen);
+  reader.readAsDataURL(archivoImagen);
     } else {
-      guardarProductos(productos);
-      document.getElementById('modalEditar').style.display = 'none';
-      actualizarInterfaz();
+  guardarProductos(productos);
+  document.getElementById('modalEditar').style.display = 'none';
+  actualizarInterfaz();
+  document.getElementById('modalEdicionExitosa').style.display = 'flex';
     }
   }
 });

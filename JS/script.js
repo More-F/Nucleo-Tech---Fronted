@@ -77,8 +77,41 @@ document.addEventListener('DOMContentLoaded', function () {
  
         const errores = document.querySelectorAll('.is-invalid');
         if (errores.length > 0) {
-            alert('Por favor, completa todos los campos correctamente.');
+            mostrarModalError('Por favor, completa todos los campos correctamente.');
             return;
+    // Modal de error
+    function mostrarModalError(mensaje) {
+        let modal = document.getElementById('modal-error-contacto');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'modal-error-contacto';
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.background = 'rgba(34,40,49,0.65)';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.zIndex = '9999';
+            modal.innerHTML = `
+                <div style="background: #fff; color: #d32f2f; border-radius: 1.2rem; padding: 2.2rem 2.5rem; box-shadow: 0 8px 32px 0 rgba(34, 40, 49, 0.18); text-align: center; max-width: 90vw;">
+                    <i class='fa-solid fa-circle-exclamation' style='font-size:2.5rem; color:#d32f2f; margin-bottom:1rem;'></i>
+                    <h2 style='margin-bottom:0.7rem;'>¡Error!</h2>
+                    <p style='font-size:1.1rem;'>${mensaje}</p>
+                    <button id='cerrar-modal-error' style='margin-top:1.5rem; background:#d32f2f; color:#fff; border:none; border-radius:2rem; padding:0.6rem 2.2rem; font-size:1rem; font-weight:600; cursor:pointer;'>Cerrar</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        } else {
+            modal.style.display = 'flex';
+            modal.querySelector('p').textContent = mensaje;
+        }
+        document.getElementById('cerrar-modal-error').onclick = function() {
+            modal.style.display = 'none';
+        };
+    }
         }
  
         //No errores, enviamos con fetch
