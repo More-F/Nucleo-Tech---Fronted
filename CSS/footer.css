@@ -25,6 +25,9 @@
   flex: 1 1 220px;
   min-width: 220px;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo-footer {
@@ -32,6 +35,8 @@
   height: auto;
   display: block;
   margin-bottom: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .nombre-marca {
@@ -39,6 +44,7 @@
   font-size: 1.2rem;
   color: #FFF9F2;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .nombre-marca .letra-c {
@@ -54,6 +60,16 @@
 }
 .footer-social a:last-child { margin-right: 0; }
 .footer-social a:hover { color: #A5BF45; }
+
+/* Centrado de iconos sociales debajo del logo y nombre */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0.5rem auto 0 auto;
+  width: fit-content;
+}
 
 .footer-col h5 {
   color: var(--light-text);
@@ -94,6 +110,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+  .footer-social {
+    justify-content: center;
+    margin: 0.5rem auto 1rem auto;
+    width: fit-content;
   }
 
   .footer-col {
