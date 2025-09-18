@@ -91,14 +91,30 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
         password,
         telefono,
         direccion,
-        rol: 'customer'
+        rol: {
+            id: 2, // Ajusta el id según tu base de datos si es necesario
+            nombre: 'customer'
+        }
     };
-    const res = registerUser(user);
-    if (res.success) {
-        mostrarModalCreacionExitosa(user.nombre);
-    } else {
-        errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>' + res.message + '</li></ul>';
-    }
+    fetch('http://localhost:8080/api/usuarios/crear', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+        if (response.ok) {
+            mostrarModalCreacionExitosa(user.nombre);
+        } else {
+            response.json().then(data => {
+                errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>' + (data.message || 'No se pudo crear la cuenta.') + '</li></ul>';
+            });
+        }
+    })
+    .catch(error => {
+        errorMsg.innerHTML = '<b>Error de conexión:</b> ' + error.message;
+    });
 
     // Modal de creacion de cuenta exitosa
     function mostrarModalCreacionExitosa(nombre) {
