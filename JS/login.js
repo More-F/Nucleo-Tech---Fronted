@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             return;
         }
     // Conexión al backend usando fetch
-    fetch('http://localhost:8080/api/usuarios/autenticar', {
+    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/usuarios/autenticar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

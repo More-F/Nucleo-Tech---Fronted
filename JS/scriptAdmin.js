@@ -560,7 +560,6 @@ form.addEventListener("submit", function(e) {
   // Validar campos requeridos
   const camposRequeridos = ["categoria", "nombre", "marca", "precio", "stock", "descripcion"];
   let faltanCampos = false;
-  
   camposRequeridos.forEach(campo => {
     const valor = document.getElementById(campo).value.trim();
     if (!valor) {
@@ -570,54 +569,73 @@ form.addEventListener("submit", function(e) {
       document.getElementById(campo).classList.remove('campo-invalido');
     }
   });
-
   if (faltanCampos) {
     alert("Por favor complete todos los campos requeridos");
-    return;
-  }
-
-  // Validar que el nombre no se repita
-  const nombreProducto = document.getElementById("nombre").value.trim();
-  const productos = obtenerProductos();
-  const nombreExiste = productos.some(p => p.nombre.toLowerCase() === nombreProducto.toLowerCase());
-
-  if (nombreExiste) {
-    mostrarModal('error', 'Ya existe un producto con ese nombre');
-    document.getElementById("nombre").classList.add('campo-invalido');
     return;
   }
 
   // Validar que precio y stock sean números válidos
   const precio = parseFloat(document.getElementById("precio").value);
   const stock = parseInt(document.getElementById("stock").value);
-
   if (isNaN(precio) || precio <= 0) {
     alert("El precio debe ser un número mayor que 0");
     document.getElementById("precio").classList.add('campo-invalido');
     return;
   }
-
   if (isNaN(stock) || stock < 0) {
     alert("El stock debe ser un número mayor o igual a 0");
     document.getElementById("stock").classList.add('campo-invalido');
     return;
   }
 
+  // Preparar imagen
   const archivoImagen = document.getElementById("imagen").files[0];
- 
+  const procesarProducto = (imagenFinal) => {
+    // Crear objeto con formato compatible con el backend
+    const producto = {
+      nombre: document.getElementById('nombre').value,
+      descripcion: document.getElementById('descripcion').value,
+      precio: precio,
+      stock: stock,
+      imagen: imagenFinal,
+      categoria: {
+        id: parseInt(document.getElementById('categoria').value)
+      },
+      marca: {
+        id: parseInt(document.getElementById('marca').value)
+      }
+    };
+    // Enviar al backend
+    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/crear', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(producto)
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Error al guardar el producto');
+      return response.json();
+    })
+    .then(data => {
+      mostrarModal('exito', 'Producto guardado exitosamente', () => {
+        limpiarFormularioYCerrarModal(form, camposRequeridos);
+        actualizarInterfaz();
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      mostrarModal('error', 'Error al guardar el producto');
+    });
+  };
   if (archivoImagen) {
-    const reader = new FileReader(); // Api
+    const reader = new FileReader();
     reader.onload = function(event) {
-      const imagenBase64 = event.target.result;
-      const producto = crearProductoDesdeFormulario(form, productos, imagenBase64);
-      agregarProducto(producto, productos);
-      limpiarFormularioYCerrarModal(form, camposRequeridos);
+      procesarProducto(event.target.result);
     };
     reader.readAsDataURL(archivoImagen);
   } else {
-    const producto = crearProductoDesdeFormulario(form, productos, "tarjeta.jpg");
-    agregarProducto(producto, productos);
-    limpiarFormularioYCerrarModal(form, camposRequeridos);
+    procesarProducto("tarjeta.jpg");
   }
 });
 
@@ -846,4 +864,128 @@ window.addEventListener('storage', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Página cargada, actualizando interfaz');
     actualizarInterfaz();
+
+    // Cargar categorías - GET /api/categorias
+    fetch('http://localhost:8080/api/categorias')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al cargar categorías: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(categorias => {
+        const selectCategoria = document.getElementById('categoria');
+        if (selectCategoria) {
+          selectCategoria.innerHTML = '<option value="">Selecciona categoría</option>';
+          categorias.forEach(categoria => {
+            const option = document.createElement('option');
+            option.value = categoria.id;
+            option.textContent = categoria.nombre;
+            selectCategoria.appendChild(option);
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+    // Cargar marcas - GET /api/marcas
+    fetch('http://localhost:8080/api/marcas')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al cargar marcas: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(marcas => {
+        const selectMarca = document.getElementById('marca');
+        if (selectMarca) {
+          selectMarca.innerHTML = '<option value="">Selecciona marca</option>';
+          marcas.forEach(marca => {
+            const option = document.createElement('option');
+            option.value = marca.id;
+            option.textContent = marca.nombre;
+            selectMarca.appendChild(option);
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+});
+
+
+//FECH
+// Cargar categorías al cargar la página
+fetch('/api/categorias')
+  .then(response => response.json())
+  .then(categorias => {
+    const selectCategoria = document.getElementById('categoria');
+    categorias.forEach(categoria => {
+      const option = document.createElement('option');
+      option.value = categoria.id;
+      option.textContent = categoria.nombre;
+      selectCategoria.appendChild(option);
+    });
+  });
+
+// Cargar marcas - GET /api/marcas
+fetch('http://localhost:8080/api/marcas')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error al cargar marcas: ' + response.status);
+    }
+    return response.json();
+  })
+  .then(marcas => {
+    const selectMarca = document.getElementById('marca');
+    selectMarca.innerHTML = '<option value="">Selecciona marca</option>';
+    
+    marcas.forEach(marca => {
+      const option = document.createElement('option');
+      option.value = marca.id;
+      option.textContent = marca.nombre;
+      selectMarca.appendChild(option);
+    });
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+// Manejar envío del formulario
+document.getElementById('productoForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Crear objeto con formato compatible con el backend
+  const producto = {
+    nombre: document.getElementById('nombre').value,
+    descripcion: document.getElementById('descripcion').value,
+    precio: parseFloat(document.getElementById('precio').value),
+    stock: parseInt(document.getElementById('stock').value),
+    imagen: document.getElementById('imagen').value,
+    categoria: {
+      id: parseInt(document.getElementById('categoria').value)
+    },
+    marca: {
+      id: parseInt(document.getElementById('marca').value)
+    }
+  };
+  
+  // Enviar al backend
+  fetch('/api/productos/crear', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(producto)
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert('Producto guardado exitosamente');
+    // Limpiar formulario o redireccionar
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Error al guardar el producto');
+  });
 });

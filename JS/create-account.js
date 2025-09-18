@@ -96,7 +96,7 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
             nombre: 'customer'
         }
     };
-    fetch('http://localhost:8080/api/usuarios/crear', {
+    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/usuarios/crear', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
