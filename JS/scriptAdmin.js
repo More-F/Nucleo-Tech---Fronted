@@ -866,7 +866,7 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarInterfaz();
 
     // Cargar categorías - GET /api/categorias
-    fetch('http://localhost:8080/api/categorias')
+    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/categorias')
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al cargar categorías: ' + response.status);
@@ -890,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
     // Cargar marcas - GET /api/marcas
-    fetch('http://localhost:8080/api/marcas')
+    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas')
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al cargar marcas: ' + response.status);
@@ -930,7 +930,7 @@ fetch('/api/categorias')
   });
 
 // Cargar marcas - GET /api/marcas
-fetch('http://localhost:8080/api/marcas')
+fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas')
   .then(response => {
     if (!response.ok) {
       throw new Error('Error al cargar marcas: ' + response.status);
@@ -972,7 +972,7 @@ document.getElementById('productoForm').addEventListener('submit', function(e) {
   };
   
   // Enviar al backend
-  fetch('/api/productos/crear', {
+  fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/crear', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
