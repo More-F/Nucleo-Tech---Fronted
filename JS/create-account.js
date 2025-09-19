@@ -45,38 +45,34 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
     errorMsg.innerHTML = '';
 
     const nombre = this[0].value;
-    const email = this[1].value;
-    const password = this[2].value;
+    const correo = this[1].value;
+    const contrasena = this[2].value;
     const confirmPassword = this[3].value;
-    // Si tienes más campos como teléfono/dirección, ajusta los índices
-    // Para compatibilidad, si no existen, se asigna vacío
-    const telefono = '';
-    const direccion = '';
 
     // Validaciones
     let errores = [];
     // Validación de campos vacíos
-    if (nombre === '' || email === '' || password === '' || confirmPassword === '') {
+    if (nombre === '' || correo === '' || contrasena === '' || confirmPassword === '') {
         errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Todos los campos son obligatorios.</li></ul>';
         return;
     }
-    if (password !== confirmPassword) {
+    if (contrasena !== confirmPassword) {
         errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Las contraseñas no coinciden.</li></ul>';
         return;
     }
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(correo)) {
         errores.push('Correo electrónico no es válido.');
     }
-    if (password.length < 5) {
+    if (contrasena.length < 5) {
         errores.push('Contraseña es demasiado corta (mínimo 5 caracteres).');
     }
     const mayusculaRegex = /[A-Z]/;
-    if (!mayusculaRegex.test(password)) {
+    if (!mayusculaRegex.test(contrasena)) {
         errores.push('La contraseña debe contener al menos una letra mayúscula.');
     }
     const simboloRegex = /[!@#$%^&*(),.?":{}|<>]/;
-    if (!simboloRegex.test(password)) {
+    if (!simboloRegex.test(contrasena)) {
         errores.push('La contraseña debe contener al menos un símbolo especial.');
     }
 
@@ -87,14 +83,8 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
 
     const user = {
         nombre,
-        email,
-        password,
-        telefono,
-        direccion,
-        rol: {
-            id: 2, // Ajusta el id según tu base de datos si es necesario
-            nombre: 'customer'
-        }
+        correo,
+        contrasena
     };
     fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/usuarios/crear', {
         method: 'POST',
