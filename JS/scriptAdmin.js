@@ -470,12 +470,44 @@ function inicializarProductos() {
   }
 }
  
-// Obtener productos desde localStorage
-function obtenerProductos() {
-  return JSON.parse(localStorage.getItem("productos")) || [];
+// Obtener productos desde el backend
+// Obtener productos del backend
+async function obtenerProductosBackend() {
+  try {
+    const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos');
+    if (!response.ok) throw new Error('Error al cargar productos del backend');
+    const productos = await response.json();
+    console.log('✅ Productos del backend:', productos);
+    return productos;
+  } catch (error) {
+    console.error('❌ Error del backend:', error);
+    return [];
+  }
+}
+
+// Obtener productos del localStorage
+function obtenerProductosLocalStorage() {
+  const productos = JSON.parse(localStorage.getItem("productos")) || [];
+  console.log('📦 Productos del localStorage:', productos);
+  return productos;
+}
+
+// Obtener todos los productos para el admin (backend + localStorage)
+async function obtenerProductos() {
+  const productosBackend = await obtenerProductosBackend();
+  const productosLocal = obtenerProductosLocalStorage();
+  
+  // Combinar productos con IDs diferentes para evitar conflictos
+  const todosLosProductos = [
+    ...productosBackend, // Productos del backend (IDs numéricos)
+    ...productosLocal.map(p => ({ ...p, id: `local_${p.id}` })) // Productos locales con prefijo
+  ];
+  
+  console.log(`🔄 Admin: ${productosBackend.length} backend + ${productosLocal.length} local = ${todosLosProductos.length} total`);
+  return todosLosProductos;
 }
  
-// Guardar productos en localStorage
+// Guardar productos en localStorage (ya no se usa)
 function guardarProductos(productos) {
   localStorage.setItem("productos", JSON.stringify(productos));
 }
@@ -517,15 +549,15 @@ function abrirModalCrear() {
   document.getElementById("modalCrear").style.display = "block";
 }
  
-// Inicialización de productos
-inicializarProductos();
-let productos = obtenerProductos();
-console.log("Productos almacenados en localStorage:", productos);
+// Inicialización de productos (ya no usa localStorage)
+let productos = [];
+console.log("Productos se cargarán desde el backend");
 
 // FUNCIONES DE VISUALIZACIÓN
 
 // Mostrar productos en la tabla
-function mostrarProductos() {
+async function mostrarProductos() {
+  const productos = await obtenerProductos();
   const tbody = document.getElementById("tabla-productos");
   tbody.innerHTML = "";
  
@@ -533,9 +565,9 @@ function mostrarProductos() {
     const fila = `
       <tr>
         <td>${prod.id}</td>
-        <td>${prod.categoria}</td>
+        <td>${prod.categoria?.nombre || prod.categoria || '-'}</td>
         <td>${prod.nombre}</td>
-        <td>${prod.marca || "-"}</td>
+        <td>${prod.marca?.nombre || prod.marca || '-'}</td>
         <td>$${prod.precio.toLocaleString('es-CO')}</td>
         <td>${prod.stock}</td>
         <td>
@@ -588,19 +620,19 @@ form.addEventListener("submit", function(e) {
     return;
   }
 
-  // Preparar imagen
-  const archivoImagen = document.getElementById("imagen").files[0];
-  const procesarProducto = (imagenFinal) => {
-    // Crear objeto con formato compatible con el backend
-    const producto = {
-      nombre: document.getElementById('nombre').value,
-      descripcion: document.getElementById('descripcion').value,
-      precio: precio,
-      stock: stock,
-      imagen: imagenFinal,
-      categoria: {
-        id: parseInt(document.getElementById('categoria').value)
-      },
+  // Obtener URL de imagen directamente
+  const imagenUrl = document.getElementById("imagen").value;
+  
+  // Crear objeto con formato exacto de la Entity Producto
+  const producto = {
+    nombre: document.getElementById('nombre').value,
+    descripcion: document.getElementById('descripcion').value,
+    precio: precio,
+    stock: stock,
+    imagenUrl: imagenUrl, // Usar el campo correcto de la Entity
+    categoria: {
+      id: parseInt(document.getElementById('categoria').value)
+    },
       marca: {
         id: parseInt(document.getElementById('marca').value)
       }
@@ -627,15 +659,21 @@ form.addEventListener("submit", function(e) {
       console.error('Error:', error);
       mostrarModal('error', 'Error al guardar el producto');
     });
-  };
-  if (archivoImagen) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      procesarProducto(event.target.result);
+});
+
+// Event listener para preview de imagen cuando se cambie la URL
+document.getElementById('imagen').addEventListener('input', function(e) {
+  const url = e.target.value;
+  if (url) {
+    // Crear una imagen temporal para verificar que la URL funciona
+    const testImg = new Image();
+    testImg.onload = function() {
+      console.log('✅ URL de imagen válida');
     };
-    reader.readAsDataURL(archivoImagen);
-  } else {
-    procesarProducto("tarjeta.jpg");
+    testImg.onerror = function() {
+      console.warn('⚠️ URL de imagen no válida o no accesible');
+    };
+    testImg.src = url;
   }
 });
 
@@ -649,79 +687,198 @@ function limpiarFormularioYCerrarModal(form, camposRequeridos) {
   actualizarInterfaz();
 }
 
-
 mostrarProductos();
 // FUNCIONES DE EDICIÓN DE PRODUCTOS
-// Mostrar vista previa de imagen al seleccionar nueva en edición
-document.getElementById('imagenEditar').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      document.getElementById('previewImagenEditar').src = event.target.result;
-    };
-    reader.readAsDataURL(file);
+// Mostrar vista previa de imagen al cambiar URL en edición
+document.getElementById('imagenEditar').addEventListener('input', function(e) {
+  const url = e.target.value;
+  if (url) {
+    // Mostrar la imagen directamente
+    document.getElementById('previewImagenEditar').src = url;
   }
 });
 
 // Abrir modal de edición y cargar datos del producto
-function abrirModalEditar(id) {
-  const producto = productos.find(p => p.id === id);
+async function abrirModalEditar(id) {
+  let productos = await obtenerProductos();
+  const producto = productos.find(p => p.id == id); // Usar == para comparar string y number
  
   if (producto) {
+    // Determinar si es producto del backend o localStorage
+    const esProductoBackend = typeof id === 'number' || !String(id).includes('local_');
+    const idReal = String(id).replace('local_', ''); // Quitar prefijo si existe
+    
+    console.log(`🔧 Editando producto: ID=${id}, Backend=${esProductoBackend}, IDReal=${idReal}`);
+    
+    // Cargar categorías en el select de edición
+    try {
+      const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/categorias');
+      if (response.ok) {
+        const categorias = await response.json();
+        const selectCategoriaEditar = document.getElementById('categoriaEditar');
+        selectCategoriaEditar.innerHTML = '<option value="">Selecciona categoría</option>';
+        categorias.forEach(categoria => {
+          const option = document.createElement('option');
+          option.value = categoria.id;
+          option.textContent = categoria.nombre;
+          selectCategoriaEditar.appendChild(option);
+        });
+        
+        // Seleccionar la categoría actual del producto
+        if (producto.categoria?.id) {
+          selectCategoriaEditar.value = producto.categoria.id;
+        } else if (typeof producto.categoria === 'string') {
+          // Para productos locales, buscar por nombre
+          const categoriaEncontrada = categorias.find(c => c.nombre.toLowerCase() === producto.categoria.toLowerCase());
+          if (categoriaEncontrada) {
+            selectCategoriaEditar.value = categoriaEncontrada.id;
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error cargando categorías para edición:', error);
+    }
+    
+    // Cargar marcas en el select de edición
+    try {
+      const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas');
+      if (response.ok) {
+        const marcas = await response.json();
+        const selectMarcaEditar = document.getElementById('marcaEditar');
+        selectMarcaEditar.innerHTML = '<option value="">Selecciona marca</option>';
+        marcas.forEach(marca => {
+          const option = document.createElement('option');
+          option.value = marca.id;
+          option.textContent = marca.nombre;
+          selectMarcaEditar.appendChild(option);
+        });
+        
+        // Seleccionar la marca actual del producto
+        if (producto.marca?.id) {
+          selectMarcaEditar.value = producto.marca.id;
+        } else if (typeof producto.marca === 'string') {
+          // Para productos locales, buscar por nombre
+          const marcaEncontrada = marcas.find(m => m.nombre.toLowerCase() === producto.marca.toLowerCase());
+          if (marcaEncontrada) {
+            selectMarcaEditar.value = marcaEncontrada.id;
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error cargando marcas para edición:', error);
+    }
+    
+    // Llenar los demás campos
     document.getElementById('nombreEditar').value = producto.nombre;
-    document.getElementById('nombreEditar').placeholder = producto.nombre;
-    document.getElementById('categoriaEditar').value = producto.categoria;
-    document.getElementById('categoriaEditar').placeholder = producto.categoria;
-    document.getElementById('marcaEditar').value = producto.marca;
-    document.getElementById('marcaEditar').placeholder = producto.marca;
     document.getElementById('precioEditar').value = producto.precio;
-    document.getElementById('precioEditar').placeholder = producto.precio;
     document.getElementById('stockEditar').value = producto.stock;
-    document.getElementById('stockEditar').placeholder = producto.stock;
-  document.getElementById('descripcionEditar').value = producto.descripcion || '';
-  document.getElementById('descripcionEditar').placeholder = producto.descripcion || '';
-  document.getElementById('previewImagenEditar').src = producto.imagen || '';
-  document.getElementById('imagenEditar').value = '';
-    document.querySelector('.form-editar').setAttribute('data-id', id);
+    document.getElementById('descripcionEditar').value = producto.descripcion || '';
+    document.getElementById('imagenEditar').value = producto.imagenUrl || producto.imagen || '';
+    
+    // Mostrar preview de imagen
+    const previewImg = document.getElementById('previewImagenEditar');
+    if (previewImg) {
+      previewImg.src = producto.imagenUrl || producto.imagen || '';
+    }
+    
+    // Guardar información sobre el tipo de producto
+    const form = document.querySelector('.form-editar');
+    form.setAttribute('data-id', idReal); // ID sin prefijo
+    form.setAttribute('data-id-original', id); // ID original con prefijo
+    form.setAttribute('data-backend', esProductoBackend ? 'true' : 'false');
+    
     document.getElementById('modalEditar').style.display = 'block';
   }
 }
  
-// Manejar el submit del formulario
-document.querySelector('.form-editar').addEventListener('submit', function(e) {
+// Manejar el submit del formulario de edición
+document.querySelector('.form-editar').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const id = parseInt(this.getAttribute('data-id'));
+  const id = this.getAttribute('data-id'); // ID sin prefijo
+  const idOriginal = this.getAttribute('data-id-original'); // ID original con prefijo
+  const esProductoBackend = this.getAttribute('data-backend') === 'true';
 
-  const producto = productos.find(p => p.id === id);
+  console.log(`💾 Guardando: ID=${id}, Original=${idOriginal}, Backend=${esProductoBackend}`);
 
-  if (producto) {
-    producto.nombre = document.getElementById('nombreEditar').value;
-    producto.categoria = document.getElementById('categoriaEditar').value;
-    producto.marca = document.getElementById('marcaEditar').value;
-    producto.precio = parseFloat(document.getElementById('precioEditar').value);
-    producto.stock = parseInt(document.getElementById('stockEditar').value);
-    producto.descripcion = document.getElementById('descripcionEditar').value;
-    const archivoImagen = document.getElementById('imagenEditar').files[0];
-    if (archivoImagen) {
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        producto.imagen = event.target.result;
-        guardarProductos(productos);
-  document.getElementById('modalEditar').style.display = 'none';
-  actualizarInterfaz();
-  document.getElementById('modalEdicionExitosa').style.display = 'flex';
-      };
-  reader.readAsDataURL(archivoImagen);
-    } else {
-  guardarProductos(productos);
-  document.getElementById('modalEditar').style.display = 'none';
-  actualizarInterfaz();
-  document.getElementById('modalEdicionExitosa').style.display = 'flex';
+  if (esProductoBackend) {
+    // EDITAR PRODUCTO DEL BACKEND
+    const productoActualizado = {
+      nombre: document.getElementById('nombreEditar').value,
+      descripcion: document.getElementById('descripcionEditar').value,
+      precio: parseFloat(document.getElementById('precioEditar').value),
+      stock: parseInt(document.getElementById('stockEditar').value),
+      imagenUrl: document.getElementById('imagenEditar').value,
+      categoria: {
+        id: parseInt(document.getElementById('categoriaEditar').value)
+      },
+      marca: {
+        id: parseInt(document.getElementById('marcaEditar').value)
+      }
+    };
+
+    try {
+      const response = await fetch(`https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(productoActualizado)
+      });
+
+      if (!response.ok) throw new Error('Error al actualizar producto en backend');
+      
+      const resultado = await response.json();
+      console.log('✅ Producto del backend actualizado:', resultado);
+      
+      mostrarModal('exito', 'Producto actualizado exitosamente en el backend');
+      
+    } catch (error) {
+      console.error('❌ Error al actualizar producto del backend:', error);
+      mostrarModal('error', 'Error al actualizar el producto');
+    }
+    
+  } else {
+    // EDITAR PRODUCTO DEL LOCALSTORAGE
+    let productosLocal = JSON.parse(localStorage.getItem('productos')) || [];
+    const producto = productosLocal.find(p => p.id == id); // Buscar por ID sin prefijo
+
+    if (producto) {
+      producto.nombre = document.getElementById('nombreEditar').value;
+      producto.precio = parseFloat(document.getElementById('precioEditar').value);
+      producto.stock = parseInt(document.getElementById('stockEditar').value);
+      producto.descripcion = document.getElementById('descripcionEditar').value;
+      
+      // Para productos locales, guardar nombres de categoría y marca
+      const categoriaSelect = document.getElementById('categoriaEditar');
+      const marcaSelect = document.getElementById('marcaEditar');
+      
+      if (categoriaSelect.value) {
+        producto.categoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+      }
+      
+      if (marcaSelect.value) {
+        producto.marca = marcaSelect.options[marcaSelect.selectedIndex].text;
+      }
+      
+      const imagenUrl = document.getElementById('imagenEditar').value;
+      if (imagenUrl) {
+        producto.imagen = imagenUrl;
+      }
+      
+      // Guardar en localStorage
+      localStorage.setItem('productos', JSON.stringify(productosLocal));
+      
+      console.log('✅ Producto local actualizado:', producto);
+      mostrarModal('exito', 'Producto local actualizado exitosamente');
     }
   }
+  
+  // Cerrar modal y actualizar interfaz
+  document.getElementById('modalEditar').style.display = 'none';
+  await actualizarInterfaz();
 });
+
 // FUNCIONES DE INTERFAZ DE USUARIO
 
 // Función genérica para crear y mostrar modales
@@ -816,15 +973,23 @@ function agregarProducto(producto, productos) {
 
 // Función para eliminar producto
 async function eliminarProducto(id) {
-    let productos = obtenerProductos();
+    let productos = await obtenerProductos();
     const producto = productos.find(p => p.id === id);
     const confirmar = await mostrarModal('confirmar', `¿Estás seguro que deseas eliminar el producto "${producto.nombre}"?`);
     if (confirmar) {
-        productos = productos.filter(p => p.id !== id);
-        guardarProductos(productos);
-        mostrarModal('exito', `El producto "${producto.nombre}" ha sido eliminado correctamente`, () => {
-            actualizarInterfaz();
-        });
+        try {
+            const response = await fetch(`https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/${id}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error('Error al eliminar el producto');
+            
+            mostrarModal('exito', `El producto "${producto.nombre}" ha sido eliminado correctamente`, async () => {
+                await actualizarInterfaz();
+            });
+        } catch (error) {
+            console.error('Error:', error);
+            mostrarModal('error', 'Error al eliminar el producto');
+        }
     }
 }
 
@@ -832,11 +997,11 @@ async function eliminarProducto(id) {
 // FUNCIONES DE ACTUALIZACIÓN AUTOMÁTICA
 
 // Función para actualizar la interfaz completa
-function actualizarInterfaz() {
-    // Obtener productos actualizados
-    productos = obtenerProductos();
-    console.log('Actualizando interfaz con productos:', productos);
-    mostrarProductos();
+async function actualizarInterfaz() {
+    // Obtener productos actualizados desde el backend
+    productos = await obtenerProductos();
+    console.log('Actualizando interfaz con productos desde backend:', productos);
+    await mostrarProductos();
     const productsContainer = document.getElementById('products-container');
     if (productsContainer) {
         const categoriaActual = document.querySelector('.category-btn.active')?.dataset.category || 'all';
@@ -861,9 +1026,9 @@ window.addEventListener('storage', (e) => {
 });
 
 // Actualizar al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Página cargada, actualizando interfaz');
-    actualizarInterfaz();
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Página cargada, cargando productos desde backend');
+    await actualizarInterfaz();
 
     // Cargar categorías - GET /api/categorias
     fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/categorias')
@@ -956,13 +1121,13 @@ fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas')
 document.getElementById('productoForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
-  // Crear objeto con formato compatible con el backend
+  // Crear objeto con formato exacto de la Entity Producto
   const producto = {
     nombre: document.getElementById('nombre').value,
     descripcion: document.getElementById('descripcion').value,
     precio: parseFloat(document.getElementById('precio').value),
     stock: parseInt(document.getElementById('stock').value),
-    imagen: document.getElementById('imagen').value,
+    imagenBase64: document.getElementById('imagen').value, // Usar el campo correcto
     categoria: {
       id: parseInt(document.getElementById('categoria').value)
     },

@@ -44,35 +44,35 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
     }
     errorMsg.innerHTML = '';
 
-    const nombre = this[0].value;
-    const correo = this[1].value;
-    const contrasena = this[2].value;
-    const confirmPassword = this[3].value;
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
 
     // Validaciones
     let errores = [];
     // Validación de campos vacíos
-    if (nombre === '' || correo === '' || contrasena === '' || confirmPassword === '') {
+    if (nombre === '' || email === '' || password === '' || confirmPassword === '') {
         errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Todos los campos son obligatorios.</li></ul>';
         return;
     }
-    if (contrasena !== confirmPassword) {
+    if (password !== confirmPassword) {
         errorMsg.innerHTML = '<b>Por favor, aborde lo siguiente:</b><ul style="margin-top:0.5rem; margin-bottom:0.5rem;"><li>Las contraseñas no coinciden.</li></ul>';
         return;
     }
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    if (!emailRegex.test(correo)) {
+    if (!emailRegex.test(email)) {
         errores.push('Correo electrónico no es válido.');
     }
-    if (contrasena.length < 5) {
+    if (password.length < 5) {
         errores.push('Contraseña es demasiado corta (mínimo 5 caracteres).');
     }
     const mayusculaRegex = /[A-Z]/;
-    if (!mayusculaRegex.test(contrasena)) {
+    if (!mayusculaRegex.test(password)) {
         errores.push('La contraseña debe contener al menos una letra mayúscula.');
     }
     const simboloRegex = /[!@#$%^&*(),.?":{}|<>]/;
-    if (!simboloRegex.test(contrasena)) {
+    if (!simboloRegex.test(password)) {
         errores.push('La contraseña debe contener al menos un símbolo especial.');
     }
 
@@ -83,8 +83,8 @@ document.getElementById('formCustomer').addEventListener('submit', function (e) 
 
     const user = {
         nombre,
-        correo,
-        contrasena
+        email,
+        password
     };
     fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/usuarios/crear', {
         method: 'POST',

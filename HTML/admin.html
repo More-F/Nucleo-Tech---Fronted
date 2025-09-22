@@ -102,8 +102,8 @@
                                 <label for="especificacion3">Especificación 3</label>
                                 <input type="text" id="especificacion3">
                             </div>
-                            <label for="imagen">Imagen del producto</label>
-                            <input type="file" id="imagen" accept="image/*">
+                            <label for="imagen">URL de la imagen</label>
+                            <input type="url" id="imagen" placeholder="https://ejemplo.com/imagen.jpg" required>
                             <!-- botones guardar cancelar -->
                             <div class="modal-buttons">
                                 <button type="submit" class="btn-guardar">Guardar</button>
@@ -151,49 +151,30 @@
 
                             <form class="form-editar">
                                 <label for="nombreEditar">Nombre:</label>
-                                <input type="text" id="nombreEditar" name="nombreEditar">
+                                <input type="text" id="nombreEditar" name="nombreEditar" required>
 
                                 <label for="categoriaEditar">Categoría:</label>
-                                <select id="categoriaEditar" name="categoriaEditar">
-                                                                        <option value="Chasis">Chasis</option>
-                                                                        <option value="Fuentes">Fuentes</option>
-                                                                        <option value="Tarjetas de video">Tarjetas de video</option>
-                                                                        <option value="Teclado/Mouse">Teclado/Mouse</option>
-                                                                        <option value="Monitores">Monitores</option>
-                                                                        <option value="Refrigeracion">Refrigeración</option>
-                                                                        <option value="Procesadores">Procesadores</option>
-                                                                        <option value="Memoria">Memoria</option>
-                                                                </select>
-                                                                <style>
-                                                                    #categoriaEditar {
-                                                                        width: 100%;
-                                                                        padding: 12px;
-                                                                        border-radius: 8px;
-                                                                        border: 1px solid #ccc;
-                                                                        font-size: 15px;
-                                                                        margin-bottom: 12px;
-                                                                        background: #F2F2F2;
-                                                                    }
-                                                                </style>
+                                <select id="categoriaEditar" name="categoriaEditar" required>
+                                    <!-- Se llenará dinámicamente desde el backend -->
+                                </select>
 
                                 <label for="marcaEditar">Marca:</label>
-                                <input type="text" id="marcaEditar" name="marcaEditar">
+                                <select id="marcaEditar" name="marcaEditar" required>
+                                    <!-- Se llenará dinámicamente desde el backend -->
+                                </select>
 
                                 <label for="precioEditar">Precio:</label>
-                                <input type="number" id="precioEditar" name="precioEditar">
+                                <input type="number" id="precioEditar" name="precioEditar" step="0.01" required>
 
                                 <label for="stockEditar">Stock:</label>
-                                <input type="number" id="stockEditar" name="stockEditar">
-
+                                <input type="number" id="stockEditar" name="stockEditar" required>
 
                                 <label for="descripcionEditar">Descripción:</label>
-                                <textarea id="descripcionEditar" name="descripcionEditar" rows="3"
-                                    style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 15px; margin-bottom: 12px; resize: vertical;"></textarea>
+                                <textarea id="descripcionEditar" name="descripcionEditar" rows="3" required></textarea>
 
-                                <label for="imagenEditar">Imagen actual:</label>
-                                <img id="previewImagenEditar" src="" alt="Vista previa"
-                                    style="max-width: 120px; margin-bottom: 10px;">
-                                <input type="file" id="imagenEditar" accept="image/*">
+                                <label for="imagenEditar">URL de la imagen:</label>
+                                <img id="previewImagenEditar" src="" alt="Vista previa">
+                                <input type="url" id="imagenEditar" placeholder="https://ejemplo.com/imagen.jpg" required>
 
                                 <div class="modal-buttons">
                                     <button type="submit" class="btn-guardar">Guardar</button>
