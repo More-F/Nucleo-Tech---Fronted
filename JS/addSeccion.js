@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function() {
             nav.appendChild(userDiv);
             document.getElementById('logoutBtn').onclick = function() {
                 logoutUser();
-                window.location.href = '/Nucleo-Tech---Fronted/index.html';
+                 window.location.href = '../index.html';
             };
         }
     }
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', function() {
             nav.appendChild(userDiv);
             document.getElementById('logoutBtn').onclick = function() {
                 logoutUser();
-                window.location.href = '../index.html';
+                 window.location.href = '../index.html';
             };
         }
     }

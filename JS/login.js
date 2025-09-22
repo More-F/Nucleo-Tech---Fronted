@@ -9,32 +9,39 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             return;
         }
     // Conexión al backend usando fetch
-    fetch('http://localhost:8080/api/usuarios/autenticar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({
-                email, password
-            })
-        })
-        .then(async response => {
-            if (response.status === 200) {
-                const user = await response.json();
-                    console.log('Respuesta del backend:', user);
-                    // Guardar usuario en localStorage
-                    localStorage.setItem('usuario', JSON.stringify(user));
-                    // Redirigir si el usuario tiene email válido (asume rol customer por defecto)
-                    if (user.email) {
-                        window.location.href = '../index.html';
-                    }
-            } else {
-                document.getElementById('loginError').textContent = 'Email o contraseña incorrecta.';
-            }
-        })
-        .catch(error => {
-            document.getElementById('loginError').textContent = 'Error de conexión al servidor.';
-        });
+   fetch('http://localhost:8080/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    body: JSON.stringify({ correo: email, password })
+})
+.then(async response => {
+    if (response.ok) {
+        const data = await response.json();
+
+        // Guardar token
+        localStorage.setItem('token', data.token);
+
+        // Guardar usuario
+        localStorage.setItem('usuario', JSON.stringify({
+            id: data.id,
+            nombre: data.nombre,
+            correo: data.correo,
+            rol: data.rol
+        }));
+
+        // Redirigir según rol
+    if (data.rol === 'admin') {
+        window.location.href = '../HTML/admin.html';
+    } else {
+        window.location.href = '../index.html';
+    }
+    } else {
+        document.getElementById('loginError').textContent = 'Email o contraseña incorrecta.';
+    }
+})
+.catch(() => {
+    document.getElementById('loginError').textContent = 'Error de conexión al servidor.';
+});
 });
 
  

@@ -72,7 +72,7 @@ function loginUser(email, password) {
     const users = getUsers();
     const user = users.find(u => u.email === email && u.password === password);
     if (user) {
-        localStorage.setItem('sesion', JSON.stringify(user));
+        localStorage.setItem('usuario', JSON.stringify(user));
         return { success: true, user }; 
     }
     return { success: false, message: "Credenciales incorrectas." }; 
@@ -80,12 +80,12 @@ function loginUser(email, password) {
 
 // Obtener usuario en sesión
 function getSessionUser() {
-    return JSON.parse(localStorage.getItem('sesion'));
+    return JSON.parse(localStorage.getItem('usuario'));
 }
 
 // Cerrar sesión
 function logoutUser() {
-    localStorage.removeItem('sesion');
+    localStorage.removeItem('usuario');
     localStorage.removeItem('carrito'); 
 }
 

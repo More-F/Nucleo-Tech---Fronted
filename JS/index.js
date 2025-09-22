@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault(); // <--- Evita que el <a> haga navegación por accidente
             const productId = this.getAttribute('data-id');
             const producto = productos.find(p => p.id == productId);
-            const user = JSON.parse(localStorage.getItem('sesion'));
+            const user = JSON.parse(localStorage.getItem('usuario'));
             if (user) {
                 if (producto) {
                     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
