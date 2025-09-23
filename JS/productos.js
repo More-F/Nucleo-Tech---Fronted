@@ -8,7 +8,7 @@ function obtenerProductosLocalStorage() {
 // Función para obtener productos del backend (normal)
 async function obtenerProductosBackend() {
     try {
-        const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos');
+        const response = await fetch('http://localhost:8080/api/productos');
         if (!response.ok) throw new Error('Error al cargar productos del backend');
         const productos = await response.json();
         console.log('Productos obtenidos del backend (normal):', productos);

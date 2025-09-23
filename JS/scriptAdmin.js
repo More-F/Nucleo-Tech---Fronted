@@ -638,7 +638,7 @@ form.addEventListener("submit", function(e) {
       }
     };
     // Enviar al backend
-    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/crear', {
+    fetch('http://localhost:8080/api/productos/crear', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -712,7 +712,7 @@ async function abrirModalEditar(id) {
     
     // Cargar categorías en el select de edición
     try {
-      const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/categorias');
+      const response = await fetch('https://localhost:8080/api/categorias');
       if (response.ok) {
         const categorias = await response.json();
         const selectCategoriaEditar = document.getElementById('categoriaEditar');
@@ -741,7 +741,7 @@ async function abrirModalEditar(id) {
     
     // Cargar marcas en el select de edición
     try {
-      const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas');
+      const response = await fetch('https://localhost:8080/api/marcas');
       if (response.ok) {
         const marcas = await response.json();
         const selectMarcaEditar = document.getElementById('marcaEditar');
@@ -818,7 +818,7 @@ document.querySelector('.form-editar').addEventListener('submit', async function
     };
 
     try {
-      const response = await fetch(`https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/${id}`, {
+      const response = await fetch(`https://localhost:8080/api/productos/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -978,7 +978,7 @@ async function eliminarProducto(id) {
     const confirmar = await mostrarModal('confirmar', `¿Estás seguro que deseas eliminar el producto "${producto.nombre}"?`);
     if (confirmar) {
         try {
-            const response = await fetch(`https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/${id}`, {
+            const response = await fetch(`http://localhost:8080/api/productos/${id}`, {
                 method: 'DELETE'
             });
             if (!response.ok) throw new Error('Error al eliminar el producto');
@@ -1055,7 +1055,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
 
     // Cargar marcas - GET /api/marcas
-    fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas')
+    fetch('https://localhost:8080/api/marcas')
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al cargar marcas: ' + response.status);
@@ -1095,7 +1095,7 @@ fetch('/api/categorias')
   });
 
 // Cargar marcas - GET /api/marcas
-fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/marcas')
+fetch('https://localhost:8080/api/marcas')
   .then(response => {
     if (!response.ok) {
       throw new Error('Error al cargar marcas: ' + response.status);
@@ -1137,7 +1137,7 @@ document.getElementById('productoForm').addEventListener('submit', function(e) {
   };
   
   // Enviar al backend
-  fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/crear', {
+  fetch('https://localhost:8080/api/productos/crear', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
