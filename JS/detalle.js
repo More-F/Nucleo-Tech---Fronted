@@ -40,6 +40,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Añadir al carrito desde detalle ---
   document.querySelector(".add-to-cart").addEventListener("click", () => {
+    // 🔹 Verificar sesión usando sessionManager (tanto localStorage como backend)
+    const puedeAgregar = window.sessionManager ? 
+        window.sessionManager.puedeAgregarAlCarrito() : 
+        (JSON.parse(localStorage.getItem('sesion')) || JSON.parse(localStorage.getItem('usuario')));
+    
+    if (!puedeAgregar) {
+        // Usar sessionManager si está disponible, sino mostrar alert
+        if (window.sessionManager) {
+            window.sessionManager.mostrarMensajeLoginRequerido();
+            return;
+        } else {
+            alert("Debes iniciar sesión para agregar productos al carrito.");
+            window.location.href = "login.html";
+            return;
+        }
+    }
+
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     const index = carrito.findIndex(item => item.id == producto.id);

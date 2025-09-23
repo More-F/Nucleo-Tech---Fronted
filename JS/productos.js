@@ -177,9 +177,19 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const todosLosProductos = await obtenerProductos();
                 const producto = todosLosProductos.find(p => p.id == productId);
 
-                const user = JSON.parse(localStorage.getItem('sesion'));
-                if (!user) {
-                    // Modal personalizado para login/registro
+                // 🔹 Verificar sesión usando sessionManager (tanto localStorage como backend)
+                const puedeAgregar = window.sessionManager ? 
+                    window.sessionManager.puedeAgregarAlCarrito() : 
+                    (JSON.parse(localStorage.getItem('sesion')) || JSON.parse(localStorage.getItem('usuario')));
+                
+                if (!puedeAgregar) {
+                    // Usar sessionManager si está disponible, sino mostrar modal local
+                    if (window.sessionManager) {
+                        window.sessionManager.mostrarMensajeLoginRequerido();
+                        return;
+                    }
+                    
+                    // Fallback: Modal personalizado para login/registro
                     let modal = document.getElementById('modal-login-required');
                     if (!modal) {
                         modal = document.createElement('div');
@@ -193,8 +203,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                                 <div class="modal-check" style="color:#ff4444;">&#9888;</div>
                                 <span style="font-weight:600;">Debes iniciar sesión o crear una cuenta para agregar productos al carrito.</span>
                                 <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
-                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='/HTML/login.html'">Iniciar sesión</button>
-                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='/HTML/create-account.html'">Crear cuenta</button>
+                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='HTML/login.html'">Iniciar sesión</button>
+                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='HTML/create-account.html'">Crear cuenta</button>
                                 </div>
                             </div>
                         </div>

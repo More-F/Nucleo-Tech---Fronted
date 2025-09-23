@@ -366,7 +366,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             const productId = this.getAttribute('data-id');
             const producto = todosLosProductos.find(p => p.id == productId); // ← USAR PRODUCTOS COMBINADOS
             const user = JSON.parse(localStorage.getItem('sesion'));
-            if (user) {
+            
+            // 🔹 Verificar sesión usando sessionManager (tanto localStorage como backend)
+            const puedeAgregar = window.sessionManager ? 
+                window.sessionManager.puedeAgregarAlCarrito() : 
+                (JSON.parse(localStorage.getItem('sesion')) || JSON.parse(localStorage.getItem('usuario')));
+            
+            if (puedeAgregar) {
                 if (producto) {
                     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
                     let productoEnCarrito = carrito.find(item => item.id == productId);
@@ -399,7 +405,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                     updateCartCount();
                 }
             } else {
-                // Modal personalizado para login/registro
+                // Usar sessionManager si está disponible, sino mostrar modal local
+                if (window.sessionManager) {
+                    window.sessionManager.mostrarMensajeLoginRequerido();
+                    return;
+                }
+                
+                // Fallback: Modal personalizado para login/registro
                 let modal = document.getElementById('modal-login-required');
                 if (!modal) {
                     modal = document.createElement('div');
