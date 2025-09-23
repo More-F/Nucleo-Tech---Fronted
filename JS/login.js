@@ -1,22 +1,31 @@
 
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const email = this[0].value;
-    const password = this[1].value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    console.log('Valores capturados:', { email, password }); // Debug
+    
         // Validar campos vacíos
         if (!email || !password) {
-            document.getElementById('loginError').textContent = 'Por favor ingrese email y contraseña.';
+            document.getElementById('loginError').textContent = 'Por favor ingrese correo y contraseña.';
             return;
         }
+    
+    // Preparar datos para enviar
+    const datosLogin = {
+        correo: email, 
+        contrasena: password
+    };
+    
+    console.log('Datos a enviar al backend:', datosLogin); // Debug
     // Conexión al backend usando fetch
     fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/usuarios/autenticar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             },
-            body: JSON.stringify({
-                email, password
-            })
+            body: JSON.stringify(datosLogin)
         })
         .then(async response => {
             if (response.status === 200) {
@@ -24,12 +33,12 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
                     console.log('Respuesta del backend:', user);
                     // Guardar usuario en localStorage
                     localStorage.setItem('usuario', JSON.stringify(user));
-                    // Redirigir si el usuario tiene email válido (asume rol customer por defecto)
-                    if (user.email) {
+                    // Redirigir si el usuario tiene correo válido (asume rol customer por defecto)
+                    if (user.correo || user.email) {
                         window.location.href = '../index.html';
                     }
             } else {
-                document.getElementById('loginError').textContent = 'Email o contraseña incorrecta.';
+                document.getElementById('loginError').textContent = 'Correo o contraseña incorrecta.';
             }
         })
         .catch(error => {
