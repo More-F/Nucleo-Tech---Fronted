@@ -8,14 +8,14 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     
         // Validar campos vacíos
         if (!email || !password) {
-            document.getElementById('loginError').textContent = 'Por favor ingrese correo y contraseña.';
+            document.getElementById('loginError').textContent = 'Por favor ingrese email y contraseña.';
             return;
         }
     
     // Preparar datos para enviar
     const datosLogin = {
-        correo: email, 
-        contrasena: password
+        email: email, 
+        password: password
     };
     
     console.log('Datos a enviar al backend:', datosLogin); // Debug
@@ -33,12 +33,12 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
                     console.log('Respuesta del backend:', user);
                     // Guardar usuario en localStorage
                     localStorage.setItem('usuario', JSON.stringify(user));
-                    // Redirigir si el usuario tiene correo válido (asume rol customer por defecto)
-                    if (user.correo || user.email) {
+                    // Redirigir si el usuario tiene email válido (asume rol customer por defecto)
+                    if (user.email) {
                         window.location.href = '../index.html';
                     }
             } else {
-                document.getElementById('loginError').textContent = 'Correo o contraseña incorrecta.';
+                document.getElementById('loginError').textContent = 'Email o contraseña incorrecta.';
             }
         })
         .catch(error => {
