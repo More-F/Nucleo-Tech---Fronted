@@ -1,8 +1,107 @@
 // Función para obtener productos del localStorage
-function obtenerProductos() {
-    const productos = JSON.parse(localStorage.getItem("productos")) || productosBase;
+function obtenerProductosLocalStorage() {
+    const productos = JSON.parse(localStorage.getItem("productos")) || [];
     console.log('Productos obtenidos del localStorage:', productos);
     return productos;
+}
+
+// Función para obtener productos del backend (normal)
+async function obtenerProductosBackend() {
+    try {
+        const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos');
+        if (!response.ok) throw new Error('Error al cargar productos del backend');
+        const productos = await response.json();
+        console.log('Productos obtenidos del backend (normal):', productos);
+        return productos;
+    } catch (error) {
+        console.error('Error al obtener productos del backend (normal):', error);
+        return [];
+    }
+}
+
+// Función para obtener productos del backend con DTO (imágenes base64)
+async function obtenerProductosBackendDTO() {
+    try {
+        console.log('🖼️ Intentando obtener productos con imágenes base64...');
+        
+        // Primero intentar GET
+        let response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/crear-dto', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        // Si GET falla, intentar POST
+        if (!response.ok) {
+            console.log('GET falló, intentando POST...');
+            response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos/crear-dto', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+        
+        if (!response.ok) {
+            console.log('❌ DTO endpoint no disponible, usando endpoint normal');
+            return await obtenerProductosBackend();
+        }
+        
+        const productos = await response.json();
+        console.log('✅ Productos obtenidos del backend (DTO):', productos);
+        return productos;
+    } catch (error) {
+        console.error('Error al obtener productos del backend (DTO):', error);
+        console.log('📦 Fallback: usando endpoint normal');
+        return await obtenerProductosBackend();
+    }
+}
+
+// Función para obtener todos los productos (localStorage + backend)
+async function obtenerTodosLosProductos() {
+    const productosLocalStorage = obtenerProductosLocalStorage();
+    
+    // Por ahora usar endpoint normal, cambiar a DTO cuando esté listo
+    const productosBackend = await obtenerProductosBackend();
+    
+    // Comenzar con productos del localStorage
+    const todosLosProductos = [...productosLocalStorage];
+    
+    // Agregar TODOS los productos del backend con IDs únicos
+    productosBackend.forEach(prodBackend => {
+        // Adaptar formato del backend al formato esperado por el frontend
+        const productoAdaptado = {
+            id: `backend_${prodBackend.id}`, // Prefijo para evitar conflictos de ID
+            categoria: prodBackend.categoria?.nombre || prodBackend.categoria || 'general',
+            nombre: prodBackend.nombre,
+            marca: prodBackend.marca?.nombre || prodBackend.marca || 'Sin marca',
+            precio: prodBackend.precio,
+            stock: prodBackend.stock,
+            descripcion: prodBackend.descripcion || '',
+            // Usar imagenUrl que es el campo real de la Entity
+            imagen: prodBackend.imagenUrl || 'IMG/producto-default.jpg',
+            especificaciones: prodBackend.especificaciones || {}
+        };
+        console.log('🖼️ Producto backend adaptado:', {
+            nombre: productoAdaptado.nombre,
+            imagenOriginal: prodBackend.imagenUrl,
+            imagenFinal: productoAdaptado.imagen
+        });
+        todosLosProductos.push(productoAdaptado);
+    });
+    
+    console.log('Productos del localStorage:', productosLocalStorage);
+    console.log('Productos del backend:', productosBackend);
+    console.log('Todos los productos combinados:', todosLosProductos);
+    return todosLosProductos;
+}
+
+// Función para mantener compatibilidad (ahora obtiene todos los productos)
+async function obtenerProductos() {
+    return await obtenerTodosLosProductos();
 }
 
 // Función para guardar el id del producto seleccionado y redirigir al detalle
@@ -11,7 +110,7 @@ function obtenerProductos() {
   //  window.location.href = "detalle.html"; // Redirige seguro al detalle
 //}
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const productsContainer = document.getElementById("products-container");
     const categoryButtons = document.querySelectorAll(".category-btn");
 
@@ -22,9 +121,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const isSubfolder = window.location.pathname.includes('/HTML/');
 
     // Renderizar productos
-    function renderProductos(lista) {
-        console.log('Renderizando lista de productos:', lista);
+    async function renderProductos(lista) {
         productsContainer.innerHTML = "";
+
+        // Si no se pasa una lista, obtener todos los productos
+        if (!lista) {
+            lista = await obtenerProductos();
+        }
 
         if (!lista || lista.length === 0) {
             productsContainer.innerHTML = `<p>No hay productos en esta categoría.</p>`;
@@ -36,8 +139,12 @@ document.addEventListener('DOMContentLoaded', function () {
             card.className = "product-card";
             // Ajusta la ruta de la imagen si está en subcarpeta
             let rutaImagen = producto.imagen;
-            // Si estamos en subcarpeta y la imagen NO es base64, ajusta la ruta
-            if (isSubfolder && !(rutaImagen.startsWith('data:image/'))) {
+            
+            // Si estamos en subcarpeta y la imagen NO es base64 NI una URL completa, ajusta la ruta
+            if (isSubfolder && 
+                !(rutaImagen.startsWith('data:image/')) && 
+                !(rutaImagen.startsWith('http://')) && 
+                !(rutaImagen.startsWith('https://'))) {
                 rutaImagen = '../' + producto.imagen;
             }
             card.innerHTML = `
@@ -65,9 +172,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Agregar event listeners a los botones de carrito
         document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', async function () {
                 const productId = this.getAttribute('data-id');
-                const producto = obtenerProductos().find(p => p.id == productId);
+                const todosLosProductos = await obtenerProductos();
+                const producto = todosLosProductos.find(p => p.id == productId);
 
                 const user = JSON.parse(localStorage.getItem('sesion'));
                 if (!user) {
@@ -85,8 +193,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <div class="modal-check" style="color:#ff4444;">&#9888;</div>
                                 <span style="font-weight:600;">Debes iniciar sesión o crear una cuenta para agregar productos al carrito.</span>
                                 <div style="display:flex;gap:12px;justify-content:center;margin-top:12px;">
-                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='/Nucleo-Tech---Fronted/HTML/login.html'">Iniciar sesión</button>
-                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='/Nucleo-Tech---Fronted/HTML/create-account.html'">Crear cuenta</button>
+                                    <button class="btn-ver-carrito" style="background:#235884;color:#fff;" onclick="window.location.href='/HTML/login.html'">Iniciar sesión</button>
+                                    <button class="btn-ver-carrito" style="background:#9bc53d;color:#222;" onclick="window.location.href='/HTML/create-account.html'">Crear cuenta</button>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +232,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     const info = document.getElementById('modal-producto-info');
                     // Ajustar ruta de imagen para el modal igual que en renderProductos
                     let rutaImagenModal = producto.imagen;
-                    if (isSubfolder && !(rutaImagenModal.startsWith('data:image/'))) {
+                    if (isSubfolder && 
+                        !(rutaImagenModal.startsWith('data:image/')) && 
+                        !(rutaImagenModal.startsWith('http://')) && 
+                        !(rutaImagenModal.startsWith('https://'))) {
                         rutaImagenModal = '../' + producto.imagen;
                     }
                     info.innerHTML = `
@@ -147,10 +258,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Filtrar productos
-    function filtrarProductos(categoria) {
-        console.log('Filtrando por categoría:', categoria);
+    async function filtrarProductos(categoria) {
         categoriaSeleccionada = categoria;
-        const productos = obtenerProductos();
+        const productos = await obtenerProductos();
 
         let productosMostrar;
         if (categoria === "all") {
@@ -162,15 +272,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 return categoriaProducto === categoriaFiltro;
             });
         }
-        renderProductos(productosMostrar);
+        await renderProductos(productosMostrar);
     }
 
     // Eventos de botones de categoría
     categoryButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
             categoryButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            filtrarProductos(btn.dataset.category);
+            await filtrarProductos(btn.dataset.category);
         });
     });
 

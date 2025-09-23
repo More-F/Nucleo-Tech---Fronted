@@ -1,3 +1,32 @@
+// Función simple para obtener productos del backend sin tocar localStorage
+async function obtenerProductosBackendParaIndex() {
+    try {
+        const response = await fetch('https://n3ymm34g6b.us-east-1.awsapprunner.com/api/productos');
+        if (!response.ok) throw new Error('Backend no disponible');
+        
+        const productosBackend = await response.json();
+        console.log('✅ Productos del backend para index:', productosBackend);
+        
+        // Adaptar formato para el index
+        return productosBackend.map(prod => ({
+            id: `backend_${prod.id}`,
+            categoria: prod.categoria?.nombre || 'general',
+            nombre: prod.nombre,
+            marca: prod.marca?.nombre || 'Sin marca',
+            precio: prod.precio,
+            stock: prod.stock,
+            descripcion: prod.descripcion || '',
+            imagen: prod.imagenUrl || 'IMG/producto-default.jpg', // ← USAR imagenUrl
+            especificaciones: prod.especificaciones || {},
+            nuevo: false,
+            descuento: 0
+        }));
+    } catch (error) {
+        console.warn('⚠️ No se pudieron cargar productos del backend:', error);
+        return [];
+    }
+}
+
 function renderProductCard(producto, container) {
     const productCard = document.createElement("a"); // Cambiado de div a a
     productCard.className = "product-card";
@@ -27,7 +56,7 @@ function renderProductCard(producto, container) {
 }
 
 //Funcionalidad de compatiblidad hasta 156
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     // Compatibilidad: buscador con resultados y compatibles
     const buscador = document.getElementById('buscadorCompatibilidad');
     const listaCompatibilidad = document.getElementById('listaCompatibilidad');
@@ -300,21 +329,34 @@ document.addEventListener("DOMContentLoaded", function () {
             resultadoDiv.innerHTML = `<div style="background:#23283a; color:#ff4444; border-radius:1rem; padding:2rem; text-align:center; font-size:1.2rem; box-shadow:0 2px 12px rgba(34,40,49,0.18);"><i class='fa-solid fa-circle-xmark' style='color:#ff4444; font-size:2rem;'></i><br>Los componentes seleccionados no son compatibles.<br>Revisa las opciones sugeridas o consulta con nuestro equipo.</div>`;
         }
     });
-    const productos = JSON.parse(localStorage.getItem('productos')) || [];
+    
+    // Obtener productos de localStorage (sin modificar)
+    const productosLocal = JSON.parse(localStorage.getItem('productos')) || [];
+    
+    // Obtener productos del backend (solo agregar, no reemplazar)
+    const productosBackend = await obtenerProductosBackendParaIndex();
+    
+    // Combinar productos: localStorage + backend
+    const todosLosProductos = [...productosLocal, ...productosBackend];
+    console.log(`📦 Total productos combinados: ${productosLocal.length} local + ${productosBackend.length} backend = ${todosLosProductos.length}`);
 
     // Renderizar productos destacados (primeros 6)
     const productsContainer = document.getElementById("products-container");
-    productsContainer.innerHTML = "";
-    const primeros6 = productos.slice(0, 6);
-    primeros6.forEach(producto => renderProductCard(producto, productsContainer));
+    if (productsContainer) {
+        productsContainer.innerHTML = "";
+        const primeros6 = todosLosProductos.slice(0, 6);
+        primeros6.forEach(producto => renderProductCard(producto, productsContainer));
+    }
 
     // Renderizar productos bajo 1 millón
     const productsUnderMillion = document.getElementById("products-under-million");
-    productsUnderMillion.innerHTML = "";
-    const productosBaratos = productos
-        .filter(producto => producto.precio < 1000000)
-        .slice(0, 3);
-    productosBaratos.forEach(producto => renderProductCard(producto, productsUnderMillion));
+    if (productsUnderMillion) {
+        productsUnderMillion.innerHTML = "";
+        const productosBaratos = todosLosProductos // ← USAR PRODUCTOS COMBINADOS
+            .filter(producto => producto.precio < 1000000)
+            .slice(0, 3);
+        productosBaratos.forEach(producto => renderProductCard(producto, productsUnderMillion));
+    }
 
     // Agregar event listeners para los botones de agregar al carrito
     document.querySelectorAll('.add-to-cart').forEach(button => {

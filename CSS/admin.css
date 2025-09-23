@@ -155,23 +155,52 @@ body {
   color: #A5BF45;
 }
 
-/*inputs */
+/*inputs del formulario editar */
 .form-editar label {
   display: block;
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 8px;
   font-weight: bold;
   color: var(--primary-color);
+  font-size: 16px;
 }
 
-.form-editar input {
+.form-editar input,
+.form-editar select,
+.form-editar textarea {
   width: 100%;
-    padding: 0.7rem 1.1rem;
-    margin-bottom: 10px;
-    border-radius: 0.7rem;
-    border: 1px solid #ccc;
-    background-color: var(--light-text);
-    color: var(--dark-bg);
-    box-shadow: 0 2px 8px 0 rgba(35,88,132,0.07);
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: var(--light-text);
+  color: var(--dark-bg);
+  font-size: 15px;
+  box-shadow: 0 2px 8px 0 rgba(35,88,132,0.07);
+  transition: border-color 0.3s ease;
+}
+
+.form-editar input:focus,
+.form-editar select:focus,
+.form-editar textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(165, 191, 69, 0.2);
+}
+
+.form-editar textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-editar #previewImagenEditar {
+  max-width: 120px;
+  max-height: 120px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: block;
+  border: 2px solid #ddd;
+  object-fit: cover;
 }
 
 /*botones */
